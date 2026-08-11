@@ -1,0 +1,68 @@
+# === System Files ===
+.DS_Store
+Thumbs.db
+*.tmp
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg
+.env
+.venv
+venv/
+ENV/
+env/
+
+# === Node / JS / Web ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.eslintcache
+.next/
+out/
+.parcel-cache/
+.cache/
+
+# === Data & Jupyter ===
+.ipynb_checkpoints
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/README.md
+*.log
+
+# === Model Weights & Large Binaries ===
+*.h5
+*.pkl
+*.pth
+*.pb
+*.onnx
+*.zip
+*.tar.gz
+*.csv
+*.jsonl
