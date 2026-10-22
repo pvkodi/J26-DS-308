@@ -1,0 +1,15 @@
+{
+  "source_archive": "risk_two_rule_demo_all_results (19).zip",
+  "source_sha256": "f74a6434f145da6eef82fb472f409080ea41a8ac718d23026ae45d210bb176c0",
+  "files": {
+    "data/qwen7.zip": "d6bf6ba2f4426b18727f37ccd6bb6d8741d5d5e9052722fc19427b642bf7c140",
+    "data/granite2.zip": "287949f3dde78066a8711dec1aa122020fb4a477a7f24176e55c9d4c74e9ccd3",
+    "data/base.json": "5dc7d6c585e39da65240d9e5a995c2fb780bb57b203e4c0dd91f45636fe4f8e0",
+    "data/profile.json": "186b443d59f57c613275aedeb8211d80825b46742a45ffa487848a35efbbb5e2",
+    "engine/predictor.py": "3643f6fb2f78a3c9578668d610b8bbcb1f57edae00fe6b10c10918bfddfa2e81",
+    "engine/checks.py": "77c294e7c5d54451de5ca2106456e051cb65de55c52bc62d82c344fcd40f2a2f"
+  },
+  "data_scope": "All192 held-out evaluation answers, both models, all8 trajectories per model; no example selected on outcomes.",
+  "default_selection": "First scenario in frozen evaluation manifest, compact context,4 active obligations, Qwen,profile off.",
+  "profile_scope": "Granite word-limit intercept calibration only; ending correction exactly zero. Frozen before evaluation."
+}

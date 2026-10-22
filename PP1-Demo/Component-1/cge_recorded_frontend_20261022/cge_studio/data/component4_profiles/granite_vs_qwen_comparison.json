@@ -1,0 +1,404 @@
+{
+  "schema_version": "component4.profile-comparison.v1",
+  "plan_sha256": "84e6b6bafb75ecf3b55c1f9b2920c1a0ec2ed743ec40ec0346248b21eb610076",
+  "factor_effects": {
+    "context_medium": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0,
+        "paired_family_interval": null,
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.16666666666666666,
+        "paired_family_interval": [
+          0.0,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": -0.08333333333333333,
+        "paired_family_interval": [
+          -0.5,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": 0.16666666666666666,
+        "paired_family_interval": [
+          0.0,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.0625,
+        "paired_family_interval": [
+          -0.041666666666666664,
+          0.20833333333333334
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "context_long": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0,
+        "paired_family_interval": null,
+        "shared_families": 4,
+        "matched_cross_model_blocks": 11,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.75,
+        "paired_family_interval": [
+          0.5,
+          1.0
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 11,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": -0.08333333333333333,
+        "paired_family_interval": [
+          -0.3333333333333333,
+          0.25
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 11,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": 0.08333333333333333,
+        "paired_family_interval": [
+          -0.16666666666666666,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 11,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.1875,
+        "paired_family_interval": [
+          3.469446951953614e-18,
+          0.375
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 11,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "position_middle": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0.08333333333333333,
+        "paired_family_interval": [
+          0.0,
+          0.25
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.08333333333333333,
+        "paired_family_interval": [
+          0.0,
+          0.25
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": 0.3333333333333333,
+        "paired_family_interval": [
+          -0.3333333333333333,
+          0.6666666666666666
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": 0.25,
+        "paired_family_interval": [
+          0.0,
+          0.5
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.1875,
+        "paired_family_interval": [
+          0.020833333333333332,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "position_late": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0,
+        "paired_family_interval": null,
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.3333333333333333,
+        "paired_family_interval": [
+          0.08333333333333333,
+          0.5
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": 0.0,
+        "paired_family_interval": [
+          -0.41666666666666663,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": 0.16666666666666666,
+        "paired_family_interval": [
+          -0.3333333333333333,
+          0.5833333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.125,
+        "paired_family_interval": [
+          0.0,
+          0.25
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "turns_few": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0,
+        "paired_family_interval": null,
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.08333333333333333,
+        "paired_family_interval": [
+          0.0,
+          0.25
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": -0.08333333333333333,
+        "paired_family_interval": [
+          -0.5,
+          0.41666666666666663
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": -0.5,
+        "paired_family_interval": [
+          -0.8333333333333334,
+          -0.08333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": -0.125,
+        "paired_family_interval": [
+          -0.2916666666666667,
+          0.041666666666666664
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "turns_many": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0,
+        "paired_family_interval": null,
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.25,
+        "paired_family_interval": [
+          0.0,
+          0.5
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": 0.08333333333333333,
+        "paired_family_interval": [
+          -0.16666666666666666,
+          0.3333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": 0.0,
+        "paired_family_interval": [
+          -0.5,
+          0.5
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.08333333333333333,
+        "paired_family_interval": [
+          0.0,
+          0.16666666666666666
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "obligation_load": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0,
+        "paired_family_interval": null,
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.41666666666666663,
+        "paired_family_interval": [
+          0.0,
+          0.8333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": -0.25,
+        "paired_family_interval": [
+          -0.5,
+          0.0
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": -0.08333333333333333,
+        "paired_family_interval": [
+          -0.3333333333333333,
+          0.25
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.020833333333333332,
+        "paired_family_interval": [
+          -0.041666666666666664,
+          0.08333333333333333
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    },
+    "request_pressure": {
+      "word_limit": {
+        "granite_minus_qwen_sensitivity": 0.25,
+        "paired_family_interval": [
+          -0.16666666666666666,
+          0.6666666666666666
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "ending": {
+        "granite_minus_qwen_sensitivity": 0.5833333333333334,
+        "paired_family_interval": [
+          1.3877787807814457e-17,
+          1.0
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "no_comma": {
+        "granite_minus_qwen_sensitivity": -0.3333333333333333,
+        "paired_family_interval": [
+          -0.8333333333333334,
+          0.16666666666666666
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "required_word": {
+        "granite_minus_qwen_sensitivity": -0.08333333333333333,
+        "paired_family_interval": [
+          -0.6666666666666666,
+          0.6666666666666666
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      },
+      "overall": {
+        "granite_minus_qwen_sensitivity": 0.10416666666666667,
+        "paired_family_interval": [
+          -0.22916666666666666,
+          0.45833333333333337
+        ],
+        "shared_families": 4,
+        "matched_cross_model_blocks": 12,
+        "evidence_status": "preliminary_supported"
+      }
+    }
+  }
+}
