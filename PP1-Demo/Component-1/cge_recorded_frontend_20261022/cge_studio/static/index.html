@@ -6,7 +6,7 @@
 <aside class="rail"><div class="brand"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><div><b>CGE Studio</b><small>CONVERSATION GOVERNANCE</small></div></div>
 <div class="nav-label">OBLIGATION MONITOR · C1</div><nav aria-label="Obligation Monitor"><button class="nav active" data-page="conversation"><span>01</span> Conversation</button><button class="nav" data-page="extractor"><span>02</span> Obligation extractor</button><button class="nav" data-page="detector"><span>03</span> Detector</button><button class="nav" data-page="profiles"><span>04</span> Risk profiles</button></nav>
 <div class="nav-label" style="padding-top:14px;">CONFLICT RESOLVER · C2</div><nav aria-label="Conflict Resolver"><button class="nav" data-page="c2-resolver"><span>05</span> Evidence Arbitration</button><button class="nav" data-page="c2-showcase"><span>06</span> Arbitration Showcase</button></nav>
-<div class="nav-label" style="padding-top:14px;">BELIEF TRACKER · C3</div><nav aria-label="The Memory"><button class="nav" data-page="keel-memory"><span>07</span> Belief Graph & Replay</button><button class="nav" data-page="keel-showcase"><span>08</span> Memory Showcase</button></nav>
+<div class="nav-label" style="padding-top:14px;">BELIEF TRACKER · C3</div><nav aria-label="The Memory"><button class="nav" data-page="keel-memory"><span>07</span> Belief Graph & Replay</button></nav>
 <div class="rail-note"><span class="rail-line"></span><b>Unified Engine</b><p>Obligations (C1)<br>Arbitration (C2)<br>The Memory (C3)</p></div>
 <div class="rail-foot"><span><i class="dot"></i> Local workspace</span><button data-inspect="capabilities">Scope & limitations ↗</button></div></aside>
 <div class="main"><header class="topbar"><div class="crumb">CGE <span>/</span> <b id="breadcrumb">Conversation</b></div><div class="top-actions"><span id="model-status" class="status-chip">Recorded presentation</span><div class="inspect-wrap"><button id="inspect-toggle" class="button">Inspect <span>⌄</span></button><div id="inspect-menu" class="menu" hidden><button data-inspect="metrics">Model performance</button><button data-inspect="dataset">Dataset snapshot</button><button data-inspect="evidence">Run evidence</button><button data-inspect="ledger">Extraction ledger</button><button data-inspect="features">Current risk inputs</button><button data-inspect="architecture">Architecture & handoff</button><button data-inspect="capabilities">Scope & limitations</button></div></div></div></header>
@@ -149,117 +149,7 @@
 </div>
 </section>
 <section id="keel-memory-page" class="page" hidden>
-<div class="pagehead"><div><div class="eyebrow">COMPONENT 3 · THE MEMORY</div><h1>Belief Lineage & Shear Front Replay</h1><p>Observe commitment graphs, track refutations, inspect shear front cascades (orphans), and examine self-repair triage scores.</p></div><div style="display:flex;gap:10px;"><button id="c3-reload-btn" class="button">↺ Reload viewer</button><a href="/c3/" target="_blank" class="button">Open standalone ↗</a></div></div>
-<div class="session-toolbar" style="align-items:center;"><span class="eyebrow" style="margin:0;">RECOMMENDED DEMO RUNS:</span><div class="segmented" id="c3-shortcuts"><button data-c3-conv="car_bike_demo" data-c3-run="W+T__qwen3-0.6b-q8_0" class="active" aria-pressed="true">🚗 Car / Bike (Shear Front)</button><button data-c3-conv="easy_repair_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" aria-pressed="false">🔧 Easy Repair (Triage)</button><button data-c3-conv="bike_build_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" aria-pressed="false">🚲 Bike Build (Chains)</button><button data-c3-conv="catering_order_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" aria-pressed="false">🍰 Catering Order</button><button data-c3-conv="AnalogJ__lexicon-336__swe-agent-llama-70b" aria-pressed="false">💻 SWE-Agent Code Trace</button><button data-c3-conv="tau2_retail_0_t0" aria-pressed="false">🛍️ τ²-Retail Benchmark</button></div><span id="c3-active-label" class="subtle" style="margin-left:auto;">Loaded: car_bike_demo</span></div>
-<div class="scope-note" style="display:flex;justify-content:space-between;align-items:center;"><span><b>Belief Tracker (The Memory):</b> Interactive replay of real runs with Cytoscape dependency graph, step slider, gold comparison, and shear front triage.</span><span class="badge ok">Ready</span></div>
-<div class="c3-container" style="height:calc(100vh - 275px);min-height:700px;position:relative;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(14,23,32,0.06);"><iframe id="c3-iframe" src="/c3/#car_bike_demo" title="Keel Component 3 Belief Tracker" style="width:100%;height:100%;border:none;display:block;"></iframe></div>
-</section>
-<section id="keel-showcase-page" class="page" hidden>
-<div class="pagehead"><div><div class="eyebrow">COMPONENT 3 · CAPABILITIES & SCENARIOS</div><h1>Memory Tracking & Refutation Scenarios</h1><p>How the Belief Tracker handles factual commitments, refutations, shear fronts, and self-repair across human-agent and SWE-agent trajectories.</p></div><button class="button primary" onclick="page('keel-memory')">Open replay viewer →</button></div>
-<div class="profile-flow" style="margin-bottom:24px;">
-<div><small>PHASE 01</small><b>Factual Commitments</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">Turns produce checkable facts (commitments), linked into belief chains.</p></div>
-<span>→</span>
-<div><small>PHASE 02</small><b>Refutation & Death</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">User correction or tool output refutes a prior fact (status: DEAD).</p></div>
-<span>→</span>
-<div><small>PHASE 03</small><b>Shear Front (Orphans)</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">Graph traversal identifies subsequent live facts that depended on the dead fact.</p></div>
-<span>→</span>
-<div><small>PHASE 04</small><b>Triage Scoring</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">A triage model predicts whether the assistant will self-repair without help.</p></div>
-</div>
-<div class="eyebrow" style="margin-bottom:12px;">CURATED DEMONSTRATION RUNS</div>
-<div class="library-grid" style="grid-template-columns:repeat(auto-fit, minmax(360px, 1fr));gap:16px;">
-  <article class="card" style="padding:20px;">
-    <span class="badge ok">Featured Highlight</span>
-    <h3 style="margin:8px 0 6px;">Car & Bike Demo · Shear Front Cascade</h3>
-    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">The user changes the car from manual to automatic. The old choice dies; its item ID, price, quote, total, deposit, monthly payment and delivery date form the <b>shear front (orphans)</b>. Bike facts stay alive.</p>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
-      <div class="stat-box" style="padding:10px;"><b>Turn 7</b><span style="font-size:9px;">Refutation Step</span></div>
-      <div class="stat-box" style="padding:10px;"><b>7</b><span style="font-size:9px;">Orphan Facts</span></div>
-      <div class="stat-box" style="padding:10px;"><b>0.78</b><span style="font-size:9px;">Triage Score</span></div>
-    </div>
-    <button class="button primary" data-c3-conv="car_bike_demo" data-c3-run="W+T__qwen3-0.6b-q8_0" style="width:100%;">Load in Replay Viewer →</button>
-  </article>
-  <article class="card" style="padding:20px;">
-    <span class="badge">Chat Multi-Run</span>
-    <h3 style="margin:8px 0 6px;">Easy Repair Demo · Self-Repair Triage</h3>
-    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">A customer service diagnostic dialogue with several model/variant runs. Demonstrates how the triage model predicts whether the agent repairs a contested fact on its own turn or needs external intervention.</p>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
-      <div class="stat-box" style="padding:10px;"><b>4</b><span style="font-size:9px;">Stored Runs</span></div>
-      <div class="stat-box" style="padding:10px;"><b>W+th</b><span style="font-size:9px;">Default Extractor</span></div>
-      <div class="stat-box" style="padding:10px;"><b>Chat</b><span style="font-size:9px;">Route B</span></div>
-    </div>
-    <button class="button" data-c3-conv="easy_repair_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" style="width:100%;">Load in Replay Viewer →</button>
-  </article>
-  <article class="card" style="padding:20px;">
-    <span class="badge ok">Route A · Benchmark</span>
-    <h3 style="margin:8px 0 6px;">SWE-Agent Coding Trace · Lexicon #336</h3>
-    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">The actual coding trajectory benchmarked in the C3 specification (AnalogJ/lexicon). Shows rule-based commitment extraction without an LLM, tracking bash commands, file edits, and git status assertions.</p>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
-      <div class="stat-box" style="padding:10px;"><b>Rule</b><span style="font-size:9px;">Extraction Mode</span></div>
-      <div class="stat-box" style="padding:10px;"><b>30+</b><span style="font-size:9px;">Steps & Commands</span></div>
-      <div class="stat-box" style="padding:10px;"><b>SWE</b><span style="font-size:9px;">Route A</span></div>
-    </div>
-    <button class="button primary" data-c3-conv="AnalogJ__lexicon-336__swe-agent-llama-70b" style="width:100%;">Load in Replay Viewer →</button>
-  </article>
-  <article class="card" style="padding:20px;">
-    <span class="badge">Chat Multi-Run</span>
-    <h3 style="margin:8px 0 6px;">Bike Build Demo · Constraint Chains</h3>
-    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Building a custom bike with multi-attribute constraints (frame size, gears, brakes, accessories). Shows same-belief chains over consecutive conversation turns and justification links.</p>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
-      <div class="stat-box" style="padding:10px;"><b>5</b><span style="font-size:9px;">Model Variants</span></div>
-      <div class="stat-box" style="padding:10px;"><b>Chains</b><span style="font-size:9px;">Consecutive Mentions</span></div>
-      <div class="stat-box" style="padding:10px;"><b>Gold</b><span style="font-size:9px;">Author Overlay</span></div>
-    </div>
-    <button class="button" data-c3-conv="bike_build_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" style="width:100%;">Load in Replay Viewer →</button>
-  </article>
-  <article class="card" style="padding:20px;">
-    <span class="badge">Tool-Output Binding</span>
-    <h3 style="margin:8px 0 6px;">τ²-Bench Retail Dialogue</h3>
-    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Retail customer shopping run from τ²-bench with tool-output record binding (Variant T). Tracks item reservations, price lookups, and inventory confirmations with gold state comparisons.</p>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
-      <div class="stat-box" style="padding:10px;"><b>Tool</b><span style="font-size:9px;">Value Threads</span></div>
-      <div class="stat-box" style="padding:10px;"><b>Retail</b><span style="font-size:9px;">Domain</span></div>
-      <div class="stat-box" style="padding:10px;"><b>τ²</b><span style="font-size:9px;">Benchmark</span></div>
-    </div>
-    <button class="button" data-c3-conv="tau2_retail_0_t0" style="width:100%;">Load in Replay Viewer →</button>
-  </article>
-  <article class="card" style="padding:20px;">
-    <span class="badge">Chat Multi-Run</span>
-    <h3 style="margin:8px 0 6px;">Catering Order Demo</h3>
-    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Event catering planning dialogue with headcount adjustments and dietary restrictions. Tests how diet constraints cascade to dish selection and invoice calculations.</p>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
-      <div class="stat-box" style="padding:10px;"><b>Multi</b><span style="font-size:9px;">Run Variants</span></div>
-      <div class="stat-box" style="padding:10px;"><b>Dietary</b><span style="font-size:9px;">Constraints</span></div>
-      <div class="stat-box" style="padding:10px;"><b>Replay</b><span style="font-size:9px;">Pre-recorded</span></div>
-    </div>
-    <button class="button" data-c3-conv="catering_order_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" style="width:100%;">Load in Replay Viewer →</button>
-  </article>
-</div>
-<div class="c4-section" style="margin-top:36px;">
-  <div class="c4-section-head">
-    <div>
-      <div class="eyebrow">UNIFIED CONVERSATION GOVERNANCE</div>
-      <h2>Obligations (C1) + Conflict Arbitration (C2) + Belief Tracking (C3)</h2>
-      <p>How the three components fit together in the complete Conversation Governance Engine.</p>
-    </div>
-  </div>
-  <div class="architecture" style="grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0;">
-    <div class="arch-node main-node">
-      <span>COMPONENT 1</span>
-      <b>Obligation Monitor (Rules & Governance)</b>
-      <p>Monitors what the assistant <b>must or must not do</b> based on system instructions. Extracts binding rules, predicts pre-answer risk using conversation state, checks answer compliance, and maintains an obligation ledger.</p>
-    </div>
-    <div class="arch-node main-node">
-      <span>COMPONENT 2</span>
-      <b>Conflict Resolver (Evidence Arbitration)</b>
-      <p>Arbitrates what is <b>factually accurate</b> among conflicting reports and assertions. Normalizes inputs, groups candidates, extracts reliability & agreement features, ranks candidates using LightGBM, and emits scoped memory contracts.</p>
-    </div>
-    <div class="arch-node main-node">
-      <span>COMPONENT 3</span>
-      <b>The Memory (Beliefs & Ground Truth)</b>
-      <p>Monitors what the assistant <b>commits to as true</b> across dialogue turns and software repository steps. Builds fact dependency graphs, pinpoints dead facts upon refutation, traces shear fronts, and scores triage repair likelihood.</p>
-    </div>
-  </div>
-</div>
+<div class="c3-container"><iframe id="c3-iframe" src="/c3/#car_bike_demo" title="Keel Component 3 Belief Tracker"></iframe></div>
 </section>
 </main><footer class="workspace-footer"><span>CGE Studio <span class="divider">/</span> Unified Conversation Governance</span><span>Obligations (C1) · Conflict Arbitration (C2) · The Memory (C3)</span></footer></div></div>
 <div id="busy-overlay" class="busy-toast" role="status" hidden><span class="spinner"></span><div><b id="busy-title">Working…</b><small id="busy-time"></small></div></div>

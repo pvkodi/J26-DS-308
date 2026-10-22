@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cge-recorded-demo",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["PP1-Demo/Component-1/cge_recorded_frontend_20261022/START_RECORDED_DEMO.py", "--port", "8051"],
+      "port": 8051
+    }
+  ]
+}
