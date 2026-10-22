@@ -1,0 +1,3180 @@
+[
+ {
+  "id": "apartment_lease_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "bike_build_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+amb__gemma-4-e4b-it-q4_k_m",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__gemma-4-e4b-it-q4_k_m",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__gemma-4-e4b-it-q4_k_m",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__gemma-4-e4b-it-q4_k_m",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__gemma-4-e4b-it-q4_k_m",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__gemma-4-e4b-it-q4_k_m",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__gemma-4-e4b-it-q4_k_m",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__gemma-4-e4b-it-q4_k_m",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__gemma-4-e4b-it-q4_k_m",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__gemma-4-e4b-it-q4_k_m",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+attr__gemma-4-e4b-it-q4_k_m",
+   "W+attr__qwen3-0.6b-q8_0",
+   "W+both__gemma-4-e4b-it-q4_k_m",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__gemma-4-e4b-it-q4_k_m",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__gemma-4-e4b-it-q4_k_m",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__gemma-4-e4b-it-q4_k_m",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__gemma-4-e4b-it-q4_k_m",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__gemma-4-e4b-it-q4_k_m",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__gemma-4-e4b-it-q4_k_m",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+tp__gemma-4-e4b-it-q4_k_m",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__gemma-4-e4b-it-q4_k_m",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "bridge_research_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+amb__gemma-4-e4b-it-q4_k_m",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__gemma-4-e4b-it-q4_k_m",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__gemma-4-e4b-it-q4_k_m",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__gemma-4-e4b-it-q4_k_m",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__gemma-4-e4b-it-q4_k_m",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__gemma-4-e4b-it-q4_k_m",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__gemma-4-e4b-it-q4_k_m",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__gemma-4-e4b-it-q4_k_m",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__gemma-4-e4b-it-q4_k_m",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__gemma-4-e4b-it-q4_k_m",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+attr__gemma-4-e4b-it-q4_k_m",
+   "W+attr__qwen3-0.6b-q8_0",
+   "W+both__gemma-4-e4b-it-q4_k_m",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__gemma-4-e4b-it-q4_k_m",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__gemma-4-e4b-it-q4_k_m",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__gemma-4-e4b-it-q4_k_m",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__gemma-4-e4b-it-q4_k_m",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__gemma-4-e4b-it-q4_k_m",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__gemma-4-e4b-it-q4_k_m",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+tp__gemma-4-e4b-it-q4_k_m",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__gemma-4-e4b-it-q4_k_m",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "cake_order_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__gemma-4-e4b-it-q4_k_m",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "car_bike_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "W+T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "car_rental_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "catering_order_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "E__qwen3-0.6b-q8_0",
+   "V+amb__gemma-4-e4b-it-q4_k_m",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__gemma-4-e4b-it-q4_k_m",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__gemma-4-e4b-it-q4_k_m",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__gemma-4-e4b-it-q4_k_m",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__gemma-4-e4b-it-q4_k_m",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__gemma-4-e4b-it-q4_k_m",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__gemma-4-e4b-it-q4_k_m",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+tp__gemma-4-e4b-it-q4_k_m",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__gemma-4-e4b-it-q4_k_m",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "course_enrollment_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__gemma-4-e4b-it-q4_k_m",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "easy_repair_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "E__qwen3-0.6b-q8_0",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "gym_membership_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+amb__gemma-4-e4b-it-q4_k_m",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__gemma-4-e4b-it-q4_k_m",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__gemma-4-e4b-it-q4_k_m",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__gemma-4-e4b-it-q4_k_m",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__gemma-4-e4b-it-q4_k_m",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__gemma-4-e4b-it-q4_k_m",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__gemma-4-e4b-it-q4_k_m",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__gemma-4-e4b-it-q4_k_m",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__gemma-4-e4b-it-q4_k_m",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__gemma-4-e4b-it-q4_k_m",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+attr__gemma-4-e4b-it-q4_k_m",
+   "W+attr__qwen3-0.6b-q8_0",
+   "W+both__gemma-4-e4b-it-q4_k_m",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__gemma-4-e4b-it-q4_k_m",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__gemma-4-e4b-it-q4_k_m",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__gemma-4-e4b-it-q4_k_m",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__gemma-4-e4b-it-q4_k_m",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__gemma-4-e4b-it-q4_k_m",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__gemma-4-e4b-it-q4_k_m",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+tp__gemma-4-e4b-it-q4_k_m",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__gemma-4-e4b-it-q4_k_m",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "hard_cases_demo",
+  "kind": "chat",
+  "split": "dev",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "B__qwen3-0.6b-q8_0",
+   "C__qwen3-0.6b-q8_0",
+   "E__qwen3-0.6b-q8_0",
+   "S__qwen3-0.6b-q8_0",
+   "T__qwen3-0.6b-q8_0",
+   "U__qwen3-0.6b-q8_0",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+thv1__qwen3-0.6b-q8_0",
+   "W+thv2__qwen3-0.6b-q8_0",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "insurance_claim_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__gemma-4-e4b-it-q4_k_m",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "internet_plan_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "lab_inventory_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "legal_case_demo",
+  "kind": "chat",
+  "split": "dev",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "B__qwen3-0.6b-q8_0",
+   "C__qwen3-0.6b-q8_0",
+   "E__gemma-4-e4b-it-q4_k_m__bge",
+   "E__qwen3-0.6b-q8_0",
+   "S__qwen3-0.6b-q8_0",
+   "T__qwen3-0.6b-q8_0",
+   "U__qwen3-0.6b-q8_0",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+thv1__qwen3-0.6b-q8_0",
+   "W+thv2__qwen3-0.6b-q8_0",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "medical_demo",
+  "kind": "chat",
+  "split": "dev",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "B__qwen3-0.6b-q8_0",
+   "C__qwen3-0.6b-q8_0",
+   "E__qwen3-0.6b-q8_0",
+   "S__qwen3-0.6b-q8_0",
+   "T__qwen3-0.6b-q8_0",
+   "U__qwen3-0.6b-q8_0",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+thv1__qwen3-0.6b-q8_0",
+   "W+thv2__qwen3-0.6b-q8_0",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "medical_followup_demo",
+  "kind": "chat",
+  "split": "eval",
+  "gold": true,
+  "runs": [
+   "E__qwen3-0.6b-q8_0"
+  ],
+  "blocked": true
+ },
+ {
+  "id": "moving_quote_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "renovation_demo",
+  "kind": "chat",
+  "split": "eval",
+  "gold": true,
+  "runs": [
+   "E__qwen3-0.6b-q8_0"
+  ],
+  "blocked": true
+ },
+ {
+  "id": "salon_booking_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "school_trip_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "V+amb__gemma-4-e4b-it-q4_k_m",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__gemma-4-e4b-it-q4_k_m",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__gemma-4-e4b-it-q4_k_m",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__gemma-4-e4b-it-q4_k_m",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__gemma-4-e4b-it-q4_k_m",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__gemma-4-e4b-it-q4_k_m",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__gemma-4-e4b-it-q4_k_m",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__gemma-4-e4b-it-q4_k_m",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__gemma-4-e4b-it-q4_k_m",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__gemma-4-e4b-it-q4_k_m",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+attr__gemma-4-e4b-it-q4_k_m",
+   "W+attr__qwen3-0.6b-q8_0",
+   "W+both__gemma-4-e4b-it-q4_k_m",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__gemma-4-e4b-it-q4_k_m",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__gemma-4-e4b-it-q4_k_m",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__gemma-4-e4b-it-q4_k_m",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__gemma-4-e4b-it-q4_k_m",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__gemma-4-e4b-it-q4_k_m",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__gemma-4-e4b-it-q4_k_m",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+tp__gemma-4-e4b-it-q4_k_m",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__gemma-4-e4b-it-q4_k_m",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "support_dispute_demo",
+  "kind": "chat",
+  "split": "dev",
+  "gold": true,
+  "runs": [
+   "V__qwen3-0.6b-q8_0",
+   "B__qwen3-0.6b-q8_0",
+   "C__qwen3-0.6b-q8_0",
+   "E__qwen3-0.6b-q8_0",
+   "S__qwen3-0.6b-q8_0",
+   "T__qwen3-0.6b-q8_0",
+   "U__qwen3-0.6b-q8_0",
+   "V+amb__qwen3-0.6b-q8_0",
+   "V+attr__qwen3-0.6b-q8_0",
+   "V+both__qwen3-0.6b-q8_0",
+   "V+cp__qwen3-0.6b-q8_0",
+   "V+d__qwen3-0.6b-q8_0",
+   "V+da__qwen3-0.6b-q8_0",
+   "V+ha__qwen3-0.6b-q8_0",
+   "V+m__gemma-4-e4b-it-q4_k_m",
+   "V+m__qwen3-0.6b-q8_0",
+   "V+ma__gemma-4-e4b-it-q4_k_m",
+   "V+ma__qwen3-0.6b-q8_0",
+   "V+mg__gemma-4-e4b-it-q4_k_m",
+   "V+mg__qwen3-0.6b-q8_0",
+   "V+s__qwen3-0.6b-q8_0",
+   "V+st__qwen3-0.6b-q8_0",
+   "V+tp__qwen3-0.6b-q8_0",
+   "V+ue__qwen3-0.6b-q8_0",
+   "V__gemma-4-e4b-it-q4_k_m",
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+amb__qwen3-0.6b-q8_0",
+   "W+both__qwen3-0.6b-q8_0",
+   "W+cp__qwen3-0.6b-q8_0",
+   "W+d__qwen3-0.6b-q8_0",
+   "W+da__qwen3-0.6b-q8_0",
+   "W+ha__qwen3-0.6b-q8_0",
+   "W+m__gemma-4-e4b-it-q4_k_m",
+   "W+m__qwen3-0.6b-q8_0",
+   "W+ma__gemma-4-e4b-it-q4_k_m",
+   "W+ma__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+s__qwen3-0.6b-q8_0",
+   "W+st__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W+thv1__qwen3-0.6b-q8_0",
+   "W+thv2__qwen3-0.6b-q8_0",
+   "W+tp__qwen3-0.6b-q8_0",
+   "W+ue__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0",
+   "X__gemma-4-e4b-it-q4_k_m",
+   "X__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "table_booking_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+al__qwen3-0.6b-q8_0",
+   "W+alg__qwen3-0.6b-q8_0",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_101_inj_item",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_105_inj_two",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_29_inj_early",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_45_inj_implicit",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_75_inj_early",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_a31__101_hidII_confirm_r4",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_a31__103_hidII_confirm_r1",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_a35__96_hidI_confirm_r0",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "T__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_retail_0_t0",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "W+thj__qwen3-0.6b-q8_0",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tau2_retail_1_t0",
+  "kind": "chat",
+  "split": "none",
+  "gold": false,
+  "runs": [
+   "W+thj__qwen3-0.6b-q8_0",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "tutoring_schedule_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "vet_clinic_demo",
+  "kind": "chat",
+  "split": "none",
+  "gold": true,
+  "runs": [
+   "W+T__qwen3-0.6b-q8_0",
+   "W+mg__gemma-4-e4b-it-q4_k_m",
+   "W+mg__qwen3-0.6b-q8_0",
+   "W+th1__qwen3-0.6b-q8_0",
+   "W+th2__qwen3-0.6b-q8_0",
+   "W+th__gemma-4-e4b-it-q4_k_m",
+   "W+th__qwen3-0.6b-q8_0",
+   "W__gemma-4-e4b-it-q4_k_m",
+   "W__qwen3-0.6b-q8_0"
+  ],
+  "blocked": false
+ },
+ {
+  "id": "AnalogJ__lexicon-336__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__all-repos-91__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Azure__WALinuxAgent-1105__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "barrust__pyspellchecker-101__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "betodealmeida__shillelagh-340__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "canonical__operator-860__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "hynek__structlog-594__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-2353__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-5161__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "m3dev__gokart-147__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "medical_demo",
+  "kind": "swe",
+  "split": "dev",
+  "gold": true,
+  "blocked": false
+ },
+ {
+  "id": "numpy__numpydoc-433__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "PlasmaPy__PlasmaPy-138__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-1183__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2006__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-5736__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "python__cherry-picker-110__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "stfc__fparser-414__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Textualize__textual-1352__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "travel_demo",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "travel_demo_iso",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "valohai__valohai-yaml-131__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "VirtusLab__git-machete-330__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "wfondrie__mokapot-65__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Abjad__abjad-ext-nauert-24__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "adamchainz__apig-wsgi-118__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "adamchainz__apig-wsgi-80__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "adamchainz__apig-wsgi-93__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "aesara-devs__aesara-995__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "agronholm__exceptiongroup-34__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "aio-libs__aiosmtpd-106__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "algorand__pyteal-234__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "allrod5__parameters-validation-3__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "antirotor__speedcopy-6__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "ARMmbed__greentea-263__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ASFHyP3__hyp3-sdk-71__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "asottile__dead-31__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "asottile__pyupgrade-120__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__pyupgrade-133__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__pyupgrade-147__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__pyupgrade-165__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__pyupgrade-217__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__pyupgrade-242__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__pyupgrade-263__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__setup-cfg-fmt-150__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "asottile__yesqa-27__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "asottile__yesqa-4__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "astanin__python-tabulate-152__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "astarte-platform__astarte-device-sdk-python-98__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "aws__aws-xray-sdk-python-93__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "aymanizz__smalld-click-24__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "barrust__pyspellchecker-87__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "barrust__pyspellchecker-87__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "beartype__plum-106__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "bjmorgan__py-sc-fermi-25__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "BlueBrain__atlas-densities-25__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "byllyfish__precis_i18n-32__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "canonical__charmcraft-933__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "canonical__operator-1150__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "carsonyl__pypac-28__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "celery__billiard-372__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "cltk__cltk-661__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "cogeotiff__rio-tiler-mosaic-5__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "colinfike__easy-ptvsd-2__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "colour-science__flask-compress-36__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "commitizen-tools__commitizen-497__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "coverahealth__dataspec-15__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "coverahealth__dataspec-83__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "cuthbertLab__music21-958__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "datadriventests__ddt-98__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "davidchall__topas2numpy-13__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "DCC-Lab__RayTracing-180__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "devopshq__artifactory-439__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "disqus__python-phabricator-64__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "django-money__django-money-689__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "django__asgiref-320__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "dmvass__sqlalchemy-easy-profile-17__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "docker__docker-py-1167__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "docker__docker-py-2008__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "dr-prodigy__python-holidays-555__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "dropbox__stone-117__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "druid-io__pydruid-58__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "duosecurity__duo_client_python-86__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "easy-as-python__django-webmention-24__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ebroecker__canmatrix-479__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "eigenfoo__littlemcmc-63__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "elastic__elasticsearch-py-2030__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Electrostatics__mmcif_pdbx-27__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "eWaterCycle__era5cli-58__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "facelessuser__pymdown-extensions-2039__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "fairlearn__fairlearn-968__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "fatiando__boule-37__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "fatiando__pooch-138__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "fatiando__pooch-171__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "fronzbot__blinkpy-401__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "getsentry__responses-530__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "getsentry__responses-673__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "google__gae-secure-scaffold-python3-14__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "googleapis__python-containeranalysis-251__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "googleapis__python-datastore-115__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "googleapis__python-datastore-115__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "grabbles__grabbit-6__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "gradio-app__gradio-1667__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "graphql-python__graphene-641__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "haddocking__arctic3d-304__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "hgrecco__pint-pandas-204__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "hhursev__recipe-scrapers-915__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "horejsek__python-fastjsonschema-116__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "horejsek__python-fastjsonschema-144__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "horejsek__python-fastjsonschema-27__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "hsahovic__poke-env-68__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "hynek__structlog-463__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ikalchev__HAP-python-243__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ikalchev__HAP-python-458__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ilevkivskyi__typing_inspect-74__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "inducer__pymbolic-58__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Infinidat__munch-54__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "influxdata__influxdb-client-python-203__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iris-hep__qastle-38__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iris-hep__qastle-45__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iris-hep__qastle-58__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ishepard__pydriller-206__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "iterative__dvc-2190__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-3246__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-3325__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-3524__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-3891__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-4108__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-4166__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-4642__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-6284__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-6587__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-6866__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-7360__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-7441__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-7907__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-8252__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-9212__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "iterative__dvc-9689__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "J-CPelletier__webcomix-7__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "joerick__pyinstrument-287__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "jupyterhub__oauthenticator-449__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "kinnala__scikit-fem-634__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "kymatio__kymatio-982__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "lbl-srg__BuildingsPy-183__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "leovt__constructible-3__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "level12__morphi-6__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "linkedin__shiv-237__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "Lucas-C__pre-commit-hooks-10__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "M0r13n__pyais-67__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "M3t0r__tpl-12__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "macbre__sql-metadata-127__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "marcosschroh__dataclasses-avroschema-244__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "marcosschroh__dataclasses-avroschema-402__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "marshmallow-code__flask-smorest-542__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "marshmallow-code__marshmallow-1524__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "marshmallow-code__webargs-583__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "matchms__matchms-547__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "MatterMiners__tardis-238__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "matthewwithanm__python-markdownify-23__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "matthewwithanm__python-markdownify-34__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "melexis__warnings-plugin-9__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "MGough__sensorhub-4__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "mie-lab__trackintel-311__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "miurahr__aqtinstall-627__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "miyuchina__mistletoe-57__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "modernatx__seqlike-76__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "mozman__steputils-3__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "mplanchard__pydecor-20__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "mps-gmbh__hl7-parser-27__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "MycroftAI__lingua-franca-32__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "MycroftAI__lingua-franca-90__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "nackjicholson__aiosql-25__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "naftulikay__mutagen-tools-23__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "NCAS-CMS__cfdm-175__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "networkx__networkx-5903__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "nipy__nipype-2363__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "nipy__nipype-2375__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "nithinmurali__pygsheets-272__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "NREL__hescore-hpxml-169__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "oasis-open__cti-python-stix2-10__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "oasis-open__cti-python-stix2-342__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "oasis-open__cti-python-stix2-407__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "oduwsdl__MementoEmbed-131__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "okigan__awscurl-139__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "omni-us__jsonargparse-176__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ownaginatious__mixpanel-jql-18__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "oxan__djangorestframework-dataclasses-53__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "palantir__python-language-server-211__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "palantir__python-language-server-220__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Parquery__icontract-168__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "patrickfuchs__buildH-55__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "peopledoc__vault-cli-111__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "petrobras__ross-966__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "petrobras__ross-972__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "pimutils__todoman-170__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "planetarypy__pvl-102__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "planetlabs__planet-client-python-1014__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "planetlabs__planet-client-python-581__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ppizarror__pygame-menu-357__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "pri22296__beautifultable-111__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "projectmesa__mesa-1439__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "pvlib__pvlib-python-1181__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pvlib__pvlib-python-1822__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pybel__pybel-384__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "PyCQA__flake8-bugbear-161__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "PyCQA__flake8-bugbear-342__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "PyCQA__isort-1995__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-1562__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2221__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2238__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2282__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2384__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2392__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2461__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2479__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-2670__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-3177__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-3241__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-3543__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-3642__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-3681__swe-agent-llama-405b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-3909__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-4354__swe-agent-llama-405b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-4383__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-4884__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-5132__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-6194__swe-agent-llama-405b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-6586__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-738__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-740__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-772__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-824__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydantic__pydantic-980__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pydicom__pydicom-1694__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "pylint-dev__astroid-1333__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pypa__cibuildwheel-1138__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pypa__hatch-422__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pypa__setuptools_scm-287__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pypa__setuptools_scm-538__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pypa__wheel-578__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "PyThaiNLP__pythainlp-399__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "python-metar__python-metar-125__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "python-metar__python-metar-149__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "python-tap__tappy-92__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "pyvista__pyvista-3675__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "radomirbosak__duden-195__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "RDFLib__rdflib-2112__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "reata__sqllineage-17__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "reata__sqllineage-40__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "red-hat-storage__rhcephpkg-91__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "redis__redis-py-2583__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "reframe-hpc__reframe-2515__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "reframe-hpc__reframe-2790__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "reframe-hpc__reframe-3058__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "repobee__repobee-feedback-24__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "rigetti__pyquil-1694__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "robmarkcole__HASS-data-detective-71__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "rolepoint__pyseeyou-14__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "rubik__radon-212__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "rust-lang__homu-124__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "sayanarijit__expandvars-41__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Sceptre__sceptre-1249__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Sceptre__sceptre-1296__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "scikit-hep__cabinetry-359__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "scikit-hep__cabinetry-396__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "sciunto-org__python-bibtexparser-316__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "sciunto-org__python-bibtexparser-385__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "scrapinghub__price-parser-31__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "scrapinghub__price-parser-43__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "scrapinghub__price-parser-43__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "scrapinghub__spidermon-234__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "scrapy__scrapy-2847__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "scrapy__scrapy-2956__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "SebastianCzoch__influx-line-protocol-11__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "seequent__pure_interface-48__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "serge-sans-paille__beniget-80__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Shoobx__mypy-zope-80__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "spdx__tools-python-467__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "sphinx-gallery__sphinx-gallery-625__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "sqlfluff__sqlfluff-2326__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "sqlfluff__sqlfluff-2998__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "streamlink__streamlink-3019__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "suminb__base62-22__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "svenevs__ci_exec-29__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "Tadaboody__doctree-14__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tcalmant__ipopo-120__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "terrencepreilly__darglint-24__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "Textualize__textual-3334__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tianocore__edk2-pytool-library-238__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tobymao__sqlglot-1468__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tobymao__sqlglot-2023__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tobymao__sqlglot-2063__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tobymao__sqlglot-2443__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "tobymao__sqlglot-2800__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "ttu__ruuvitag-sensor-41__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "twu__skjold-149__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "typesafehub__conductr-cli-466__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "valohai__valohai-cli-85__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "valohai__valohai-yaml-132__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "vitalik__django-ninja-133__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "websocket-client__websocket-client-929__swe-agent-llama-8b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "WIPACrepo__iceprod-339__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "wireservice__agate-637__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "wireservice__csvkit-645__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "wireservice__csvkit-770__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "wookayin__gpustat-28__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "y0-causal-inference__y0-51__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "yukinarit__pyserde-208__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "zalando-stups__senza-397__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ },
+ {
+  "id": "zimeon__ocfl-py-60__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "dev",
+  "gold": false,
+  "blocked": false
+ },
+ {
+  "id": "zulip__zulip-terminal-1468__swe-agent-llama-70b",
+  "kind": "swe",
+  "split": "eval",
+  "gold": false,
+  "blocked": true
+ }
+]
