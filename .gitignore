@@ -63,6 +63,7 @@ data/processed/*
 *.pb
 *.onnx
 *.zip
+!PP1-Demo/**/*.zip
 *.tar.gz
 *.csv
 *.jsonl
