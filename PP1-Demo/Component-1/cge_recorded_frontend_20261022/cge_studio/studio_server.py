@@ -42,15 +42,27 @@ class Studio:
         if mode=='recorded':
             v=self.demo.session(b);sid=v['session'];row=self.row(sid)
             s=dict(id=sid,mode=mode,policy=row['messages_before'][0]['content'],ledger=None,phase='policy',report=None,reports=[],lock=threading.RLock())
+            with self.mutex:
+                if len(self.sessions)>100:raise ValueError('Too many open sessions. Restart Studio to clear them.')
+                self.sessions[sid]=s
+            model=b.get('model','qwen7')
+            start_turn=b.get('start_turn', 2 if model=='qwen7' else 1)
+            if start_turn==2:
+                self.act(dict(session=sid,action='extract'))
+                self.act(dict(session=sid,action='predict'))
+                self.act(dict(session=sid,action='generate'))
+                self.act(dict(session=sid,action='detect'))
+                self.act(dict(session=sid,action='next'))
+            return self.view(s)
         elif mode=='live':
             policy=b.get('policy','')
             if not isinstance(policy,str) or not policy.strip():raise ValueError('Paste a system prompt first.')
             sid=secrets.token_urlsafe(24);s=dict(id=sid,mode=mode,policy=policy,ledger=None,phase='policy',report=None,reports=[],history=[],records=[],lock=threading.RLock())
+            with self.mutex:
+                if len(self.sessions)>100:raise ValueError('Too many open sessions. Restart Studio to clear them.')
+                self.sessions[sid]=s
+            return self.view(s)
         else:raise ValueError('Choose a recorded session or local model.')
-        with self.mutex:
-            if len(self.sessions)>100:raise ValueError('Too many open sessions. Restart Studio to clear them.')
-            self.sessions[sid]=s
-        return self.view(s)
     def get(self,sid):
         if sid not in self.sessions:raise ValueError('Session expired. Start a new conversation.')
         return self.sessions[sid]
