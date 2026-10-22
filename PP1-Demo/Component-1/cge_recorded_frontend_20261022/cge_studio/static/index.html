@@ -5,8 +5,9 @@
 <div class="app">
 <aside class="rail"><div class="brand"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><div><b>CGE Studio</b><small>CONVERSATION GOVERNANCE</small></div></div>
 <div class="nav-label">OBLIGATION MONITOR · C1</div><nav aria-label="Obligation Monitor"><button class="nav active" data-page="conversation"><span>01</span> Conversation</button><button class="nav" data-page="extractor"><span>02</span> Obligation extractor</button><button class="nav" data-page="detector"><span>03</span> Detector</button><button class="nav" data-page="profiles"><span>04</span> Risk profiles</button></nav>
-<div class="nav-label" style="padding-top:16px;">BELIEF TRACKER · C3</div><nav aria-label="The Memory"><button class="nav" data-page="keel-memory"><span>05</span> Belief Graph & Replay</button><button class="nav" data-page="keel-showcase"><span>06</span> Memory Showcase</button></nav>
-<div class="rail-note"><span class="rail-line"></span><b>Unified Governance</b><p>Track obligations & beliefs.<br>Observe what changed.</p></div>
+<div class="nav-label" style="padding-top:14px;">CONFLICT RESOLVER · C2</div><nav aria-label="Conflict Resolver"><button class="nav" data-page="c2-resolver"><span>05</span> Evidence Arbitration</button><button class="nav" data-page="c2-showcase"><span>06</span> Arbitration Showcase</button></nav>
+<div class="nav-label" style="padding-top:14px;">BELIEF TRACKER · C3</div><nav aria-label="The Memory"><button class="nav" data-page="keel-memory"><span>07</span> Belief Graph & Replay</button><button class="nav" data-page="keel-showcase"><span>08</span> Memory Showcase</button></nav>
+<div class="rail-note"><span class="rail-line"></span><b>Unified Engine</b><p>Obligations (C1)<br>Arbitration (C2)<br>The Memory (C3)</p></div>
 <div class="rail-foot"><span><i class="dot"></i> Local workspace</span><button data-inspect="capabilities">Scope & limitations ↗</button></div></aside>
 <div class="main"><header class="topbar"><div class="crumb">CGE <span>/</span> <b id="breadcrumb">Conversation</b></div><div class="top-actions"><span id="model-status" class="status-chip">Recorded presentation</span><div class="inspect-wrap"><button id="inspect-toggle" class="button">Inspect <span>⌄</span></button><div id="inspect-menu" class="menu" hidden><button data-inspect="metrics">Model performance</button><button data-inspect="dataset">Dataset snapshot</button><button data-inspect="evidence">Run evidence</button><button data-inspect="ledger">Extraction ledger</button><button data-inspect="features">Current risk inputs</button><button data-inspect="architecture">Architecture & handoff</button><button data-inspect="capabilities">Scope & limitations</button></div></div></div></header>
 <main>
@@ -33,6 +34,120 @@
 <div class="session-toolbar"><div class="segmented"><button id="det-saved" aria-pressed="true">Saved judgments</button><button id="det-live" aria-pressed="false">Edit & inspect locally</button></div><label class="inline-label">Example <select id="det-example"></select></label><span id="det-turn" class="mono subtle"></span></div>
 <div id="det-origin" class="scope-note"></div><div class="detector-grid"><article class="card"><header><div><h2>Inspection input</h2></div><span id="det-model-tag" class="badge">Source-bound rules</span></header><div class="card-body form-stack"><label>System instructions<textarea id="det-policy" rows="5"></textarea></label><label>Current user message<textarea id="det-user" rows="2"></textarea></label><label>Assistant answer<textarea id="det-answer" rows="5"></textarea></label><details><summary>Reference & earlier context</summary><label>Reference text<textarea id="det-reference" rows="3"></textarea></label><pre id="det-history"></pre></details><div class="field-footer"><button id="det-next" class="button" disabled>Next turn →</button><button id="det-run" class="button primary">Inspect saved judgment →</button></div><div id="det-progress" class="subtle"></div></div></article><div><div id="det-result" class="detector-output empty-state">Inspect the answer to see each obligation, its verdict and the supporting evidence.</div><div id="det-limit" class="quiet-box" hidden></div></div></div></section>
 <section id="profiles-page" class="page" hidden><div class="pagehead"><div><div class="eyebrow">MODEL-SPECIFIC CONTEXT</div><h1>Risk profiles</h1><p>Predictor adjustments and standalone model behaviour measurements.</p></div><button data-inspect="metrics" class="button">Predictor performance ↗</button></div><div class="eyebrow">PREDICTOR PROFILES · CURRENT DEMO</div><div id="profiles-content"></div><section id="component4-content" class="c4-section" aria-label="Standalone Component 4 profiles"></section></section>
+<section id="c2-resolver-page" class="page" hidden>
+<div class="pagehead"><div><div class="eyebrow">COMPONENT 2 · CONFLICT RESOLVER</div><h1>Evidence Arbitration & Candidate Selection</h1><p>Multi-source dispute resolution with learned feature ranking (LightGBM), evidence attribution, decision contracts, and scoped memory handoff.</p></div><div style="display:flex;gap:10px;"><button id="c2-reload-btn" class="button">↺ Reload viewer</button><a href="/c2-evidence-studio/index.html" target="_blank" class="button">Open standalone ↗</a></div></div>
+<div class="session-toolbar" style="align-items:center;"><span class="eyebrow" style="margin:0;">RECORDED CASES:</span><div class="segmented" id="c2-shortcuts"><button data-c2-case="flight" class="active" aria-pressed="true">✈️ Flight Disagreement</button><button data-c2-case="stock" aria-pressed="false">📈 Stock Disagreement</button><button data-c2-case="weather" aria-pressed="false">⛅ Weather Disagreement</button><button data-c2-case="unfamiliar" aria-pressed="false">❓ Unfamiliar Provider</button><button data-c2-case="residence" aria-pressed="false">🏠 Residence Tracking</button><button data-c2-case="time_scope" aria-pressed="false">⏱️ Time Scope</button></div><span id="c2-active-label" class="subtle" style="margin-left:auto;">Loaded: flight (Flight provider disagreement)</span></div>
+<div class="scope-note" style="display:flex;justify-content:space-between;align-items:center;"><span><b>Evidence Arbitration (C2):</b> Multi-source conflict arbitration with candidate grouping, learned feature vectors, decision disposition checking, and memory graph handoff. Replay of recorded executions without local model or live Neo4j database.</span><span class="badge ok">Recorded Replay</span></div>
+<div class="c2-container" style="height:calc(100vh - 275px);min-height:700px;position:relative;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(14,23,32,0.06);"><iframe id="c2-iframe" src="/c2-evidence-studio/index.html?embedded=1#flight" title="C2 Evidence Arbitration — recorded demonstration" style="width:100%;height:100%;border:none;display:block;"></iframe></div>
+</section>
+<section id="c2-showcase-page" class="page" hidden>
+<div class="pagehead"><div><div class="eyebrow">COMPONENT 2 · CAPABILITIES & BENCHMARKS</div><h1>Conflict Resolution Pipeline & Evaluation</h1><p>How C2 arbitrates conflicting claims across structured providers and conversational memory, and benchmark comparisons across 7 arbitration methods.</p></div><button class="button primary" onclick="page('c2-resolver')">Open arbitration viewer →</button></div>
+<div class="profile-flow" style="margin-bottom:24px;">
+<div><small>PHASE 01</small><b>Source Normalization</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">Ingests reports from heterogeneous providers, normalizing datetimes, currency, floats.</p></div>
+<span>→</span>
+<div><small>PHASE 02</small><b>Candidate Grouping</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">Equivalent normalized values combine into candidate values with distinct source support counts.</p></div>
+<span>→</span>
+<div><small>PHASE 03</small><b>Feature Vectors</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">Computes agreement share, historical provider reliability, unfamiliar-source fraction, entropy.</p></div>
+<span>→</span>
+<div><small>PHASE 04</small><b>Learned Ranking</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">LightGBM listwise/pairwise model ranks candidate utilities; abstains on ties or unfamiliar sets.</p></div>
+<span>→</span>
+<div><small>PHASE 05</small><b>Memory Handoff</b><p style="font-size:11px;color:var(--muted);margin-top:5px;">Binds selected candidate to exact claim IDs; commits ACTIVE, SUPERSEDED, or CONTESTED state.</p></div>
+</div>
+<div class="eyebrow" style="margin-bottom:12px;">CURATED ARBITRATION EXAMPLES</div>
+<div class="library-grid" style="grid-template-columns:repeat(auto-fit, minmax(360px, 1fr));gap:16px;">
+  <article class="card" style="padding:20px;">
+    <span class="badge ok">Featured Structured</span>
+    <h3 style="margin:8px 0 6px;">Flight Disagreement · AA-1007 Arrival</h3>
+    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">20 flight tracking providers disagree across 3 arrival times (19:43, 19:53, 19:55). LightGBM selects 19:55 based on high historical provider reliability (0.972 mean) and agreement features.</p>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
+      <div class="stat-box" style="padding:10px;"><b>20</b><span style="font-size:9px;">Providers</span></div>
+      <div class="stat-box" style="padding:10px;"><b>3</b><span style="font-size:9px;">Candidates</span></div>
+      <div class="stat-box" style="padding:10px;"><b>5.006</b><span style="font-size:9px;">Utility Gap</span></div>
+    </div>
+    <button class="button primary" data-c2-case="flight" style="width:100%;">Load in Arbitration Viewer →</button>
+  </article>
+  <article class="card" style="padding:20px;">
+    <span class="badge ok">High Agreement</span>
+    <h3 style="margin:8px 0 6px;">Stock Source Disagreement · AAPL Price Change</h3>
+    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Financial feeds report conflicting price change values for AAPL. 41 sources support +7.59 against isolated reports (+7.41, +7.79, +1.54, 0). Combines agreement share and source reputation.</p>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
+      <div class="stat-box" style="padding:10px;"><b>48</b><span style="font-size:9px;">Raw Sources</span></div>
+      <div class="stat-box" style="padding:10px;"><b>10</b><span style="font-size:9px;">Candidates</span></div>
+      <div class="stat-box" style="padding:10px;"><b>+7.59</b><span style="font-size:9px;">Selected Value</span></div>
+    </div>
+    <button class="button" data-c2-case="stock" style="width:100%;">Load in Arbitration Viewer →</button>
+  </article>
+  <article class="card" style="padding:20px;">
+    <span class="badge">Conversational Track</span>
+    <h3 style="margin:8px 0 6px;">Residence Tracking · Conversational Pathway</h3>
+    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Multi-turn conversational dialogue tracking user residence assertions. Demonstrates admission of new claims, transition of prior claims to SUPERSEDED, and Neo4j graph state across turns.</p>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
+      <div class="stat-box" style="padding:10px;"><b>Multi-turn</b><span style="font-size:9px;">Dialogue</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Neo4j</b><span style="font-size:9px;">Memory Graph</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Policy</b><span style="font-size:9px;">Assertion State</span></div>
+    </div>
+    <button class="button primary" data-c2-case="residence" style="width:100%;">Load in Arbitration Viewer →</button>
+  </article>
+  <article class="card" style="padding:20px;">
+    <span class="badge warn">Abstention Guard</span>
+    <h3 style="margin:8px 0 6px;">Unfamiliar Provider Disagreement</h3>
+    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Demonstrates C2 guard behavior when sources are unfamiliar or unvetted without sufficient historical reliability. The system withholds automatic selection and flags candidates as CONTESTED.</p>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
+      <div class="stat-box" style="padding:10px;"><b>Unseen</b><span style="font-size:9px;">Sources</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Withheld</b><span style="font-size:9px;">Decision</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Contested</b><span style="font-size:9px;">Disposition</span></div>
+    </div>
+    <button class="button" data-c2-case="unfamiliar" style="width:100%;">Load in Arbitration Viewer →</button>
+  </article>
+  <article class="card" style="padding:20px;">
+    <span class="badge">Multi-Station</span>
+    <h3 style="margin:8px 0 6px;">Weather Disagreement · Multi-Station Readings</h3>
+    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Weather observation conflict across localized weather stations and forecasting models with variance in temperature and humidity readings, evaluated under structured TEST partitioning.</p>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
+      <div class="stat-box" style="padding:10px;"><b>Weather</b><span style="font-size:9px;">Domain</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Numeric</b><span style="font-size:9px;">Observations</span></div>
+      <div class="stat-box" style="padding:10px;"><b>TEST</b><span style="font-size:9px;">Partition</span></div>
+    </div>
+    <button class="button" data-c2-case="weather" style="width:100%;">Load in Arbitration Viewer →</button>
+  </article>
+  <article class="card" style="padding:20px;">
+    <span class="badge">Scope Arbitration</span>
+    <h3 style="margin:8px 0 6px;">Time Scope Arbitration · Historical vs Current</h3>
+    <p style="color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:14px;">Temporal scoping resolution ensuring historical records remain valid for their explicit time range without being incorrectly clobbered or marked invalid by newer current-state updates.</p>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:10px 0 16px;">
+      <div class="stat-box" style="padding:10px;"><b>Scoped</b><span style="font-size:9px;">Temporal Keys</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Preserved</b><span style="font-size:9px;">History</span></div>
+      <div class="stat-box" style="padding:10px;"><b>Contracts</b><span style="font-size:9px;">Scope Verification</span></div>
+    </div>
+    <button class="button" data-c2-case="time_scope" style="width:100%;">Load in Arbitration Viewer →</button>
+  </article>
+</div>
+<div class="c4-section" style="margin-top:36px;">
+  <div class="c4-section-head">
+    <div>
+      <div class="eyebrow">BENCHMARK COMPARISON</div>
+      <h2>7 Arbitration Methods on 6,206 Structured TEST Groups</h2>
+      <p>Results from the frozen evaluation suite comparing learned arbitration against heuristic and baseline approaches.</p>
+    </div>
+  </div>
+  <div class="table-wrap" style="margin-top:16px;">
+    <table>
+      <thead>
+        <tr><th>Arbitration Method</th><th>TEST Exact Match</th><th>Approach Type</th><th>Abstention Handling</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:#edf7f3;font-weight:650;"><td>LightGBM (Selected Model)</td><td>Highest exact match</td><td>Learned Listwise/Pairwise</td><td>Abstains on unfamiliar / low confidence</td></tr>
+        <tr><td>Random Forest</td><td>Strong competitor</td><td>Ensemble Decision Trees</td><td>Continuous probability threshold</td></tr>
+        <tr><td>Custom Context Scorer</td><td>Intermediate</td><td>Rule + Context Heuristic</td><td>Fixed parameter fallback</td></tr>
+        <tr><td>Historical Reliability Mean</td><td>Baseline</td><td>Source Reputation Weighting</td><td>Unweighted for unseen sources</td></tr>
+        <tr><td>Majority Voting</td><td>Heuristic Baseline</td><td>Raw Source Frequency</td><td>Cannot resolve ties</td></tr>
+        <tr><td>Single Preferred Source</td><td>Naive Baseline</td><td>Static Priority Order</td><td>Fails when preferred source unavailable</td></tr>
+        <tr><td>Random Candidate Choice</td><td>Lower Bound</td><td>Uniform Probability</td><td>No signal</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
 <section id="keel-memory-page" class="page" hidden>
 <div class="pagehead"><div><div class="eyebrow">COMPONENT 3 · THE MEMORY</div><h1>Belief Lineage & Shear Front Replay</h1><p>Observe commitment graphs, track refutations, inspect shear front cascades (orphans), and examine self-repair triage scores.</p></div><div style="display:flex;gap:10px;"><button id="c3-reload-btn" class="button">↺ Reload viewer</button><a href="/c3/" target="_blank" class="button">Open standalone ↗</a></div></div>
 <div class="session-toolbar" style="align-items:center;"><span class="eyebrow" style="margin:0;">RECOMMENDED DEMO RUNS:</span><div class="segmented" id="c3-shortcuts"><button data-c3-conv="car_bike_demo" data-c3-run="W+T__qwen3-0.6b-q8_0" class="active" aria-pressed="true">🚗 Car / Bike (Shear Front)</button><button data-c3-conv="easy_repair_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" aria-pressed="false">🔧 Easy Repair (Triage)</button><button data-c3-conv="bike_build_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" aria-pressed="false">🚲 Bike Build (Chains)</button><button data-c3-conv="catering_order_demo" data-c3-run="W+th__qwen3-0.6b-q8_0" aria-pressed="false">🍰 Catering Order</button><button data-c3-conv="AnalogJ__lexicon-336__swe-agent-llama-70b" aria-pressed="false">💻 SWE-Agent Code Trace</button><button data-c3-conv="tau2_retail_0_t0" aria-pressed="false">🛍️ τ²-Retail Benchmark</button></div><span id="c3-active-label" class="subtle" style="margin-left:auto;">Loaded: car_bike_demo</span></div>
@@ -123,15 +238,20 @@
   <div class="c4-section-head">
     <div>
       <div class="eyebrow">UNIFIED CONVERSATION GOVERNANCE</div>
-      <h2>Obligation Monitoring (C1) + Belief Tracking (C3)</h2>
-      <p>How the two components fit together in the complete Conversation Governance Engine.</p>
+      <h2>Obligations (C1) + Conflict Arbitration (C2) + Belief Tracking (C3)</h2>
+      <p>How the three components fit together in the complete Conversation Governance Engine.</p>
     </div>
   </div>
-  <div class="architecture" style="grid-template-columns:repeat(2,1fr);gap:16px;margin:18px 0;">
+  <div class="architecture" style="grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0;">
     <div class="arch-node main-node">
       <span>COMPONENT 1</span>
       <b>Obligation Monitor (Rules & Governance)</b>
       <p>Monitors what the assistant <b>must or must not do</b> based on system instructions. Extracts binding rules, predicts pre-answer risk using conversation state, checks answer compliance, and maintains an obligation ledger.</p>
+    </div>
+    <div class="arch-node main-node">
+      <span>COMPONENT 2</span>
+      <b>Conflict Resolver (Evidence Arbitration)</b>
+      <p>Arbitrates what is <b>factually accurate</b> among conflicting reports and assertions. Normalizes inputs, groups candidates, extracts reliability & agreement features, ranks candidates using LightGBM, and emits scoped memory contracts.</p>
     </div>
     <div class="arch-node main-node">
       <span>COMPONENT 3</span>
@@ -141,7 +261,7 @@
   </div>
 </div>
 </section>
-</main><footer class="workspace-footer"><span>CGE Studio <span class="divider">/</span> Unified Conversation Governance</span><span>Obligations (C1) · The Memory & Beliefs (C3)</span></footer></div></div>
+</main><footer class="workspace-footer"><span>CGE Studio <span class="divider">/</span> Unified Conversation Governance</span><span>Obligations (C1) · Conflict Arbitration (C2) · The Memory (C3)</span></footer></div></div>
 <div id="busy-overlay" class="busy-toast" role="status" hidden><span class="spinner"></span><div><b id="busy-title">Working…</b><small id="busy-time"></small></div></div>
 <dialog id="drawer" class="drawer"><div class="drawer-header"><div><span class="eyebrow" id="drawer-kicker">INSPECT</span><h2 id="drawer-title"></h2></div><button id="close-drawer" class="icon-button" aria-label="Close inspection panel">×</button></div><div id="drawer-content" class="drawer-content"></div></dialog>
 <script src="/component4-profiles.js"></script>

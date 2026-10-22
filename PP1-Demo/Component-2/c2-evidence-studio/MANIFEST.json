@@ -1,0 +1,45 @@
+{
+  "version": "c2-replay-studio-v1",
+  "purpose": "Self-contained recorded C2 frontend for common presentation UI",
+  "source_artifacts": {
+    "runs/pp1_viewer_v1/catalog.json": "2039485ca9cda2b45679df05ee496610aaf13605938bbf77d98a8f4dc8942be4",
+    "reports/research_completion_summary.json": "3f1ed80244dccc5ca6eacf6a23fc145d9a19c90bc601bfa6c91d5bad6bad9e54"
+  },
+  "c3_ui_review": {
+    "main": "b42b20e1af9c3a59cf1129b47c11d1ef7e016447",
+    "feat/triage-pipeline": "4f08b4eaab2b3449e94d0c7e059b857f5c260370",
+    "feat/task7-class-u-labels": "dce6bfa0a5fef697a23efe96ae0623d853e7be65",
+    "finding": "main and triage share Keel Debug Viewer HTML; no CGE Studio sidebar shell in the inspected published branch trees",
+    "reference_layout": "User-supplied CGE Studio screenshot; independent C2 implementation"
+  },
+  "original_demo_and_model_hashes_unchanged": true,
+  "original_sha256": {
+    "src/demonstration/catalog.py": "fb822f13b72754448a5ce1aee5b7754e7ffa6a96109b300cb0db65f75e6eb9fd",
+    "src/demonstration/server.py": "2c24253a882dc5df4d0a3394a51b7c6cbdd1cb1189fabfa39a2599603ffb1658",
+    "src/demonstration/trace.py": "20c8e580ba25d83e33391d992e8695dcb3b525bbd14f01acb577fe00e3ffc2d3",
+    "src/demonstration/__init__.py": "24733d99f0e9399a842b6add6921f69c10dd48c621201fbc5b54eff04660bb19",
+    "src/demonstration/static/index.html": "54fad575181a7d7fa4d93d8cef13c3bdaf13b188289e701f314fd4410a996f17",
+    "scripts/run_pp1_viewer.py": "d36b23a4e809bfcfdc9d8c24d0c0df49151289fceb71b44e8cdece9da538f9bd",
+    "runs/research_completion_v6/structured/lightgbm_2026.txt": "746fcc5259e88b1071dbe0a101c155f85114f6303f470f7c89b4ae8861cd7b5d",
+    "runs/research_completion_v6/structured/features.json": "b82500c9e528a167edd30aee246b326ea59a41220c18f611c44b2f0b0b13fab6"
+  },
+  "includes_credentials": false,
+  "includes_databases": false,
+  "includes_weights": false,
+  "mode": "recorded_replay",
+  "case_count": 6,
+  "saved_neo4j_commits": [
+    "flight",
+    "stock",
+    "weather"
+  ],
+  "files": {
+    "app.js": "ea782879a1030caf01b2f7c47cd12c87ab7c8057c06e83c625e799bae302aab7",
+    "data/recordings.js": "9ae89b13ce421bef586c5d35f1f6cafeb78c7773ebfd10bbd470ba6f8abbd7c5",
+    "index.html": "cc0b41f23f3b6a57a000f90fc5a1bea561b64f50869034f40f2cad7d5cae1123",
+    "INTEGRATION.md": "210281cc0cf3684435c84ac95733c1a813b5cbb7f9f343184bae306cdd8c8271",
+    "README.md": "d5276c8340804845fe1168f78193aa57fd537ac95e2875fe25bb7eb1b1cda8d4",
+    "serve.py": "5c27294cd88bd82b6c48934654709870eef2676b247fab2ef6a81795a7bd934b",
+    "styles.css": "c688c70699d32a36e8af48e7efec548a73037dee5b51f531306db5f4fbc8f449"
+  }
+}

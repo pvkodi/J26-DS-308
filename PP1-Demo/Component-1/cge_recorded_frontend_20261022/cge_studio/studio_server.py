@@ -209,6 +209,10 @@ def main():
     c3_frontend = c3_root / 'frontend'
     c3_live_msg = "Live runs need the local model and are not part of this replay copy. Use the Keel presenter's laptop for live runs."
 
+    c2_root = WORK / 'c2-evidence-studio'
+    if not c2_root.exists():
+        c2_root = WORK.parent / 'Component-2/c2-evidence-studio'
+
     class Handler(BaseHTTPRequestHandler):
         def send(self,status,data,mime='application/json; charset=utf-8',download=None):
             data=json.dumps(data,ensure_ascii=False).encode() if mime.startswith('application/json') and not isinstance(data,bytes) else data
@@ -218,6 +222,19 @@ def main():
         def do_GET(self):
             u=urlsplit(self.path);q=parse_qs(u.query)
             try:
+                if u.path in ('/c2', '/c2/', '/c2/index.html', '/c2-evidence-studio', '/c2-evidence-studio/', '/c2-evidence-studio/index.html'):
+                    return self.send(200, (c2_root / 'index.html').read_bytes(), 'text/html; charset=utf-8')
+                if u.path.startswith('/c2-evidence-studio/') or u.path.startswith('/c2/'):
+                    rel = u.path[len('/c2-evidence-studio/'):] if u.path.startswith('/c2-evidence-studio/') else u.path[len('/c2/'):]
+                    target = (c2_root / rel).resolve()
+                    if target.is_file() and str(target).startswith(str(c2_root.resolve())):
+                        mime = 'text/plain; charset=utf-8'
+                        if target.suffix == '.js': mime = 'application/javascript; charset=utf-8'
+                        elif target.suffix == '.css': mime = 'text/css; charset=utf-8'
+                        elif target.suffix == '.html': mime = 'text/html; charset=utf-8'
+                        elif target.suffix == '.json': mime = 'application/json; charset=utf-8'
+                        elif target.suffix == '.svg': mime = 'image/svg+xml'
+                        return self.send(200, target.read_bytes(), mime)
                 if u.path in ('/c3', '/c3/', '/c3/index.html'):
                     return self.send(200, (c3_frontend / 'index.html').read_bytes(), 'text/html; charset=utf-8')
                 if u.path == '/c3/cytoscape.min.js':
@@ -240,6 +257,8 @@ def main():
                         return self.send(403, {'error': f"'{conv}' is in the frozen eval split and is not part of this demo copy."})
                     if c.get('kind') == 'chat':
                         run = run or c['runs'][0]
+                        if run not in c['runs'] and run.replace(' ', '+') in c['runs']:
+                            run = run.replace(' ', '+')
                         if run not in c['runs']:
                             return self.send(404, {'error': f"no stored run '{run}' for '{conv}'"})
                         f = c3_data / 'bundles' / conv / f"{run}.json"
