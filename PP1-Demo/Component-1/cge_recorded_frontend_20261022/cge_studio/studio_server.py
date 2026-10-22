@@ -190,6 +190,13 @@ class Studio:
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--port',type=int,default=8051);a=p.parse_args();app=Studio()
+    c3_root = WORK / 'keel_c3'
+    if not c3_root.exists():
+        c3_root = WORK.parent / 'Component-3/keel_c3_demo'
+    c3_data = c3_root / 'data'
+    c3_frontend = c3_root / 'frontend'
+    c3_live_msg = "Live runs need the local model and are not part of this replay copy. Use the Keel presenter's laptop for live runs."
+
     class Handler(BaseHTTPRequestHandler):
         def send(self,status,data,mime='application/json; charset=utf-8',download=None):
             data=json.dumps(data,ensure_ascii=False).encode() if mime.startswith('application/json') and not isinstance(data,bytes) else data
@@ -199,6 +206,36 @@ def main():
         def do_GET(self):
             u=urlsplit(self.path);q=parse_qs(u.query)
             try:
+                if u.path in ('/c3', '/c3/', '/c3/index.html'):
+                    return self.send(200, (c3_frontend / 'index.html').read_bytes(), 'text/html; charset=utf-8')
+                if u.path == '/c3/cytoscape.min.js':
+                    cy_f = c3_frontend / 'cytoscape.min.js'
+                    if cy_f.exists():
+                        return self.send(200, cy_f.read_bytes(), 'application/javascript; charset=utf-8')
+                if u.path == '/api/models':
+                    return self.send(200, [])
+                if u.path == '/api/conversations':
+                    return self.send(200, (c3_data / 'conversations.json').read_bytes(), 'application/json; charset=utf-8')
+                if u.path == '/api/bundle':
+                    conv = (q.get('conv') or [''])[0]
+                    run = (q.get('run') or [''])[0]
+                    convs_raw = json.loads((c3_data / 'conversations.json').read_text(encoding='utf-8'))
+                    known = {c['id']: c for c in convs_raw}
+                    c = known.get(conv)
+                    if c is None:
+                        return self.send(404, {'error': f"unknown conversation '{conv}'"})
+                    if c.get('blocked'):
+                        return self.send(403, {'error': f"'{conv}' is in the frozen eval split and is not part of this demo copy."})
+                    if c.get('kind') == 'chat':
+                        run = run or c['runs'][0]
+                        if run not in c['runs']:
+                            return self.send(404, {'error': f"no stored run '{run}' for '{conv}'"})
+                        f = c3_data / 'bundles' / conv / f"{run}.json"
+                    else:
+                        f = c3_data / 'bundles' / conv / 'swe.json'
+                    if not f.is_file():
+                        return self.send(404, {'error': f"bundle missing: {f.name}"})
+                    return self.send(200, f.read_bytes(), 'application/json; charset=utf-8')
                 if u.path=='/api/catalog':return self.send(200,app.catalog())
                 if u.path=='/api/local-status':return self.send(200,model_status())
                 if u.path=='/api/metrics':return self.send(200,app.metrics())
@@ -244,6 +281,7 @@ def main():
                 if not 0<n<=512000:raise ValueError('Request exceeds the local workflow size limit.')
                 b=json.loads(self.rfile.read(n));path=urlsplit(self.path).path
                 if not isinstance(b,dict):raise ValueError('Expected an object')
+                if path.startswith('/api/live/'):return self.send(503,dict(error=c3_live_msg))
                 if path in ('/api/extract','/api/extractor/run','/api/detector/analyze'):raise ValueError('Live inference is not included in this distribution.')
                 if path=='/api/session':value=app.create(b)
                 elif path=='/api/action':value=app.act(b)

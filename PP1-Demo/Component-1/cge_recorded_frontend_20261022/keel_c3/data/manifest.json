@@ -1,0 +1,19 @@
+{
+ "exported_at": "2026-10-22T08:19:48.111015+00:00",
+ "source_commit": "b42b20e1af9c3a59cf1129b47c11d1ef7e016447",
+ "conversations": 347,
+ "bundles": 874,
+ "bytes": 126001710,
+ "failed": [
+  {
+   "conv": "travel_demo",
+   "run": null,
+   "error": "FileNotFoundError: no stored extraction 'V__qwen3-0.6b-q8_0' for chat 'travel_demo' (tests/fixtures/open_exp)"
+  },
+  {
+   "conv": "travel_demo_iso",
+   "run": null,
+   "error": "FileNotFoundError: no stored extraction 'V__qwen3-0.6b-q8_0' for chat 'travel_demo_iso' (tests/fixtures/open_exp)"
+  }
+ ]
+}

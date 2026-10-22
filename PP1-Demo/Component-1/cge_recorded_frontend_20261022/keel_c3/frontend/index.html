@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keel Debug Viewer</title>
+<script src="/c3/cytoscape.min.js"></script>
+<script>if(typeof cytoscape==="undefined"){document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"><\/script>')}</script>
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#fff; --line:#dfe3e8; --ink:#1c2430; --mute:#6b7685;
+  --live:#2f7fd1; --dead:#d6453d; --sup:#c98a1b; --cont:#8a5cc7; --ok:#2e9d5b; --edge:#2f7fd1; --warn:#e07b1a;
+  --user:#1f8a70; --self:#2f7fd1; --tool:#7a6a50;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font:13px/1.45 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:8px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+header h1{font-size:14px;margin:0 6px 0 0}
+select,button,input[type=range]{font:inherit}
+button{padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer}
+button:hover{background:#eef2f7}
+button.primary{background:var(--live);border-color:var(--live);color:#fff}
+button.primary:hover{background:#2670b8}
+select{padding:4px 6px;border:1px solid var(--line);border-radius:6px;max-width:300px}
+.step-label{font-weight:600;min-width:120px}
+label.tog{display:flex;align-items:center;gap:4px;color:var(--mute);cursor:pointer}
+main{flex:1;display:grid;grid-template-columns:clamp(190px,20vw,300px) 1fr clamp(280px,30vw,420px);min-height:0}
+.col{min-height:0;overflow:auto;background:var(--panel)}
+#left{border-right:1px solid var(--line)}
+#right{border-left:1px solid var(--line)}
+#center{position:relative;background:var(--bg);overflow:hidden}
+#cy{position:absolute;inset:0}
+#legend{position:absolute;left:8px;bottom:8px;background:#ffffffdd;border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:11px;color:var(--mute);line-height:1.7;pointer-events:none}
+#legend i{display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle;margin-right:4px}
+#banner{display:none;padding:6px 12px;background:#fff4e0;color:#8a5a00;border-bottom:1px solid #f0d49a}
+.row{padding:6px 10px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;gap:6px;align-items:flex-start}
+.row:hover{background:#f1f5fa}
+.row.cur{background:#e4eefb;border-left:3px solid var(--live);padding-left:7px}
+.row.future{opacity:.38}
+.row .n{color:var(--mute);min-width:26px;text-align:right;font-variant-numeric:tabular-nums}
+.row .txt{flex:1;min-width:0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;word-break:break-word}
+.role{display:inline-block;padding:0 5px;border-radius:8px;font-size:10px;color:#fff;margin-right:4px;vertical-align:1px}
+.role.user{background:var(--user)} .role.agent,.role.assistant{background:var(--self)} .role.tool,.role.system{background:var(--tool)}
+.chip{display:inline-block;padding:0 6px;border-radius:8px;font-size:10px;margin-left:3px;background:#e8eef6;color:#35506f}
+.chip.dead{background:#fde3e1;color:#a3261f} .chip.sup{background:#fbefd6;color:#8a5a00} .chip.ok{background:#dcf3e5;color:#1d6b3d} .chip.warn{background:#fdebd9;color:#9a4e08}
+.tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2}
+.tabs button{flex:1;border:0;border-radius:0;border-bottom:2px solid transparent;background:none;padding:8px 4px}
+.tabs button.on{border-bottom-color:var(--live);font-weight:600}
+.pane{padding:10px 12px;overflow-x:hidden}
+.pane h3{margin:12px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+.pane h3:first-child{margin-top:0}
+.card{border:1px solid var(--line);border-radius:8px;padding:7px 9px;margin:6px 0;background:#fff}
+.card.dead{border-color:#efb1ad;background:#fff7f6} .card.ok{border-color:#a9dcbd} .card.warn{border-color:#f0c79a;background:#fffaf4}
+.tri{margin:6px 0} .bar{height:6px;background:#eef1f5;border-radius:3px;margin:3px 0;overflow:hidden} .bar i{display:block;height:100%}
+.kv{color:var(--mute)} .mono{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+pre{margin:4px 0;padding:7px 9px;background:#f3f5f8;border-radius:6px;white-space:pre-wrap;word-break:break-word;font:12px/1.4 ui-monospace,Consolas,monospace;max-height:320px;overflow:auto}
+mark{background:#ffe58a;padding:0 1px;border-radius:2px}
+table{border-collapse:collapse;width:100%;font-size:12px}
+table{table-layout:fixed}td,th{word-break:break-word;border-bottom:1px solid var(--line);padding:3px 5px;text-align:left;vertical-align:top}
+th{color:var(--mute);font-weight:600}
+tr.clk{cursor:pointer} tr.clk:hover{background:#f1f5fa}
+.empty{color:var(--mute);font-style:italic}
+.err{color:var(--dead);padding:12px}
+#liveHint{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:30px;color:var(--mute);background:var(--bg);z-index:5;line-height:1.7}
+.livebadge{display:inline-block;background:#d6453d;color:#fff;border-radius:8px;padding:0 6px;font-size:10px;margin-right:4px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Keel debug viewer</h1>
+  <select id="conv" title="Conversation"></select>
+  <select id="run" title="Extraction run (model / prompt variant)"></select>
+  <button id="modeBtn" title="Stored runs, or run the pipeline live turn by turn">⚡ Live mode</button>
+  <span id="liveBar" style="display:none">
+    <select id="model" title="Model (chat only; SWE is rule-based)"></select>
+    <select id="variant" title="Extractor"><option value="W+th" selected>W+th · W with value threads v2 (default)</option><option value="W+T">W+T · variant T: values tied to tool-output records (tau2)</option><option value="W">W · one call per sentence + filter + entity/attribute prompt</option><option value="V">V · one call per sentence + filter</option><option value="A">A · whole message (original)</option></select>
+    <button id="start" class="primary" title="Load the model and start at turn 0">Start live run</button>
+  </span>
+  <button id="first" title="Home">⏮</button>
+  <button id="prev" title="←">◀ Prev</button>
+  <button id="next" class="primary" title="→ or Space">Next ▶</button>
+  <button id="last" title="End">⏭</button>
+  <button id="play">▶ Play</button>
+  <input type="range" id="slider" min="0" max="0" value="0" style="width:160px">
+  <span class="step-label" id="steplabel"></span> <span id="liveInfo" style="color:var(--mute)"></span>
+  <label class="tog"><input type="checkbox" id="tFuture" checked> ghost future</label>
+  <label class="tog"><input type="checkbox" id="tRejected"> rejected edges</label>
+  <label class="tog"><input type="checkbox" id="tAsserts" checked> assert links</label>
+  <label class="tog">gold <select id="gold"></select></label>
+  <button id="fit">Overview</button> <button id="focus">Focus step</button>
+</header>
+<div id="banner"></div>
+<main>
+  <div id="left" class="col"></div>
+  <div id="center">
+    <div id="cy"></div>
+    <div id="legend"></div>
+    <div id="liveHint"></div>
+  </div>
+  <div id="right" class="col">
+    <div class="tabs" id="tabs"></div>
+    <div class="pane" id="pane"></div>
+  </div>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const show = v => typeof v === 'string' ? v : JSON.stringify(v);
+const short = (s, n = 34) => { s = show(s ?? ''); return s.length > n ? s.slice(0, n - 1) + '…' : s; };
+
+const S = { mode: 'stored', live: null, sid: null, busy: false, playing: false, b: null, t: 0, tab: 'turn', sel: null, front: null, timer: null, cy: null, byStep: {}, bel: {}, com: {}, lane: {} };
+const TABS = [['turn', 'This turn'], ['repair', 'Repairs'], ['flow', 'Model → rules → facts'], ['extract', 'Extraction'], ['beliefs', 'Beliefs'], ['gold', 'Gold'], ['node', 'Node']];
+
+// ---------------------------------------------------------------- data prep
+function prep(b) {
+  S.b = b; S.byStep = {}; S.bel = {}; S.com = {}; S.lane = {};
+  b.steps.forEach(s => S.byStep[s.step] = s);
+  b.beliefs.forEach(x => S.bel[x.belief_id] = x);
+  b.commitments.forEach(c => S.com[c.id] = c);
+  S.steps = b.steps.map(s => s.step);
+  S.t = S.steps[0];
+  S.sel = null; S.front = null;
+}
+// belief state as of step t
+function stateAt(bid, t) {
+  const x = S.bel[bid]; if (!x) return 'LIVE';
+  if (x.died_at != null && x.died_at <= t) return x.status === 'SUPERSEDED' ? 'SUPERSEDED' : 'DEAD';
+  if (x.superseded_at != null && x.superseded_at <= t) return 'SUPERSEDED';
+  if (x.status === 'CONTESTED' || x.status === 'ABSTAINED') return x.status;
+  return 'LIVE';
+}
+const stepOfUid = u => +String(u).split(':').pop();
+
+// ---------------------------------------------------------------- graph
+const COL = { LIVE: '#2f7fd1', DEAD: '#d6453d', SUPERSEDED: '#c98a1b', CONTESTED: '#8a5cc7', ABSTAINED: '#8a5cc7' };
+
+function buildGraph() {
+  const b = S.b, els = [];
+  const XS = S.steps.length > 60 ? 74 : 120, YS = 64;
+  // lanes: one per slot (commitment subject), in order of first appearance
+  const lanes = []; const laneOf = {};
+  b.commitments.slice().sort((a, c) => a.step - c.step).forEach(c => {
+    if (!(c.subject in laneOf)) { laneOf[c.subject] = lanes.length; lanes.push(c.subject); }
+  });
+  S.lane = laneOf;
+  const slotCount = {};
+  S.steps.forEach(s => {
+    const st = S.byStep[s];
+    els.push({ group: 'nodes', data: { id: 'S' + s, kind: 'step', step: s, label: s + (st.command_name ? ' ' + st.command_name : ''), role: st.role },
+      position: { x: s * XS, y: 0 }, classes: 'step ' + (st.role || '') });
+  });
+  b.commitments.forEach(c => {
+    const k = laneOf[c.subject] + ':' + c.step;
+    const idx = slotCount[k] = (slotCount[k] || 0) + 1;
+    els.push({ group: 'nodes', data: { id: c.id, kind: 'com', step: c.step, bid: c.belief_id, label: short(c.attribute ?? c.subject, 16) + '\n= ' + short(c.value, 16), source: c.source },
+      position: { x: c.step * XS, y: -(laneOf[c.subject] + 1) * YS - (idx - 1) * 30 }, classes: 'com src-' + c.source });
+    els.push({ group: 'edges', data: { id: 'A' + c.id, source: c.id, target: 'S' + c.step, kind: 'assert' }, classes: 'assert' });
+  });
+  // same-belief chains (consecutive mentions)
+  const byBel = {};
+  b.commitments.forEach(c => { if (c.belief_id) (byBel[c.belief_id] = byBel[c.belief_id] || []).push(c); });
+  Object.values(byBel).forEach(list => {
+    list.sort((a, c) => a.step - c.step);
+    for (let i = 1; i < list.length; i++)
+      els.push({ group: 'edges', data: { id: 'C' + list[i].id, source: list[i - 1].id, target: list[i].id, kind: 'chain', step: list[i].step }, classes: 'chain' });
+  });
+  // supports: parent commitment -> child step
+  b.supports.forEach((e, i) => {
+    if (!S.com[e.commitment_id] || !S.byStep[stepOfUid(e.step_uid)]) return;
+    els.push({ group: 'edges', data: { id: 'E' + i, source: e.commitment_id, target: 'S' + stepOfUid(e.step_uid), kind: 'support', step: stepOfUid(e.step_uid), label: e.rule, level: e.level }, classes: 'support ' + (e.level || '') });
+  });
+  b.rejected_edges.forEach((e, i) => {
+    if (!S.com[e.parent_id] || !S.byStep[e.child_step]) return;
+    els.push({ group: 'edges', data: { id: 'X' + i, source: e.parent_id, target: 'S' + e.child_step, kind: 'rejected', step: e.child_step, label: (e.rule || '') + ' ✗ ' + (e.reject_reason || '') }, classes: 'rejected' });
+  });
+  // refutes: refuting commitment -> latest mention of the dead belief
+  b.refutes.forEach((r, i) => {
+    const list = (byBel[r.belief_id] || []).filter(c => c.step <= r.step && c.id !== r.commitment_id);
+    const tgt = list.length ? list[list.length - 1] : null;
+    if (tgt && S.com[r.commitment_id])
+      els.push({ group: 'edges', data: { id: 'R' + i, source: r.commitment_id, target: tgt.id, kind: 'refute', step: r.step, label: r.reason }, classes: 'refute' });
+  });
+  (b.resurrections || []).forEach((r, i) => {
+    const tgt = r.commitment_id && S.com[r.commitment_id] ? r.commitment_id : null;
+    const from = (byBel[r.belief_id] || []).filter(c => c.step <= r.died_at).slice(-1)[0];
+    if (tgt && from) els.push({ group: 'edges', data: { id: 'Z' + i, source: from.id, target: tgt, kind: 'resurrect', step: r.re_asserted_at, label: 'resurrected' }, classes: 'resurrect' });
+  });
+  // gold-missed ghost nodes (added per selected annotator in applyGold)
+  if (S.cy) S.cy.destroy();
+  S.cy = cytoscape({
+    container: $('#cy'), elements: els, wheelSensitivity: 0.25, minZoom: 0.08, maxZoom: 2.5, boxSelectionEnabled: false,
+    style: [
+      { selector: 'node.step', style: { shape: 'round-rectangle', width: 46, height: 20, 'background-color': '#e9edf3', 'border-width': 1, 'border-color': '#b9c2cf', label: 'data(label)', 'font-size': 9, color: '#334', 'text-valign': 'center', 'text-halign': 'center', 'text-wrap': 'none' } },
+      { selector: 'node.step.user', style: { 'background-color': '#d9f0e8', 'border-color': '#1f8a70' } },
+      { selector: 'node.step.tool', style: { 'background-color': '#efe9dd', 'border-color': '#7a6a50' } },
+      { selector: 'node.step.cur', style: { 'border-width': 3, 'border-color': '#1c2430', 'background-color': '#ffe58a' } },
+      { selector: 'node.com', style: { shape: 'round-rectangle', width: 118, height: 40, 'background-color': 'data(color)', 'background-opacity': 0.14, 'border-width': 2, 'border-color': 'data(color)', label: 'data(label)', 'text-wrap': 'wrap', 'text-max-width': 110, 'font-size': 10, color: '#1c2430', 'text-valign': 'center' } },
+      { selector: 'node.com.src-user', style: { shape: 'round-rectangle' } },
+      { selector: 'node.com.src-self', style: { shape: 'round-rectangle' } },
+      { selector: 'node.com.src-tool', style: { shape: 'rectangle' } },
+      { selector: 'node.com.isnew', style: { 'overlay-color': '#ffd24a', 'overlay-opacity': 0.35, 'overlay-padding': 7 } },
+      { selector: 'node.com.dead', style: { 'text-opacity': 0.7 } },
+      { selector: 'node.com.gold-ok', style: { 'underlay-color': '#2e9d5b', 'underlay-opacity': 0.30, 'underlay-padding': 4, 'underlay-shape': 'round-rectangle' } },
+      { selector: 'node.com.gold-extra', style: { 'underlay-color': '#e07b1a', 'underlay-opacity': 0.30, 'underlay-padding': 4, 'underlay-shape': 'round-rectangle' } },
+      { selector: 'node.com.front', style: { 'border-style': 'double', 'border-width': 5, 'overlay-color': '#d6453d', 'overlay-opacity': .25, 'overlay-padding': 6 } },
+      { selector: 'node.step.front', style: { 'background-color': '#fbd0cc', 'border-color': '#d6453d', 'border-width': 3 } },
+      { selector: 'node.ghostgold', style: { shape: 'round-rectangle', width: 118, height: 40, 'background-color': '#fff', 'background-opacity': 0, 'border-width': 2, 'border-style': 'dashed', 'border-color': '#e07b1a', label: 'data(label)', 'text-wrap': 'wrap', 'text-max-width': 110, 'font-size': 10, color: '#9a4e08' } },
+      { selector: 'node:selected', style: { 'border-width': 4, 'border-color': '#1c2430' } },
+      { selector: '.future', style: { opacity: 0.13 } },
+      { selector: '.hidden', style: { display: 'none' } },
+      { selector: 'edge', style: { width: 2, 'curve-style': 'bezier', 'target-arrow-shape': 'triangle', 'line-color': '#2f7fd1', 'target-arrow-color': '#2f7fd1', 'font-size': 9, 'text-background-color': '#fff', 'text-background-opacity': .85, 'text-background-padding': 2, color: '#35506f' } },
+      { selector: 'edge.assert', style: { width: 1, 'line-color': '#c8cfd9', 'target-arrow-shape': 'none', 'line-style': 'solid' } },
+      { selector: 'edge.chain', style: { width: 1.5, 'line-color': '#9aa5b5', 'target-arrow-color': '#9aa5b5', 'line-style': 'dashed' } },
+      { selector: 'edge.support', style: { width: 2.5, label: 'data(label)' } },
+      { selector: 'edge.support.el2', style: { 'line-color': '#8a5cc7', 'target-arrow-color': '#8a5cc7' } },
+      { selector: 'edge.rejected', style: { width: 1.5, 'line-color': '#e07b1a', 'target-arrow-color': '#e07b1a', 'line-style': 'dotted', label: 'data(label)', color: '#9a4e08' } },
+      { selector: 'edge.refute', style: { width: 3, 'line-color': '#d6453d', 'target-arrow-color': '#d6453d', 'target-arrow-shape': 'tee', label: 'data(label)', color: '#a3261f' } },
+      { selector: 'edge.resurrect', style: { width: 2.5, 'line-color': '#2e9d5b', 'target-arrow-color': '#2e9d5b', label: 'data(label)', color: '#1d6b3d', 'curve-style': 'unbundled-bezier' } },
+    ],
+    layout: { name: 'preset' },
+  });
+  S.cy.on('tap', 'node.com', e => { select({ type: 'com', id: e.target.id() }); });
+  S.cy.on('tap', 'node.step', e => { jump(e.target.data('step')); });
+  S.cy.on('tap', e => { if (e.target === S.cy) { S.front = null; S.sel = null; refresh(); } });
+  applyGold();
+  S.cy.zoom(0.75);
+}
+
+// gold overlay: ghost nodes for missed gold commitments, ring colours for matched/extra
+function goldOf() { const k = $('#gold').value; return k && S.b.gold[k] ? S.b.gold[k] : null; }
+function applyGold() {
+  S.cy.nodes('.ghostgold').remove();
+  S.cy.nodes('.com').removeClass('gold-ok gold-extra');
+  const g = goldOf(); if (!g) return;
+  g.commitments.matched.forEach(id => S.cy.getElementById(id).addClass('gold-ok'));
+  g.commitments.extra.forEach(id => S.cy.getElementById(id).addClass('gold-extra'));
+  const XS = S.steps.length > 60 ? 74 : 120, YS = 64, nl = Object.keys(S.lane).length;
+  const cnt = {};
+  g.commitments.missed.forEach((m, i) => {
+    const k = m.step; cnt[k] = (cnt[k] || 0) + 1;
+    S.cy.add({ group: 'nodes', data: { id: 'G' + i, kind: 'ghost', step: m.step, label: 'MISSED ' + short(m.entity, 12) + '/' + short(m.attribute, 12) + '\n= ' + short(m.value, 18), gi: i },
+      position: { x: m.step * XS, y: 50 + (cnt[k] - 1) * 46 }, classes: 'ghostgold' });
+  });
+  refresh();
+}
+
+// ---------------------------------------------------------------- refresh: everything follows S.t
+function refresh() {
+  const t = S.t, cy = S.cy, ghost = $('#tFuture').checked;
+  cy.batch(() => {
+    const vis = (el, step) => { el.removeClass('hidden future'); if (step > t) el.addClass(ghost ? 'future' : 'hidden'); };
+    cy.nodes().forEach(n => {
+      const d = n.data(); vis(n, d.step);
+      n.removeClass('cur isnew dead front');
+      if (d.kind === 'step' && d.step === t) n.addClass('cur');
+      if (d.kind === 'com') {
+        const st = stateAt(d.bid, t), col = COL[st] || COL.LIVE;
+        n.data('color', col);
+        if (st === 'DEAD' || st === 'SUPERSEDED') n.addClass('dead');
+        if (d.step === t) n.addClass('isnew');
+      }
+    });
+    cy.edges().forEach(e => {
+      const d = e.data(); vis(e, d.step ?? Math.max(S.com[d.source]?.step ?? 0, 0));
+      if (d.kind === 'assert') { e.removeClass('hidden future'); const s = S.com[d.source]?.step ?? 0; if ($('#tAsserts').checked === false) e.addClass('hidden'); else if (s > t) e.addClass(ghost ? 'future' : 'hidden'); }
+      if (d.kind === 'rejected' && !$('#tRejected').checked) e.addClass('hidden');
+    });
+    if (S.front) {
+      const f = S.front;
+      f.dependant_commitments.forEach(id => cy.getElementById(id).addClass('front'));
+      f.dependant_steps.forEach(s => cy.getElementById('S' + s.step).addClass('front'));
+    }
+  });
+  cy.nodes().unselect(); if (S.sel && S.sel.type === 'com') cy.getElementById(S.sel.id).select();
+  followStep(false);
+  renderLeft(); renderHeader(); renderPane();
+}
+
+// keep the current step in the middle band of the view; y follows the visible nodes
+function followStep(force) {
+  const cy = S.cy, sn = cy.getElementById('S' + S.t); if (!sn.length) return;
+  cy.stop();
+  const vis = cy.nodes().filter(n => !n.hasClass('future') && !n.hasClass('hidden') && !n.hasClass('ghostgold'));
+  const bb = vis.boundingBox(), w = cy.width(), z = cy.zoom(), pan = cy.pan();
+  const rx = sn.position('x') * z + pan.x;
+  if (!force && rx > w * 0.2 && rx < w * 0.8) return;
+  const cx = sn.position('x'), cyy = (bb.y1 + bb.y2) / 2;
+  cy.animate({ pan: { x: w / 2 - cx * z, y: cy.height() / 2 - cyy * z }, duration: force ? 0 : 180 });
+}
+
+// ---------------------------------------------------------------- header + transcript
+function renderHeader() {
+  const i = S.steps.indexOf(S.t);
+  $('#steplabel').innerHTML = (S.live ? '<span class="livebadge">LIVE</span>' : '') + `step ${S.t}  (${i + 1}/${S.steps.length})`;
+  $('#slider').max = maxIdx(); $('#slider').value = i;
+  if (S.live && !S.busy) {
+    const tn = S.live.turns.find(x => x.step === S.t);
+    $('#liveInfo').textContent = `${S.live.model} · ${S.live.variant}` + (tn ? ` · this turn: ${tn.seconds} s, ${tn.model_calls} model call(s), +${tn.new_commitments} commitment(s)` : '') + (S.live.done ? ' · conversation finished' : '');
+  } else if (!S.live && !S.busy) $('#liveInfo').textContent = '';
+  const b = S.b, t = S.t;
+  const live = b.commitments.filter(c => c.step <= t).length;
+  const dead = b.beliefs.filter(x => (x.died_at != null && x.died_at <= t) || (x.superseded_at != null && x.superseded_at <= t)).length;
+  document.title = `Keel · ${b.id} · step ${t}`;
+}
+function turnSummaryChips(s) {
+  const t = s.step, b = S.b; let h = '';
+  const nc = b.commitments.filter(c => c.step === t).length; if (nc) h += `<span class="chip">+${nc}</span>`;
+  const nd = b.refutes.filter(r => r.step === t).length; if (nd) h += `<span class="chip dead">☠${nd}</span>`;
+  const ns = b.beliefs.filter(x => x.superseded_at === t).length; if (ns) h += `<span class="chip sup">↻${ns}</span>`;
+  const nr = (b.resurrections || []).filter(r => r.re_asserted_at === t).length; if (nr) h += `<span class="chip ok">↑${nr}</span>`;
+  return h;
+}
+function renderLeft() {
+  const L = $('#left');
+  if (!L.dataset.id || L.dataset.id !== S.b.id) {
+    L.dataset.id = S.b.id;
+    L.innerHTML = S.b.steps.map(s => {
+      const body = S.b.kind === 'swe' ? (s.command ? '$ ' + s.command : (s.text || s.thought || '')) : (s.text || '');
+      return `<div class="row" data-step="${s.step}"><span class="n">${s.step}</span><div class="txt"><span class="role ${esc(s.role)}">${esc(s.role)}</span>${esc(short(body, 160))}<span class="chips"></span></div></div>`;
+    }).join('');
+    L.onclick = e => { const r = e.target.closest('.row'); if (r) jump(+r.dataset.step); };
+  }
+  L.querySelectorAll('.row').forEach(r => {
+    const s = +r.dataset.step;
+    r.classList.toggle('cur', s === S.t); r.classList.toggle('future', s > S.t);
+    r.querySelector('.chips').innerHTML = s <= S.t ? turnSummaryChips({ step: s }) : '';
+  });
+  const cur = L.querySelector('.row.cur'); if (cur) cur.scrollIntoView({ block: 'nearest' });
+}
+
+// ---------------------------------------------------------------- inspector
+function highlight(text, comms) {
+  text = text || '';
+  const ranges = [];
+  comms.forEach(c => {
+    let s = null, e = null;
+    if (Array.isArray(c.span) && c.span.length === 2 && c.span[1] <= text.length && c.span[0] < c.span[1]) { s = c.span[0]; e = c.span[1]; }
+    if (s == null) { const v = show(c.value); const k = v ? text.indexOf(v) : -1; if (k >= 0) { s = k; e = k + v.length; } }
+    if (s != null) ranges.push([s, e]);
+  });
+  ranges.sort((a, b) => a[0] - b[0]);
+  let out = '', pos = 0;
+  ranges.forEach(([s, e]) => { if (s < pos) return; out += esc(text.slice(pos, s)) + '<mark>' + esc(text.slice(s, e)) + '</mark>'; pos = e; });
+  return out + esc(text.slice(pos));
+}
+function comCard(c, t) {
+  const st = stateAt(c.belief_id, t);
+  const cls = st === 'DEAD' ? 'dead' : '';
+  const g = goldOf(); let tag = '';
+  if (g) tag = g.commitments.matched.includes(c.id) ? '<span class="chip ok">gold ✓</span>' : g.commitments.extra.includes(c.id) ? '<span class="chip warn">not in gold</span>' : '';
+  return `<div class="card ${cls}" data-com="${esc(c.id)}" style="cursor:pointer">
+    <b>${esc(c.entity)}</b> · ${esc(c.attribute)} = <b>${esc(show(c.value))}</b> ${tag}
+    <span class="chip" style="background:${COL[st]}22;color:${COL[st]}">${st}</span><br>
+    <span class="kv">source ${esc(c.source)} · ${esc(c.rule_id)} · ${esc(c.speaker_act)} · ${esc(c.value_type)}${c.slot_decision ? ' · slot ' + esc(c.slot_decision.decision) + ' ' + esc(c.slot_decision.score ?? '') : ''}</span>
+    ${c.evidence ? `<div class="kv mono">“${esc(short(c.evidence, 160))}”</div>` : ''}</div>`;
+}
+function tabTurn() {
+  const t = S.t, b = S.b, s = S.byStep[t];
+  let h = `<h3>Step ${t} · ${esc(s.role)}</h3>`;
+  const comms = b.commitments.filter(c => c.step === t);
+  if (b.kind === 'swe') {
+    if (s.thought) h += `<div class="kv">thought</div><pre>${esc(s.thought)}</pre>`;
+    if (s.command) h += `<div class="kv">command</div><pre>${esc(s.command)}</pre>`;
+    if (s.output) h += `<div class="kv">output</div><pre>${highlight(s.output, comms)}</pre>`;
+    if (s.text && !s.command) h += `<pre>${highlight(s.text, comms)}</pre>`;
+  } else h += `<pre>${highlight(s.text, comms)}</pre>`;
+  h += `<h3>Commitments extracted here (${comms.length})</h3>` + (comms.map(c => comCard(c, t)).join('') || '<div class="empty">none</div>');
+  // events
+  const ev = [];
+  b.refutes.filter(r => r.step === t).forEach(r => {
+    const bel = S.bel[r.belief_id], by = S.com[r.commitment_id];
+    ev.push(`<div class="card dead"><b>☠ refuted</b> ${esc(bel?.subject)} = <b>${esc(bel?.canonical_value)}</b><br><span class="kv">reason ${esc(r.reason)} · refuter ${esc(r.refuter_class)}${by ? ' · by “' + esc(short(by.evidence, 110)) + '”' : ''}</span><br><a href="#" data-front="${esc(r.belief_id)}">show shear front</a></div>`);
+  });
+  b.beliefs.filter(x => x.superseded_at === t).forEach(x => ev.push(`<div class="card"><b>↻ superseded</b> ${esc(x.subject)} = <b>${esc(x.canonical_value)}</b> <a href="#" data-front="${esc(x.belief_id)}">shear front</a></div>`));
+  (b.resurrections || []).filter(r => r.re_asserted_at === t).forEach(r => { const x = S.bel[r.belief_id]; ev.push(`<div class="card ok"><b>↑ resurrected</b> ${esc(x?.subject)} = ${esc(x?.canonical_value)} (died at ${r.died_at})</div>`); });
+  b.supports.filter(e => stepOfUid(e.step_uid) === t).forEach(e => {
+    const p = S.com[e.commitment_id]; ev.push(`<div class="card"><b>→ depends on</b> ${esc(p?.entity)} · ${esc(p?.attribute)} = ${esc(show(p?.value))} <span class="kv">(from step ${p?.step}, ${esc(e.rule)}, ${esc(e.level)})</span></div>`);
+  });
+  if ($('#tRejected').checked) b.rejected_edges.filter(e => e.child_step === t).slice(0, 12).forEach(e => { const p = S.com[e.parent_id]; ev.push(`<div class="card warn"><b>✗ edge rejected</b> from ${esc(p?.attribute)} = ${esc(short(p?.value, 20))} <span class="kv">(${esc(e.rule)}: ${esc(e.reject_reason)})</span></div>`); });
+  h += `<h3>Events at this step</h3>` + (ev.join('') || '<div class="empty">no deaths, edges or resurrections</div>');
+  return h;
+}
+function tabExtract() {
+  const t = S.t, l = S.b.logs[t];
+  let h = `<h3>Extraction log · step ${t}</h3>`;
+  const ex = S.b.extraction;
+  if (S.b.kind === 'chat' && ex?.model) h += `<div class="kv">model ${esc(ex.model)} · prompt variant ${esc(ex.options?.variant)} · ${esc(JSON.stringify(ex.summary?.drops_by_reason || {}))}</div>`;
+  if (!l) return h + `<div class="empty">${S.b.kind === 'swe' ? 'Route A is rule-based: there is no model output. The rule that fired is shown on each commitment (rule_id).' : 'No model call at this step (e.g. system message).'}</div>`;
+  if ((l.sentences || []).length) {
+    h += `<h3>Sentence-by-sentence calls (${l.sentences.length}) — variant S</h3>` + l.sentences.map((r, i) => `<div class="card">
+      <b>#${i + 1}</b> <span class="kv">${esc(r.latency_s)} s</span><br>
+      <div class="mono">SENTENCE: ${esc(r.sentence)}</div>
+      <div class="kv mono">CONTEXT: ${esc(r.context || 'none')}</div>
+      ${(r.known || []).length ? `<div class="kv mono">KNOWN: ${esc(r.known.map(k => k.entity + ' / ' + k.attribute).join('; '))}</div>` : ''}
+      <details><summary class="kv">model output</summary><pre>${esc(r.raw_output)}</pre></details>
+      ${(r.kept || []).map(f => `<div class="card ok">kept: <b>${esc(f.entity)}</b> · ${esc(f.attribute)} = <b>${esc(f.value)}</b></div>`).join('')}
+      ${(r.dropped || []).map(d => `<div class="card warn"><b>${esc(d.reason)}${d.why ? ' (' + esc(d.why) + ')' : ''}</b> <span class="mono">${esc(JSON.stringify(d.fact))}</span></div>`).join('')}
+      ${!(r.kept || []).length && !(r.dropped || []).length ? '<div class="empty">no facts</div>' : ''}</div>`).join('');
+  }
+  h += `<h3>${(l.sentences || []).length ? 'Merged model output (what validation sees)' : 'Raw model output'}</h3><pre>${esc(l.raw_output ?? '')}</pre>`;
+  h += `<h3>Accepted (${(l.accepted || []).length})</h3>` + ((l.accepted || []).map(a => `<div class="card ok"><b>${esc(a.entity)}</b> · ${esc(a.attribute)} = <b>${esc(a.value)}</b> <span class="kv">${esc(a.value_type)} · ${esc(a.cardinality)}</span></div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Dropped by validation (${(l.dropped || []).length})</h3>` + ((l.dropped || []).map(d => `<div class="card warn"><b>${esc(d.reason)}${d.why ? ' (' + esc(d.why) + ')' : ''}</b><br><span class="mono">${esc(JSON.stringify(d.fact))}</span></div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Slot decisions</h3>` + ((l.slot_decisions || []).map(d => `<div class="card"><b>${esc(d.entity)}</b> · ${esc(d.attribute_raw)} → <b>${esc(d.decision)}</b> (score ${esc(d.score)}${d.matched ? ', matched ' + esc(d.matched) : ''})${d.candidates?.length ? '<br><span class="kv mono">' + esc(JSON.stringify(d.candidates)) + '</span>' : ''}</div>`).join('') || '<div class="empty">none</div>');
+  if ((l.entities || []).length) h += `<h3>Entity resolution</h3>` + l.entities.map(e => `<div class="card">${esc(e.proposed)} → <b>${esc(e.outcome)}</b> ${esc(e.id ?? '')}</div>`).join('');
+  if ((l.fallbacks || []).length) h += `<h3>Fallbacks</h3><pre>${esc(JSON.stringify(l.fallbacks, null, 1))}</pre>`;
+  h += `<div class="kv">latency ${esc(l.latency_s)} s</div>`;
+  return h;
+}
+// One row per fact the model proposed: what the model said -> which of our rules dropped it (or not) -> the final fact and its slot.
+function tabFlow() {
+  const t = S.t, l = S.b.logs[t];
+  let h = `<h3>Step ${t}: model output → our rules → final facts</h3>`;
+  if (!l) return h + `<div class="empty">${S.b.kind === 'swe' ? 'Route A is rule-based: no model output.' : 'No model call at this step.'}</div>`;
+  const norm = x => String(x ?? '').trim().toLowerCase();
+  const fk = f => norm(f.entity) + '|' + norm(f.attribute) + '|' + norm(f.value);
+  const stepDrops = (l.dropped || []).map(d => ({ d, used: false }));
+  const acc = (l.accepted || []).map(a => ({ a, used: false }));
+  const slots = l.slot_decisions || [];
+  const takeDrop = f => { const x = stepDrops.find(s => !s.used && fk(s.d.fact || {}) === fk(f)); if (x) x.used = true; return x && x.d; };
+  const takeAcc = f => {
+    const v = norm(f.value);
+    const x = acc.find(s => !s.used && (norm(s.a.value) === v || norm(s.a.value).includes(v) || v.includes(norm(s.a.value))));
+    if (x) x.used = true; return x && x.a;
+  };
+  const rows = [];
+  const sents = l.sentences || [];
+  const proposals = sents.length ? sents : [{ sentence: S.byStep[t]?.text ?? '', raw_output: l.raw_output, kept: [], dropped: [], whole: true }];
+  proposals.forEach((s, i) => {
+    let body = '';
+    const facts = [].concat((s.kept || []).map(f => ({ f, pre: null })), (s.dropped || []).map(d => ({ f: d.fact || {}, pre: d })));
+    // keep the model's order: kept and dropped are separate lists, so order by position of the value in raw_output when possible
+    facts.sort((a, b) => (s.raw_output || '').indexOf(String(a.f.value)) - (s.raw_output || '').indexOf(String(b.f.value)));
+    facts.forEach(({ f, pre }) => {
+      const d = pre || takeDrop(f);
+      if (pre) takeDrop(f);
+      const model = `<b>${esc(f.entity)}</b> · ${esc(f.attribute)} = <b>${esc(f.value)}</b>`;
+      if (d) {
+        body += `<div class="card warn">${model}<br><span class="chip warn">dropped: ${esc(d.reason)}${d.why ? ' (' + esc(d.why) + ')' : ''}</span></div>`;
+      } else {
+        const a = takeAcc(f);
+        if (!a) { body += `<div class="card warn">${model}<br><span class="chip warn">not accepted (no drop reason logged)</span></div>`; return; }
+        const c = S.com[a.id], sd = slots.find(x => x.entity === a.entity && norm(x.attribute_raw) === norm(a.attribute));
+        const st = c ? stateAt(c.belief_id, t) : '';
+        const renamed = norm(a.entity) !== norm(f.entity) ? ` <span class="kv">(entity resolved: ${esc(f.entity)} → ${esc(a.entity)})</span>` : '';
+        body += `<div class="card ok">${model}<br><span class="chip ok">final fact</span> <b>${esc(a.entity)}</b> · ${esc(a.attribute)} = <b>${esc(a.value)}</b>${renamed}
+          <span class="kv"> ${esc(a.kind)} · ${esc(a.value_type)} · ${esc(a.cardinality)}${sd ? ' · slot ' + esc(sd.decision) + (sd.matched ? ' → ' + esc(sd.matched) : '') : ''}${st ? ' · now ' + esc(st) : ''}</span></div>`;
+      }
+    });
+    if (!facts.length) body = '<div class="empty">model returned no facts</div>';
+    h += `<div class="card"><div class="mono">${s.whole ? 'MESSAGE' : 'SENTENCE #' + (i + 1)}: ${esc(s.sentence)}</div>
+      <details><summary class="kv">raw model output</summary><pre>${esc(s.raw_output ?? '')}</pre></details>${body}</div>`;
+  });
+  const left = stepDrops.filter(s => !s.used).map(s => s.d);
+  if (left.length) h += `<h3>Dropped, not matched to a sentence (${left.length})</h3>` + left.map(d => `<div class="card warn"><b>${esc(d.reason)}${d.why ? ' (' + esc(d.why) + ')' : ''}</b> <span class="mono">${esc(JSON.stringify(d.fact))}</span></div>`).join('');
+  const final = (l.accepted || []);
+  h += `<h3>Final facts this turn (${final.length})</h3>` + (final.map(a => `<div class="card ok"><b>${esc(a.entity)}</b> · ${esc(a.attribute)} = <b>${esc(a.value)}</b></div>`).join('') || '<div class="empty">none</div>');
+  return h;
+}
+// Every commitment that is dead (or superseded) by the current step, with what rests on it and so needs repair.
+function repairItems() {
+  const t = S.t;
+  return S.b.beliefs.map(x => ({ x, st: stateAt(x.belief_id, t) })).filter(o => o.st === 'DEAD' || o.st === 'SUPERSEDED')
+    .map(o => ({ ...o, at: o.x.died_at ?? o.x.superseded_at, f: S.b.fronts.find(f => f.belief_id === o.x.belief_id) }))
+    .sort((a, b) => b.at - a.at);
+}
+function orphanRow(o, t) {
+  const c = S.com[o.id];
+  return `<div class="card warn" data-com="${esc(o.id)}" style="cursor:pointer"><b>${esc(short(o.subject, 44))}</b> = <b>${esc(short(show(o.value), 40))}</b>
+    <span class="kv">· step ${o.step} · ${o.depth > 1 ? 'depth ' + o.depth : 'direct'}${o.via === 'derived' ? ' · derived' : ''}${c && c.evidence ? '<br>“' + esc(short(c.evidence, 120)) + '”' : ''}</span></div>`;
+}
+// Fronts of beliefs flagged at risk (rule "risk", Type II) by the current step; never retirements.
+const frontOf = bid => S.b.fronts.find(f => f.belief_id === bid) || (S.b.at_risk_fronts || []).find(f => f.belief_id === bid);
+function riskItems() {
+  return (S.b.at_risk_fronts || []).filter(f => f.flagged_at != null && f.flagged_at <= S.t).sort((a, b) => b.flagged_at - a.flagged_at);
+}
+// One triage score: P(the agent repairs on its own), from the saved pipeline model (mvp/triage_scorer.py).
+function triageHtml(tr) {
+  if (!tr) return S.b.triage ? `<div class="kv">triage: not scored</div>` : '';
+  const p = tr.p_self_repair, pct = Math.round(p * 100), low = p < 0.5;
+  const feats = Object.entries(tr.features || {}).map(([k, v]) => `${esc(k)} ${esc(v)}`).join(' · ');
+  return `<div class="tri" title="${esc(feats)}"><b>Triage</b>: P(agent fixes it alone) = <b>${p.toFixed(2)}</b>
+    <span class="chip ${low ? 'dead' : 'ok'}">${low ? 'likely NOT fixed by the agent: repair' : 'likely fixed by the agent'}</span>
+    <div class="bar"><i style="width:${pct}%;background:${low ? 'var(--dead)' : 'var(--ok)'}"></i></div>
+    <div class="kv">${feats}</div></div>`;
+}
+function triageNote() {
+  const m = S.b.triage;
+  if (!m) return '';
+  if (!m.model) return `<div class="kv">Triage model not loaded: ${esc(m.error || 'unknown')}</div>`;
+  return `<div class="kv">Triage model <span class="mono">${esc(m.model)}</span> (n = ${esc(m.n)}): seen only tau2 retail hidden payment changes; on that data it reduces to “a flag is not repaired, a death is” (L-120).</div>`;
+}
+function tabRepair() {
+  const t = S.t, items = repairItems(), risks = riskItems();
+  if (!items.length && !risks.length) return `<h3>Repairs</h3><div class="empty">No commitment is dead or at risk by step ${t}. Nothing needs repair.</div>${triageNote()}`;
+  const nOrph = items.reduce((n, i) => n + (i.f ? i.f.orphans.filter(o => o.step <= t).length : 0), 0);
+  let h = `<h3>Repairs at step ${t}</h3><div class="kv">${items.length} dead commitment(s) · ${nOrph} dependant commitment(s) still LIVE that need repair${risks.length ? ' · ' + risks.length + ' at risk (flagged, not retired)' : ''}. Newest first.</div>${triageNote()}`;
+  risks.forEach(f => {
+    const x = S.bel[f.belief_id] || {};
+    const orph = f.orphans.filter(o => o.step <= t);
+    const used = f.dependant_steps.filter(s => s.after_death && s.step <= t);
+    h += `<div class="card warn"><div><b>⚑ AT RISK</b> ${f.flagged_at === t ? '<span class="chip warn">new this turn</span>' : ''}
+      <br><b>${esc(x.subject)}</b> = <b>${esc(x.canonical_value)}</b></div>
+      <div class="kv">flagged at step <a href="#" data-jump="${f.flagged_at}">${f.flagged_at}</a>${f.remark_step != null && f.remark_step !== f.flagged_at ? ' for the remark at step <a href="#" data-jump="' + f.remark_step + '">' + f.remark_step + '</a>' : ''} · a remark may have disabled it without naming it; not retired</div>
+      ${f.refuting_evidence ? `<pre>${esc(short(f.refuting_evidence, 300))}</pre>` : ''}
+      ${triageHtml(f.triage)}
+      <h3 style="margin-top:8px">${orph.length ? '⚠ Rests on it (' + orph.length + ' live dependant' + (orph.length > 1 ? 's' : '') + ')' : 'Rests on it'}</h3>
+      ${orph.map(o => orphanRow(o, t)).join('') || '<div class="empty">no live commitment rests on it</div>'}
+      ${used.length ? `<div class="kv"><b>Steps that used it after the flag</b>: ${used.map(s => `<a href="#" data-jump="${s.step}">${s.step}</a>`).join(', ')}</div>` : ''}
+      <a href="#" data-front="${esc(f.belief_id)}" data-keep="1">highlight its front in the graph</a></div>`;
+  });
+  items.forEach(({ x, st, at, f }) => {
+    const isNew = at === t;
+    const orph = f ? f.orphans.filter(o => o.step <= t) : [];
+    const steps = f ? f.dependant_steps.filter(s => s.step <= t) : [];
+    const used = steps.filter(s => s.after_death);
+    const before = steps.filter(s => !s.after_death);
+    const gone = f ? f.dependant_commitments.length - f.orphans.length : 0;
+    h += `<div class="card dead"><div><b>${st === 'DEAD' ? '☠ DEAD' : '↻ SUPERSEDED'}</b> ${isNew ? '<span class="chip dead">new this turn</span>' : ''}
+      <br><b>${esc(x.subject)}</b> = <b>${esc(x.canonical_value)}</b></div>
+      <div class="kv">held from step ${x.first_step} · ${st === 'DEAD' ? 'died' : 'superseded'} at step <a href="#" data-jump="${at}">${at}</a>${x.death_reason ? ' · ' + esc(x.death_reason) : ''}${x.refuter_class ? ' · refuter ' + esc(x.refuter_class) : ''}</div>
+      ${f && f.refuting_evidence ? `<pre>${esc(short(f.refuting_evidence, 300))}</pre>` : ''}
+      ${f ? triageHtml(f.triage) : ''}
+      <h3 style="margin-top:8px">${orph.length ? '⚠ Needs repair (' + orph.length + ' live dependant' + (orph.length > 1 ? 's' : '') + ')' : 'Needs repair'}</h3>
+      ${orph.map(o => orphanRow(o, t)).join('') || '<div class="empty">no live commitment rests on it</div>'}
+      ${used.length ? `<div class="kv"><b>Steps that used it after it died</b>: ${used.map(s => `<a href="#" data-jump="${s.step}">${s.step}</a>`).join(', ')}</div>` : ''}
+      ${before.length ? `<div class="kv">steps that used it before: ${before.map(s => `<a href="#" data-jump="${s.step}">${s.step}</a>`).join(', ')}</div>` : ''}
+      ${gone > 0 ? `<div class="kv">${gone} other dependant(s) are already dead or superseded themselves</div>` : ''}
+      <a href="#" data-front="${esc(x.belief_id)}" data-keep="1">highlight its shear front in the graph</a></div>`;
+  });
+  return h;
+}
+function tabBeliefs() {
+  const t = S.t, g = goldOf();
+  const falseD = new Set(g ? g.deaths.false : []);
+  let h = `<h3>Beliefs (${S.b.beliefs.length}) — click to see its shear front</h3><table><tr><th>slot</th><th>value</th><th>first</th><th>state @${t}</th><th>death</th></tr>`;
+  S.b.beliefs.slice().sort((a, c) => a.first_step - c.first_step).forEach(x => {
+    const st = x.first_step > t ? '—' : stateAt(x.belief_id, t);
+    const fl = g && falseD.has(x.belief_id) ? ' <span class="chip warn">not in gold</span>' : '';
+    h += `<tr class="clk" data-front="${esc(x.belief_id)}" style="${x.first_step > t ? 'opacity:.35' : ''}"><td>${esc(short(x.subject, 40))}${x.relation && x.relation !== 'equals' ? ' <span class=kv>' + esc(x.relation) + '</span>' : ''}</td><td>${esc(short(x.canonical_value, 20))}</td><td>${x.first_step}</td><td style="color:${COL[st] || ''}">${st}</td><td>${x.died_at ?? x.superseded_at ?? ''} ${esc(x.death_reason ?? '')}${fl}</td></tr>`;
+  });
+  h += '</table>';
+  if (S.front) {
+    const f = S.front, x = S.bel[f.belief_id];
+    h += `<h3>${f.at_risk ? 'At-risk front' : 'Shear front'} of “${esc(x?.subject)} = ${esc(x?.canonical_value)}”</h3><div class="card"><div class="kv">${f.at_risk ? 'flagged at step ' + esc(f.flagged_at) : 'refuting step ' + esc(f.refuting_step)} · size ${esc(f.size)}</div>${f.refuting_evidence ? `<pre>${esc(f.refuting_evidence)}</pre>` : ''}${triageHtml(f.triage)}
+      <b>dependant steps</b>: ${f.dependant_steps.map(s => `<a href="#" data-jump="${s.step}">${s.step}${s.after_death ? '⚠' : ''}</a>`).join(', ') || '<span class="empty">none</span>'}<br>
+      <b>dependant commitments</b>: ${f.dependant_commitments.length}<br><b>orphans</b>: ${esc(JSON.stringify(f.orphans))}<br><b>restatements</b>: ${esc(JSON.stringify(f.restatements))}</div>`;
+  }
+  return h;
+}
+function tabGold() {
+  const g = goldOf();
+  if (!g) return `<h3>Gold</h3><div class="empty">${Object.keys(S.b.gold).length ? 'Pick an annotator in the toolbar.' : 'No gold exists for this conversation.'}</div>`;
+  const t = S.t, c = g.commitments, d = g.deaths, e = g.edges;
+  let h = `<h3>${esc($('#gold').value)} <span class="chip">${esc(g.status)}</span></h3><div class="kv">${esc(g.note || '')}</div>`;
+  h += `<table><tr><th>layer</th><th>gold</th><th>matched</th><th>missed</th><th>extra / false</th></tr>
+    <tr><td>commitments</td><td>${c.n_gold}</td><td>${c.matched.length}</td><td>${c.missed.length}</td><td>${c.extra.length}</td></tr>
+    <tr><td>deaths</td><td>${d.n_gold}</td><td>${d.ok.length}</td><td>${d.missed.length}</td><td>${d.false.length}</td></tr>
+    <tr><td>edges</td><td>${e.n_gold}</td><td>${e.ok.length}</td><td>${e.missed.length}</td><td>${e.false.length}</td></tr></table>`;
+  if (!g.complete.includes('commitment')) h += `<div class="card warn">This gold file is incomplete for commitments: “extra” may be real facts it simply did not list.</div>`;
+  h += `<h3>Missed commitments (gold has it, pipeline did not)</h3>` + (c.missed.map((m, i) => `<div class="card warn" style="${m.step > t ? 'opacity:.4' : ''}">step ${m.step}: <b>${esc(m.entity)}</b> · ${esc(m.attribute)} = <b>${esc(m.value)}</b> <a href="#" data-jump="${m.step}">go</a></div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Missed deaths</h3>` + (d.missed.map(m => `<div class="card warn" style="${m.died_at > t ? 'opacity:.4' : ''}">“${esc(m.value)}” should die at step ${m.died_at} (${esc(m.status)}) <a href="#" data-jump="${m.died_at}">go</a></div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Deaths found</h3>` + (d.ok.map(m => `<div class="card ${m.step_ok ? 'ok' : 'warn'}">${esc(S.bel[m.belief_id]?.canonical_value)} died ${m.died_at} (gold ${m.gold_died_at})${m.step_ok ? '' : ' — wrong step'}</div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Deaths not in gold (false)</h3>` + (d.false.map(id => `<div class="card dead">${esc(S.bel[id]?.subject)} = ${esc(S.bel[id]?.canonical_value)} @${esc(S.bel[id]?.died_at ?? S.bel[id]?.superseded_at)} <a href="#" data-front="${esc(id)}">front</a></div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Missed edges</h3>` + (e.missed.map(m => `<div class="card warn">parent “${esc(m.parent_value)}” → step ${m.child_step} <a href="#" data-jump="${m.child_step}">go</a></div>`).join('') || '<div class="empty">none</div>');
+  h += `<h3>Edges not in gold</h3>` + (e.false.map(i => { const x = S.b.supports[i], p = S.com[x.commitment_id]; return `<div class="card">${esc(p?.attribute)} = ${esc(short(p?.value, 20))} → step ${stepOfUid(x.step_uid)} <span class="kv">${esc(x.rule)}</span></div>`; }).join('') || '<div class="empty">none</div>');
+  return h;
+}
+function tabNode() {
+  if (!S.sel) return '<h3>Node</h3><div class="empty">Click a commitment node in the graph.</div>';
+  const c = S.com[S.sel.id]; if (!c) return '';
+  const x = S.bel[c.belief_id];
+  const sib = S.b.commitments.filter(o => o.belief_id === c.belief_id);
+  let h = `<h3>Commitment</h3>${comCard(c, S.t)}<pre>${esc(JSON.stringify(c, null, 1))}</pre>`;
+  if (x) h += `<h3>Its belief</h3><pre>${esc(JSON.stringify(x, null, 1))}</pre><a href="#" data-front="${esc(x.belief_id)}">show shear front</a>
+    <h3>Mentions of this belief</h3>${sib.map(o => `<div class="card">step ${o.step}: ${esc(show(o.value))} <a href="#" data-jump="${o.step}">go</a></div>`).join('')}`;
+  const out = S.b.supports.filter(e => e.commitment_id === c.id);
+  h += `<h3>Steps that depend on it (${out.length})</h3>` + (out.map(e => `<div class="card">step ${stepOfUid(e.step_uid)} <span class="kv">${esc(e.rule)} ${esc(e.level)}</span> <a href="#" data-jump="${stepOfUid(e.step_uid)}">go</a></div>`).join('') || '<div class="empty">none</div>');
+  return h;
+}
+function renderPane() {
+  const tabs = S.live ? TABS.concat([['live', 'Live']]) : TABS;
+  if (!tabs.some(([k]) => k === S.tab)) S.tab = 'turn';
+  const nRep = repairItems().length + riskItems().length;
+  $('#tabs').innerHTML = tabs.map(([k, n]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${n}${k === 'repair' && nRep ? ` <span class="chip dead">${nRep}</span>` : ''}</button>`).join('');
+  const f = { turn: tabTurn, repair: tabRepair, flow: tabFlow, extract: tabExtract, beliefs: tabBeliefs, gold: tabGold, node: tabNode, live: tabLive }[S.tab];
+  $('#pane').innerHTML = f();
+}
+
+// ---------------------------------------------------------------- actions
+function select(sel) { S.sel = sel; S.tab = 'node'; refresh(); }
+function showFront(bid, keepTab) {
+  S.front = frontOf(bid) || { belief_id: bid, dependant_steps: [], dependant_commitments: [], orphans: [], restatements: [], size: 0, refuting_step: null };
+  if (!keepTab) S.tab = 'beliefs'; refresh();
+}
+// in live mode only the turns that have run can be visited; Next past the last one runs the next turn for real
+function maxIdx() { return S.live ? S.steps.indexOf(S.live.processed) : S.steps.length - 1; }
+function jump(step) { if (S.steps.includes(step) && S.steps.indexOf(step) <= maxIdx()) { S.t = step; refresh(); } }
+function move(d) { const i = Math.max(0, Math.min(maxIdx(), S.steps.indexOf(S.t) + d)); S.t = S.steps[i]; refresh(); }
+function nextAction() {
+  if (S.busy) return;
+  if (S.mode === 'live') {
+    if (!S.sid) return startLive();
+    if (S.steps.indexOf(S.t) >= maxIdx()) return S.live.done ? undefined : liveNext();
+  }
+  move(1);
+}
+function stopPlay() { S.playing = false; if (S.timer) { clearInterval(S.timer); S.timer = null; } $('#play').textContent = S.mode === 'live' ? '▶ Run all' : '▶ Play'; }
+
+$('#next').onclick = nextAction; $('#prev').onclick = () => { if (!S.busy) move(-1); };
+$('#first').onclick = () => { S.t = S.steps[0]; refresh(); }; $('#last').onclick = () => { S.t = S.steps[maxIdx()]; refresh(); };
+$('#slider').oninput = e => { S.t = S.steps[+e.target.value]; refresh(); };
+$('#play').onclick = () => {
+  if (S.mode === 'live') return livePlay();
+  if (S.timer) return stopPlay();
+  $('#play').textContent = '⏸ Pause';
+  S.timer = setInterval(() => { if (S.steps.indexOf(S.t) >= S.steps.length - 1) return stopPlay(); move(1); }, 1100);
+};
+['#tFuture', '#tRejected', '#tAsserts'].forEach(s => $(s).onchange = refresh);
+$('#gold').onchange = applyGold;
+$('#fit').onclick = () => S.cy.fit(undefined, 40);
+$('#focus').onclick = () => { S.cy.zoom(0.75); followStep(true); };
+$('#tabs').onclick = e => { const b = e.target.closest('button'); if (b) { S.tab = b.dataset.tab; renderPane(); } };
+$('#pane').onclick = e => {
+  const a = e.target.closest('[data-front]'); if (a) { e.preventDefault(); return showFront(a.dataset.front, !!a.dataset.keep); }
+  const j = e.target.closest('[data-jump]'); if (j) { e.preventDefault(); return jump(+j.dataset.jump); }
+  const c = e.target.closest('[data-com]'); if (c) { S.sel = { type: 'com', id: c.dataset.com }; S.tab = 'node'; refresh(); }
+};
+document.addEventListener('keydown', e => {
+  if (['SELECT', 'INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); nextAction(); } else if (e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
+  else if (e.key === ' ') { e.preventDefault(); $('#play').click(); } else if (e.key === 'Home') $('#first').click(); else if (e.key === 'End') $('#last').click();
+});
+
+function legend() {
+  $('#legend').innerHTML = `<i style="border-color:#2f7fd1"></i>live &nbsp;<i style="border-color:#d6453d"></i>dead &nbsp;<i style="border-color:#c98a1b"></i>superseded &nbsp;<i style="border-color:#8a5cc7"></i>contested<br>
+  <i style="border-color:#2f7fd1"></i>depends-on (rule) &nbsp;<i style="border-color:#d6453d"></i>refutes &nbsp;<i style="border-color:#2e9d5b"></i>resurrects &nbsp;<i style="border-color:#e07b1a;border-top-style:dotted"></i>rejected edge<br>
+  <i style="border-color:#9aa5b5;border-top-style:dashed"></i>same belief &nbsp;· lanes = slots, x = step · green glow = in gold, orange glow = not in gold, dashed box = missed by pipeline`;
+}
+
+
+// ---------------------------------------------------------------- live mode
+async function api(path, body) {
+  const r = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const j = await r.json(); if (!r.ok) throw new Error(j.error || r.status); return j;
+}
+const LOCKABLE = ['#next', '#prev', '#first', '#last', '#start', '#conv', '#model', '#variant', '#modeBtn', '#slider'];
+function setBusy(on, msg) {
+  S.busy = on; clearInterval(S.busyTimer);
+  LOCKABLE.forEach(id => $(id).disabled = on);
+  $('#play').disabled = on && !S.playing;
+  if (on) { const t0 = Date.now(); const tick = () => $('#liveInfo').textContent = `⏳ ${msg} ${((Date.now() - t0) / 1000).toFixed(1)} s`; tick(); S.busyTimer = setInterval(tick, 200); }
+  else if (S.b) renderHeader(); else $('#liveInfo').textContent = '';
+}
+function liveHint(show, html) { const h = $('#liveHint'); h.style.display = show ? 'flex' : 'none'; if (html) h.innerHTML = html; }
+function convKind() { const c = CONVS.find(x => x.id === $('#conv').value); return c ? c.kind : 'chat'; }
+function syncLiveControls() {
+  const swe = convKind() === 'swe';
+  $('#model').disabled = swe; $('#variant').disabled = swe;
+  $('#model').title = swe ? 'Route A is rule-based: no model is used' : 'Model';
+  liveHint(!S.sid, swe
+    ? '<div><b>Live mode · Route A</b><br>SWE trajectories are extracted by rules, no model.<br>Press <b>Start live run</b> (or Next): each Next runs the rules and the whole pipeline on the turns so far.</div>'
+    : '<div><b>Live mode</b><br>Pick a model and an extractor, then press <b>Start live run</b> (or Next).<br>Each Next runs the <b>real model and the whole pipeline</b> for one more turn.<br>Nothing from later turns is visible to it.</div>');
+}
+async function setMode(m) {
+  stopPlay();
+  if (S.sid) { api('/api/live/stop', { sid: S.sid }).catch(() => {}); S.sid = null; }
+  S.live = null; S.mode = m;
+  $('#modeBtn').textContent = m === 'live' ? '◀ Stored mode' : '⚡ Live mode';
+  $('#liveBar').style.display = m === 'live' ? '' : 'none';
+  $('#run').style.display = 'none';
+  $('#play').textContent = m === 'live' ? '▶ Run all' : '▶ Play';
+  if (m === 'live') {
+    if (!$('#model').options.length) {
+      const ms = await (await fetch('/api/models')).json();
+      $('#model').innerHTML = ms.map(x => `<option value="${esc(x.path)}">${esc(x.name)} (${x.size_mb} MB)${x.default ? ' · default' : ''}</option>`).join('');
+    }
+    if (S.cy) { S.cy.destroy(); S.cy = null; }
+    $('#left').innerHTML = ''; $('#left').dataset.id = ''; $('#pane').innerHTML = ''; $('#tabs').innerHTML = '';
+    syncLiveControls();
+  } else { liveHint(false); load($('#conv').value); }
+}
+async function startLive() {
+  if (S.busy) return;
+  stopPlay();
+  if (S.sid) { api('/api/live/stop', { sid: S.sid }).catch(() => {}); S.sid = null; }
+  setBusy(true, convKind() === 'swe' ? 'starting…' : 'loading model…');
+  try {
+    const j = await api('/api/live/start', { conv: $('#conv').value, model_path: $('#model').value, variant: $('#variant').value });
+    S.sid = j.sid; applyLive(j.bundle, true);
+  } catch (e) { $('#pane').innerHTML = `<div class="err">${esc(e.message)}</div>`; }
+  finally { setBusy(false); }
+}
+async function liveNext() {
+  if (!S.sid || S.busy || (S.live && S.live.done)) return;
+  setBusy(true, `running turn ${S.live ? S.live.processed + 1 : ''}…`);
+  try { const j = await api('/api/live/next', { sid: S.sid }); applyLive(j.bundle, false); }
+  catch (e) { S.playing = false; $('#pane').innerHTML = `<div class="err">${esc(e.message)}</div>`; }
+  finally { setBusy(false); }
+}
+async function livePlay() {
+  if (S.playing) { S.playing = false; $('#play').textContent = '▶ Run all'; return; }
+  if (!S.sid) await startLive();
+  if (!S.sid) return;
+  S.playing = true; $('#play').textContent = '⏸ Pause';
+  while (S.playing && S.live && !S.live.done) { await liveNext(); }
+  S.playing = false; $('#play').textContent = '▶ Run all';
+}
+// take a new live bundle: keep the view (zoom, pan, selection) and jump to the newest turn
+function applyLive(b, first) {
+  const old = (!first && S.cy) ? { z: S.cy.zoom(), p: { ...S.cy.pan() } } : null;
+  const keep = { sel: S.sel, tab: S.tab, front: S.front && S.front.belief_id };
+  prep(b); S.live = b.live; S.t = b.live.processed;
+  if (first) {
+    $('#left').dataset.id = '';
+    const names = Object.keys(b.gold);
+    $('#gold').innerHTML = '<option value="">off</option>' + names.map(n => `<option>${esc(n)}</option>`).join('');
+    $('#gold').value = names.includes('author') ? 'author' : (names.includes('claude_review') ? 'claude_review' : (names[0] || ''));
+    S.tab = 'turn';
+    const bn = $('#banner'); bn.style.display = b.split === 'eval' ? 'block' : 'none';
+    if (b.split === 'eval') bn.textContent = 'This conversation is in the frozen EVAL split. Looking at it is reading eval data: do not tune on what you see.';
+  } else {
+    S.sel = keep.sel; S.tab = keep.tab;
+    S.front = keep.front ? (b.fronts.find(f => f.belief_id === keep.front) || (b.at_risk_fronts || []).find(f => f.belief_id === keep.front) || null) : null;
+  }
+  liveHint(false);
+  buildGraph(); if (old) { S.cy.zoom(old.z); S.cy.pan(old.p); }
+  legend(); refresh(); followStep(first);
+}
+function tabLive() {
+  const L = S.live; if (!L) return '';
+  const tot = L.turns.reduce((a, x) => a + x.seconds, 0), calls = L.turns.reduce((a, x) => a + x.model_calls, 0);
+  let h = `<h3>Live run</h3><div class="card"><b>${esc(L.model)}</b> · extractor ${esc(L.variant)}<br><span class="kv">${L.processed + 1} of ${L.total} turns run · ${tot.toFixed(1)} s in total · ${calls} model call(s)${L.done ? ' · finished' : ''}</span></div>
+    <div class="kv">Every Next runs the extractor (and, for chat, the model) for one more turn, then the whole pipeline (edges, beliefs, deaths, shear fronts) on the turns so far only.</div>
+    <h3>Turns</h3><table><tr><th>step</th><th>role</th><th>seconds</th><th>calls</th><th>+commitments</th></tr>`;
+  L.turns.forEach(x => { h += `<tr class="clk" data-jump="${x.step}" style="${x.step === S.t ? 'background:#e4eefb' : ''}"><td>${x.step}</td><td>${esc(x.role)}</td><td>${x.seconds}</td><td>${x.model_calls}</td><td>${x.new_commitments}</td></tr>`; });
+  return h + '</table>';
+}
+$('#modeBtn').onclick = () => setMode(S.mode === 'live' ? 'stored' : 'live');
+$('#start').onclick = startLive;
+
+async function load(id, run) {
+  stopPlay(); $('#pane').innerHTML = '<div class="empty">loading…</div>';
+  const r = await fetch('/api/bundle?conv=' + encodeURIComponent(id) + (run ? '&run=' + encodeURIComponent(run) : '')); const j = await r.json();
+  if (!r.ok) { $('#pane').innerHTML = `<div class="err">${esc(j.error)}</div>`; return; }
+  prep(j);
+  fillRuns(id, j.run);
+  $('#left').dataset.id = '';
+  const names = Object.keys(j.gold);
+  $('#gold').innerHTML = '<option value="">off</option>' + names.map(n => `<option>${esc(n)}</option>`).join('');
+  const pref = names.includes('author') ? 'author' : (names.includes('claude_review') ? 'claude_review' : (names[0] || ''));
+  $('#gold').value = pref;
+  const bn = $('#banner');
+  if (j.split === 'eval') { bn.style.display = 'block'; bn.textContent = 'This conversation is in the frozen EVAL split. Looking at it is reading eval data: do not tune on what you see.'; } else bn.style.display = 'none';
+  buildGraph(); legend(); refresh(); followStep(true);
+  history.replaceState(null, '', '#' + encodeURIComponent(id));
+}
+let CONVS = [];
+function fillRuns(id, run) {
+  const c = CONVS.find(x => x.id === id), el = $('#run');
+  el.style.display = c && c.runs ? '' : 'none';
+  el.innerHTML = c && c.runs ? c.runs.map(r => `<option value="${esc(r)}">${esc(r)}</option>`).join('') : '';
+  if (run) el.value = run;
+}
+async function init() {
+  const convs = CONVS = await (await fetch('/api/conversations')).json();
+  const grp = (k, label) => `<optgroup label="${label}">` + convs.filter(c => c.kind === k).map(c =>
+    `<option value="${esc(c.id)}" ${c.blocked ? 'disabled' : ''}>${esc(c.id)}${c.gold ? ' ★' : ''} [${c.split}]${c.blocked ? ' (eval: blocked)' : ''}</option>`).join('') + '</optgroup>';
+  $('#conv').innerHTML = grp('chat', 'Route B · chat') + grp('swe', 'Route A · SWE');
+  $('#conv').onchange = () => { if (S.mode === 'live') { stopPlay(); if (S.sid) api('/api/live/stop', { sid: S.sid }).catch(() => {}); S.sid = null; S.live = null; if (S.cy) { S.cy.destroy(); S.cy = null; } $('#left').innerHTML = ''; $('#pane').innerHTML = ''; syncLiveControls(); } else load($('#conv').value); };
+  $('#run').onchange = () => load($('#conv').value, $('#run').value);
+  const want = decodeURIComponent(location.hash.slice(1));
+  const start = convs.find(c => c.id === want && !c.blocked) || convs.find(c => c.id === 'legal_case_demo' && !c.blocked) || convs.find(c => !c.blocked);
+  $('#conv').value = start.id; load(start.id);
+  window.addEventListener('hashchange', () => {
+    const target = decodeURIComponent(location.hash.slice(1));
+    if (target && $('#conv') && $('#conv').value !== target) {
+      const match = CONVS.find(c => c.id === target && !c.blocked);
+      if (match) {
+        $('#conv').value = target;
+        load(target);
+      }
+    }
+  });
+}
+init().catch(e => { $('#pane').innerHTML = `<div class="err">${esc(e)}</div>`; });
+</script>
+</body>
+</html>
