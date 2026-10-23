@@ -1,0 +1,120 @@
+{
+  "schema": "iheval_priority32_completion_summary_for_demo_v2",
+  "status": "complete_native_official_score",
+  "cohort_label": "Complete 32-case selected IHEval pilot; not the full IHEval benchmark",
+  "source_case_count": 32,
+  "source_policy_group_count": 16,
+  "official_strict_prompt_all_pass": {
+    "identity": {
+      "passed": 10,
+      "total": 32,
+      "rate": 0.3125
+    },
+    "frozen_residual_R_restatement": {
+      "passed": 18,
+      "total": 32,
+      "rate": 0.5625
+    },
+    "composite_utility_critic_selected_plan": {
+      "passed": 10,
+      "total": 32,
+      "rate": 0.3125
+    }
+  },
+  "strict_conflict_context": {
+    "identity": {
+      "passed": 2,
+      "total": 16,
+      "rate": 0.125
+    },
+    "frozen_residual_R_restatement": {
+      "passed": 9,
+      "total": 16,
+      "rate": 0.5625
+    },
+    "composite_utility_critic_selected_plan": {
+      "passed": 2,
+      "total": 16,
+      "rate": 0.125
+    }
+  },
+  "paired_vs_identity_strict": {
+    "complete_pair_cases": 32,
+    "source_groups": 16,
+    "mean_case_delta": 0.25,
+    "repairs": 9,
+    "regressions": 1,
+    "ties": 22,
+    "source_group_bootstrap_95_ci": [
+      0.09375,
+      0.40625
+    ],
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20261022
+  },
+  "latency": {
+    "source_path": "runs/benchmark_sources_20261022/iheval_priority_context_cohort_v2/latency_composite_v1/paired_latency_comparison_v1.json",
+    "source_sha256": "9f2d456c93b9ea5bd13679d066354fa532a65fd3b4629d74c4c7593b8b37f503",
+    "cohort_sha256": "e0fe7ae14ca0931efd41b70821d62dfe056c3dfd8ec7fd66227fe79f5ed09430",
+    "r_only_latency_receipt_sha256": "1f18b94ccc24a685dc1abc9c817c57d63dc317cc3fb8dacbd90a81f2f585aaa0",
+    "measurement_pass": "first_32_case_pass",
+    "paired_optimizer_overhead_R_minus_identity_p50_ms": 21.273354534059763,
+    "paired_optimizer_overhead_R_minus_identity_p95_ms": 39.55411212518811,
+    "r_added_native_input_tokens_mean": 40.09375,
+    "r_added_native_input_tokens_p50": 45.0,
+    "scope": "Optimizer-only paired CPU timing; not target generation latency. R token changes are native chat-template input-token counts."
+  },
+  "evidence_examples": {
+    "artifact_path": "runs/benchmark_sources_20261022/iheval_priority_ui_evidence_v1/recorded_pairs.json",
+    "artifact_sha256": "29ac03b42398d8ee5456cf75b5dd8cf0746f7f4291212a73def10670561ad24e",
+    "original_example_bindings_preserved": true,
+    "groups": [
+      "2341",
+      "2832"
+    ]
+  },
+  "sources": {
+    "complete_official_metrics": {
+      "path": "target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/scored_v1/official_metrics.json",
+      "sha256": "7857debd4e9e41604073f61bccbf6f8234380f007adf44e96f9c16998156dac0"
+    },
+    "completed_case_arm_ledger": {
+      "path": "target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/scored_v1/case_arm_ledger.jsonl",
+      "sha256": "aa6e76b4d7952485091f316aa9179f3cbd4604bfbae58b64d58ea0ee15688a82"
+    },
+    "continuation_outputs": {
+      "path": "target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/downloaded_v3/target_outputs.jsonl",
+      "sha256": "b36a9bb5182fecd413e69f2fd81c1380430481b4729471b7979bf4511ea27402"
+    },
+    "continuation_manifest": {
+      "path": "target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/downloaded_v3/embedded_inputs/target_manifest.json",
+      "sha256": "66051033b5df94a5e02d681c9ff77409830df4fbaeffa96375b2474832a2664f"
+    },
+    "continuation_queue": {
+      "path": "target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/downloaded_v3/embedded_inputs/target_queue.jsonl",
+      "sha256": "36157f3ad9064c86dda22fb439171b27d8058bd9cdc6653eb2dd6053c561e355"
+    },
+    "parent_partial_metrics": {
+      "path": "target_eval/kaggle_iheval_priority32_selfcontained_20261022_v2/partial_score_v1/partial_official_metrics.json",
+      "sha256": "833824ff67ce15a47dfbb8f89cc622e17d4bc7e9cd5e7177504e7f4e495df2bc"
+    },
+    "parent_original_output_sha256": "28e994592e6ca33ec5d774ca471e6d4fd5eb9d62c783e75f0cf882e6007ad1f2",
+    "independent_native_audit": {
+      "path": "target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/independent_audit_v2/independent_audit.json",
+      "sha256": "c0dbf29f0f9af51d764c1fe1f94fbd827d5736ccbb6925f27100207a6daa8d67",
+      "status": "PASS",
+      "independently_recomputed_checker_vectors": 96,
+      "effective_requests": 56,
+      "effective_mappings": 96,
+      "cases": 32,
+      "only_incomplete_parent_row_replaced": true
+    }
+  },
+  "checker": {
+    "revision": "726a62924c3050045954df94347d53fe2bd1090d",
+    "evaluation_sha256": "7eb279cc5de42863402ce0eece7d068051639ac90d12bfddda978df5c3e6a84b",
+    "registry_sha256": "2c19c3cfeeccd4634b39d5ae38efba407cb88b007a2d84bcac2fb678191e5f90",
+    "checker_keys_uploaded": false
+  },
+  "scope_note": "Use full32 metrics only when status is complete_native_official_score. Report exploratory selected cohort and the separate ancestry-defined 24-case supplement; this does not test superiority to an always-restate control."
+}

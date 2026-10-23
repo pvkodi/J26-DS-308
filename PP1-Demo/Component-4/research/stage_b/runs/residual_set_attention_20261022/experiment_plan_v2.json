@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_baseline_residual_set_attention_v2",
+  "status": "pre-fit_frozen_plan",
+  "fit_started": false,
+  "created_utc": "2026-10-22T02:54:15.689824+00:00",
+  "hypothesis": "The existing strong 3074D MiniLM profile-aware selector plus frozen epoch-3 TinyBERT pair score is useful per-rule evidence, but its shared linear head cannot learn cross-rule interactions. A zero-initialized masked set-attention residual may improve final applicability prediction while preserving the exact starting baseline.",
+  "scope": "One CPU training run on original assigned NLSI train split and one frozen 245-case validation split. Architecture-plus-residual-training intervention; not a pure causal decomposition and not proof of explicit rule/evidence reasoning.",
+  "bindings": {
+    "train_sha256": "510c9c79c82c15b0753a545d9c81adca005247901eb52bdcd4ea8cfda6599ff7",
+    "dev_sha256": "de8a90999a50e0848bf264ea2481c1222ca26988f0f2982bb095c0fb40c7db20",
+    "split_manifest_sha256": "4c2b37047a4e596d16da3e3d88f2098aa758858aa62eef4f05ad38873931ddff",
+    "feature_cache_sha256": "9cb167c050230f76e4af3a55eba3a093411a35e9d6c742424dbf2a965688741c",
+    "pair_score_sha256": "b1aa9eb234bb53d2a75bf87d2a539e2f0132dfa8936b2b48e3de078a00ff4ba4",
+    "baseline_head_sha256": "6373742519c14b980bc1f8ebd6448485ffc4e4d94903f811ef15b21ddc7ff4d4",
+    "baseline_result_sha256": "e0ea57a71ec02f83a9db250e30062d6a075b2b9d239d76c7d442844ee10a3847",
+    "pair_model_sha256": "515ff9bef3d323d7e403b52bc3172cb90792470adbacc91fb428452f44e3cbd0",
+    "minilm_source_sha256": "00c9acdd88c2e0caa4551f3b30ff5986ea576e31e1305ef2fc1562953476b506",
+    "trainer_sha256": "6ea48cbe056c3bd407a2da00c84ec8ddaf42b10540538986c07e8f30f9c76192",
+    "baseline_probability_parity_sha256": "4a61ea3259cbe371fc5e50123e83a476bafc623e31b999eb560dcce463936525",
+    "baseline_prediction_sha256": "a4a51b9f258cf58edf6265c183037c74b38b7c2c30e0d921bf880601a6eb476f"
+  },
+  "feature_input": {
+    "per_rule_dim": 3075,
+    "components": "3074 exact joint_and_separate MiniLM features plus frozen selected-epoch-3 TinyBERT pair score",
+    "case_offsets": "frozen representation_ablation train_offsets/dev_offsets; candidate row order checked against native source rule counts",
+    "scaling": "exact candidate augmented head training scaler: 3074 MiniLM means/scales plus one pair-score mean/scale; no refit"
+  },
+  "baseline": {
+    "head_path": "runs/context_policy_live_demo_20261021/crossencoder_tinybert_diag_v2/epoch_3/augmented_head.npz",
+    "head_sha256": "6373742519c14b980bc1f8ebd6448485ffc4e4d94903f811ef15b21ddc7ff4d4",
+    "source_epoch": 3,
+    "fixed_threshold": 0.45,
+    "logit": "frozen standardized 3075D baseline linear logit",
+    "zero_initialization": "final residual scalar layer weights and bias are zero, so epoch0 exactly matches the frozen baseline"
+  },
+  "architecture": {
+    "input": "3075D baseline-standardized rule row",
+    "projection": "Linear(3075,64), GELU",
+    "set_block": "one batch-first 2-head masked self-attention over rules in the same profile; padding keys masked",
+    "residual": "shared Linear(64,1) applied to projected embedding plus attention output",
+    "final_logit": "frozen baseline logit + learned residual",
+    "hardcoded_rule_graph": false,
+    "labels_or_answers_as_input_features": false
+  },
+  "optimization": {
+    "epochs": 3,
+    "batch_profiles": 32,
+    "cpu_threads": 4,
+    "seed": 20261021,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "objective": "case-balanced binary cross entropy on final applicability labels + 0.01 * case-mean residual squared magnitude",
+    "case_weighting": "each profile total loss weight 1; per-rule BCE averaged within profile",
+    "threshold": 0.45,
+    "checkpoint_selection": "highest 245-case validation example-macro F1 among epoch 0 baseline and epochs 1-3; ties select earliest epoch",
+    "no_hyperparameter_grid": true
+  },
+  "predeclared_gate": {
+    "dev_example_macro_f1_strictly_above_epoch0_baseline": true,
+    "dev_exact_set_accuracy_at_least_epoch0_baseline": true,
+    "otherwise": "do not promote or launch target; preserve run as failed development experiment"
+  },
+  "exclusions": {
+    "test_split_opened": false,
+    "test_labels_read": false,
+    "locked48_opened": false,
+    "native_target_outcomes_used": false,
+    "target_calls": 0,
+    "production_changed": false
+  },
+  "parent_plan_sha256": "6c131a40b070c081b9fb56c9b575e898fc9bf11e4f1626a2bda7ee6472855b7e",
+  "failed_attempt_receipt_sha256": "285dfa5063c93bad264f05d808bb4515b46d50e87d965a3d026e24d687a866f1",
+  "paths": {
+    "trainer": "scripts/train_residual_set_attention_v2.py",
+    "output": "runs/residual_set_attention_20261022/fit_v2",
+    "parent_failed_output": "runs/residual_set_attention_20261022/fit_v1"
+  },
+  "preflight_requirements": {
+    "exact_245_saved_candidate_ids": true,
+    "all_candidate_probabilities_abs_tolerance": 1e-06,
+    "metric_reproduction_tolerance": 1e-12,
+    "abort_before_optimizer_step_if_any_mismatch": true,
+    "train_and_dev_batch_mapping_asserts_exact_case_ids_and_rule_counts": true
+  }
+}

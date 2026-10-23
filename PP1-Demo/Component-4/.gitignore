@@ -1,0 +1,17 @@
+# Local sessions and generated files are recreated by the demo.
+__pycache__/
+*.py[cod]
+backend/data/
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+.venv/
+.env
+.DS_Store
+
+# The parent repository excludes model binaries by default. These frozen
+# serving assets are required for this demo to work offline after cloning.
+!research/stage_b/**/*.onnx
+!research/stage_b/**/*.pkl
+!research/stage_b/**/*.pth
+!research/stage_b/**/*.pb

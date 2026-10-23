@@ -1,0 +1,103 @@
+{
+  "schema": "stage_b_cooperative_runtime_manifest_v2",
+  "status": "frozen_experimental_runtime",
+  "scope": "Experimental Stage B cooperative R/E/B inference. R is frozen NLSI-derived applicability selector, E is ContractNLI source-trained pointer transfer, B is deterministic source-authored closure only. No learned whole-answer utility. E confidence is out-of-domain experimental. Version 2 adds an exact optional semantic context span and skips only tokenizer-empty E candidates; original target messages remain unchanged.",
+  "artifacts": {
+    "evidence_checkpoint": {
+      "path": "runs/joint_correction_planner_20261022/contractnli_evidence_v2_all17/fit/selected_model.pt",
+      "sha256": "06e665733213dfc4ae459573b3050ea19c3d175a073544bcda2c0889799e20da"
+    },
+    "evidence_fit_receipt": {
+      "path": "runs/joint_correction_planner_20261022/contractnli_evidence_v2_all17/fit/fit_receipt.json",
+      "sha256": "0e69dbde6f3e652990f4d3ddf0daa74b3dc8461c5983f731a04e5433b73ac3b3"
+    },
+    "evidence_threshold_receipt": {
+      "path": "runs/joint_correction_planner_20261022/contractnli_evidence_v2_all17/dev_threshold_calibration/threshold_receipt.json",
+      "sha256": "ad73646af5d3896a2a296b1cec0e0fba4e9961321f52e67d6a60f8ff34e7b6af"
+    },
+    "evidence_fit_plan": {
+      "path": "runs/joint_correction_planner_20261022/contractnli_evidence_v2_all17/fit_plan_v2.json",
+      "sha256": "08e8d101d121ddd742a6e07f0b0e78e1bd23f63193bcf144a43d7245c24e4811"
+    },
+    "evidence_feature_cache_manifest": {
+      "path": "runs/contractnli_evidence_adapter_20261022/feature_cache_v1/feature_cache_manifest.json",
+      "sha256": "869d18d34bef3102cc53b2af4d05fa0a991f9ddbf1944fdec17f8ebbe7e98bb0"
+    },
+    "evidence_all17_manifest": {
+      "path": "runs/contractnli_evidence_adapter_20261022/all17_queryset_v2/all17_queryset_manifest_v2.json",
+      "sha256": "d308dca51bc98a6333947be77f91943419f1bcbecaf12b4f8054a52925ec1851"
+    },
+    "evidence_cache_reproduction": {
+      "path": "runs/contractnli_evidence_adapter_20261022/cache_reproduction_v2/output/reproduction_receipt_v2.json",
+      "sha256": "6493daed5839c52b0e954dde14c61d47aadcb804da3b60cfb68c20fd97b33635"
+    },
+    "stage_b_runtime": {
+      "path": "src/instruction_reminder/stage_b_cooperative_runtime_v2.py",
+      "sha256": "4bbe8a88f42519603d4a52bc3a6e21e06bfe051ae2bbba7069b2058d98c85caa"
+    },
+    "joint_plan_renderer": {
+      "path": "src/instruction_reminder/joint_correction_plans.py",
+      "sha256": "1d5f970da64ef52cdcc958738a7ba5d3c27ea8b416e9128186f799b76c069118"
+    },
+    "evidence_model_code": {
+      "path": "src/instruction_reminder/contractnli_evidence_pointer.py",
+      "sha256": "7c703e044954c573efab9094a51f53ec6017d92fb6e954e3371a99a94547bc06"
+    },
+    "text_encoder_code": {
+      "path": "src/instruction_reminder/joint_rule_encoder.py",
+      "sha256": "41b28de307bbe531c3835af87259680ea1900c988e5e74c20f045da154739f40"
+    },
+    "residual_runtime_code": {
+      "path": "src/instruction_reminder/residual_set_attention_candidate.py",
+      "sha256": "699ad4d052ae93c415005a413f65bac8a0ea7b54816db5f361fd17e5f4229dd3"
+    },
+    "root_contract": {
+      "path": "runs/joint_correction_planner_20261022/runtime_api_contract_v1.json",
+      "sha256": "6aa0aef573d981a310b4c87db216510e3428e242ad262d89451f25d569f70103"
+    }
+  },
+  "residual": {
+    "fit_dir": "runs/residual_set_attention_20261022/fit_v2",
+    "frozen_selector_dir": "models/applicability_nlsi_full_profile_seed20261021_v1",
+    "selector_encoder_dir": "assets/encoder",
+    "pair_candidate_dir": "runs/context_policy_live_demo_20261021/crossencoder_tinybert_diag_v2/serving_selected_epoch3",
+    "threshold": 0.45,
+    "sha256": {
+      "fit_receipt": "e2321fdf80e3894eb659d3cdb6f5f1fa3f403b0cde6a0d1c0124792f3ce2347a",
+      "state": "e0fac9e1f3c75902a15e054131379497287996eefef6bc54a218af10345b0f26",
+      "selector_config": "b2d56ecda21051658cb919c37735ccffebe303882ffa5bd26f8b83d08fc1bbaa",
+      "selector_head": "2ed9a2de556fc46f4b7f6abd9b8ac1cb39638ead9f8296d43226426fc91fc411",
+      "pair_result": "e3e1716ebce794550499398a9413e0f94536d9c181c0ca593cc2a3adfe6ab2d9"
+    }
+  },
+  "evidence": {
+    "threshold": 0.85,
+    "threshold_scope": "ContractNLI development-only evidence calibration; IFBench/user-domain transfer is experimental, not calibrated.",
+    "checkpoint_sha256": "06e665733213dfc4ae459573b3050ea19c3d175a073544bcda2c0889799e20da",
+    "fit_plan_sha256": "08e8d101d121ddd742a6e07f0b0e78e1bd23f63193bcf144a43d7245c24e4811",
+    "feature_cache_manifest_sha256": "869d18d34bef3102cc53b2af4d05fa0a991f9ddbf1944fdec17f8ebbe7e98bb0",
+    "all17_source_manifest_sha256": "d308dca51bc98a6333947be77f91943419f1bcbecaf12b4f8054a52925ec1851",
+    "cache_reproduction_receipt_sha256": "6493daed5839c52b0e954dde14c61d47aadcb804da3b60cfb68c20fd97b33635",
+    "minilm_assets_dir": "assets/encoder",
+    "minilm_fileset_sha256": "053a7160100648a52430f34416ac7883632d74c68c2db9d277ce6e6d053c3458"
+  },
+  "native_tokenizer": {
+    "directory": "assets/qwen2_5_7b_kaggle_v1_tokenizer",
+    "provenance_sha256": "7ae7749c3d6078a8e9d8f44ce35fa56e51b51c072896477d86b07b797bce432e"
+  },
+  "admission": {
+    "max_added_native_tokens": 256,
+    "max_context_spans": 512,
+    "span_admission_threshold": 0.85,
+    "bundle_policy": "source-authored bundle closure is atomic; complete closure only; no inferred exception/dependency",
+    "context_span_contract": "optional exact integer {start,end} within context_message_index user content; R/E use that exact slice; E offsets are shifted back into original message coordinates; original messages never change",
+    "tokenless_candidate_policy": "skip exact candidate span if pinned MiniLM tokenizer yields no content IDs; retain case and R; report skipped span offsets"
+  },
+  "renderer": {
+    "name": "joint_correction_plans.render_plan",
+    "path": "src/instruction_reminder/joint_correction_plans.py",
+    "sha256": "1d5f970da64ef52cdcc958738a7ba5d3c27ea8b416e9128186f799b76c069118",
+    "native_edit": "append exact canonical suffix to the original last user message; preserve all prior message roles and content"
+  },
+  "parent_manifest_sha256": "5592d35854a7d57b87eb70db15d0b05eba534b6fd959fddadedd7e698bc7c62c"
+}

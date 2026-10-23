@@ -1,0 +1,36 @@
+{
+  "repository": "sentence-transformers/multi-qa-MiniLM-L6-cos-v1",
+  "revision": "b207367332321f8e44f96e224ef15bc607f4dbf0",
+  "files": [
+    {
+      "name": "onnx/model.onnx",
+      "size": 90405214,
+      "sha256": "826501e8460f6e1a83fa30a9b173f051100abda5559e1352efc0e3fe3136afc2"
+    },
+    {
+      "name": "tokenizer.json",
+      "size": 466247,
+      "sha256": "7fa9272f7ef1ebd1666bb3bfd9d4707660ff0076ca9d1671cd9a9c6e18e03331"
+    },
+    {
+      "name": "tokenizer_config.json",
+      "size": 383,
+      "sha256": "857c5db35e9664bd0ea1db3a5ee62c0ce86d79e3ec85861ca1680bd7aaff12f8"
+    },
+    {
+      "name": "config.json",
+      "size": 612,
+      "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41"
+    },
+    {
+      "name": "sentence_bert_config.json",
+      "size": 53,
+      "sha256": "ec8e29d6dcb61b611b7d3fdd2982c4524e6ad985959fa7194eacfb655a8d0d51"
+    },
+    {
+      "name": "README.md",
+      "size": 11586,
+      "sha256": "516c81b58be758ff4a521ec86d6f30668c68644e2d55d5dcbba3e60f4ca5efe0"
+    }
+  ]
+}

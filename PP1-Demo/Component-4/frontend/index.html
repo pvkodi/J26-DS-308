@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CGE Studio · Component 4</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="c4-app" id="c4-app">
+    <aside class="rail" id="rail">
+      <a class="brand" href="#overview" aria-label="CGE Studio home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span><b>CGE Studio</b><small>CONVERSATION GOVERNANCE</small></span></a>
+      <div class="nav-label">COMPONENT 4 · PROMPT POLICY</div>
+      <nav aria-label="Component 4 sections">
+        <button class="nav active" data-page="stage-a"><span>01</span> Stage A · Rewrite</button>
+        <button class="nav" data-page="stage-b"><span>02</span> Stage B · Optimize</button>
+        <button class="nav" data-page="evidence"><span>03</span> Recorded evidence</button>
+      </nav>
+      <div class="rail-note"><span class="rail-line"></span><b>One prompt. Two stages.</b><p>Compile reusable policy once, then select context-relevant rules before each call.</p></div>
+      <div class="rail-foot"><span><i class="dot" id="health-dot"></i><span id="health-label">Checking local service</span></span><button data-open-about>Scope & evidence ↗</button></div>
+    </aside>
+    <div class="main">
+      <header class="topbar"><div class="crumb">CGE <span>/</span> <b id="crumb-title">Stage A · Rewrite</b></div><div class="top-actions"><span class="status-chip" id="mode-chip">Local Component 4</span><button class="button" id="refresh-button">↻ Refresh</button></div></header>
+      <main>
+        <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+        <nav class="workflow-steps" aria-label="Three-step prompt workflow">
+          <button class="workflow-step active" data-page="stage-a"><span class="step-index">01</span><span><b>Source policy</b><small>Review and edit</small></span></button>
+          <span class="step-connector" aria-hidden="true"></span>
+          <button class="workflow-step" data-page="stage-b"><span class="step-index">02</span><span><b>Optimize this turn</b><small>Keep the original prefix</small></span></button>
+          <span class="step-connector" aria-hidden="true"></span>
+          <button class="workflow-step" data-page="evidence"><span class="step-index">03</span><span><b>Recorded answers</b><small>Exact saved outputs only</small></span></button>
+        </nav>
+
+        <section class="page" id="stage-a-page">
+          <div class="pagehead"><div><div class="eyebrow">STEP 1 · SOURCE → REWRITE</div><h1>Review the policy before it reaches a request.</h1><p>The source stays visible beside the editable version. Differences are marked line by line; saved BPO examples are labeled as recorded evidence.</p></div><span class="mode-tag recorded">RECORDED WORKBENCH</span></div>
+          <div class="stage-layout">
+            <section class="card version-card">
+              <header><div><span class="section-number">A1</span><h2>Policy versions</h2></div><button class="icon-button" id="reload-versions" title="Reload versions">↻</button></header>
+              <div class="card-body"><div class="version-list" id="version-list"><div class="empty-state">Loading saved policy versions…</div></div><div class="version-actions"><button class="button" id="new-version">New manual version</button><button class="button primary" id="use-version" disabled>Use in Stage B</button><button class="button" id="export-version" disabled>Export saved JSON</button></div><p class="field-help">Saved versions are immutable. If you edit a saved policy, save a new revision before exporting it.</p></div>
+            </section>
+            <section class="card editor-card">
+              <header><div><span class="section-number">A2</span><h2>Source and editable rewrite</h2></div><span class="badge" id="version-state">Read only</span></header>
+              <div class="editor-meta"><span id="version-name">Select a version</span><span id="version-origin" class="subtle">Source and generated text stay visible</span></div>
+              <div class="editor-grid">
+                <label class="editor-pane source-pane" id="source-pane"><span class="pane-label"><i class="pane-dot source-dot"></i> SOURCE POLICY <small>read only</small></span><span class="code-editor-shell"><pre class="line-gutter" id="original-line-numbers" aria-hidden="true">1</pre><textarea id="original-policy" readonly spellcheck="false" placeholder="The source prompt will appear here."></textarea></span></label>
+                <label class="editor-pane rewrite-pane" id="rewrite-pane"><span class="pane-label"><i class="pane-dot rewrite-dot"></i> EDITABLE REWRITE <small>save as a new version</small></span><span class="code-editor-shell"><pre class="line-gutter" id="rewrite-line-numbers" aria-hidden="true">1</pre><textarea id="rewrite-policy" spellcheck="false" placeholder="Select a draft to edit."></textarea></span></label>
+              </div>
+              <div class="editor-footer"><span class="subtle" id="editor-note">Draft changes are saved as a new version.</span><div><button class="button" id="compare-version" disabled>Compare changes</button><button class="button primary" id="save-version" disabled>Save new revision</button></div></div>
+              <details class="diff-panel" id="diff-panel" hidden><summary><span class="diff-key add-key">Added</span><span class="diff-key remove-key">Removed</span><span class="diff-key same-key">Unchanged</span><span class="diff-title">Line-by-line change view</span></summary><div id="diff-text" class="diff-output"></div></details>
+            </section>
+          </div>
+          <section class="card recorded-workbench" id="bpo-evidence-card"><header><div><span class="section-number">A3</span><h2>Recorded rewrite evidence</h2></div><span class="badge muted">RECORDED · NOT A LIVE RUN</span></header><div class="card-body"><div class="evidence-summary" id="bpo-summary"><p>Loading the recorded rewrite receipt…</p></div><details><summary>Version and run provenance</summary><pre id="bpo-provenance">No receipt loaded.</pre></details></div></section>
+        </section>
+
+        <section class="page" id="stage-b-page" hidden>
+          <div class="pagehead"><div><div class="eyebrow">STEP 2 · OPTIMIZE THIS TURN</div><h1>Keep the standing prompt. Add only the selected suffix.</h1><p>Stage B analyzes the current context locally. It preserves the native request history and appends a separate user-message suffix when rules are selected.</p></div><span class="mode-tag live">LOCAL CPU OPTIMIZER</span></div>
+          <section class="card context-pair-card" id="context-pair-card"><header><div><span class="section-number">B0</span><h2>Choose a recorded context</h2></div><span class="badge muted">SAVED ANSWERS · NO REGENERATION</span></header><div class="card-body"><p class="subtle">Pick an aligned or conflicting context for one of two unchanged policies. The answer panels show exact saved responses. Load this saved context into the live workspace; then select rules to run the local selector.</p><div class="pair-tabs"><button class="pair-tab active" data-pair="2341"><b>Capitalization</b><small>Aligned · conflict</small><small class="source-id">Source group 2341</small></button><button class="pair-tab" data-pair="2832"><b>One bullet</b><small>Aligned · conflict</small><small class="source-id">Source group 2832</small></button></div><div id="pair-view" class="pair-view"></div></div></section>
+          <div class="stage-b-quick-actions"><span class="quick-action-title">Your workspace</span><span class="quick-action-copy">Start a new request, resume a saved session, or select against a recorded context.</span><span class="quick-action-status" id="stage-b-workspace-status">No request sent</span><button class="button" id="new-prompt-button" type="button">＋ New prompt</button><button class="button" id="retry-selection-button" type="button" disabled>↻ Retry selection</button><button class="button" id="export-session-button" type="button" disabled>↓ Export session</button></div>
+          <div class="session-toolbar"><div class="field inline"><label for="conversation-id">New session title</label><input id="conversation-id" value="Component 4 session" autocomplete="off"></div><div class="field inline"><label for="resume-session">Resume saved session</label><select id="resume-session"><option value="">New session</option></select></div><span class="subtle" id="frozen-policy-label">Choose a saved version or enter a policy below.</span></div>
+          <div class="stage-b-grid">
+            <section class="card context-card"><header><div><span class="section-number">B1</span><h2>Current context</h2></div><span class="badge">Source messages</span></header><div class="card-body"><label class="field"><span>System policy for this call</span><textarea id="stage-b-policy" rows="6" placeholder="Choose a recorded policy or enter the exact policy that should govern this call."></textarea></label><label class="field"><span>Optional exact policy excerpts · one verbatim excerpt per line</span><textarea id="rule-excerpts" rows="4" placeholder="Leave empty to score the whole policy as one rule. Otherwise paste exact lines or clauses from the policy; each must appear verbatim."></textarea><small class="field-help">The backend checks every excerpt against the policy text. It does not split or rewrite rules for you.</small></label><label class="field"><span>Earlier context (optional)</span><textarea id="history-input" rows="4" placeholder="Earlier conversation text. It is included in the selector context before the current message."></textarea></label><label class="field"><span>Current user message</span><textarea id="current-input" rows="4" placeholder="What does the assistant need to respond to now?"></textarea></label><div class="run-bar"><span class="subtle" id="optimize-status">No request has been sent.</span><button class="button primary" id="optimize-button">Select rules for this turn →</button></div><div class="cache-row"><span id="cache-badge" class="cache-badge">Prefix not checked</span><span id="latency-label" class="subtle">Latency appears after a real local run.</span></div></div></section>
+            <section class="card decision-card"><header><div><span class="section-number">B2</span><h2>What will be sent</h2></div><span id="selected-count" class="badge">Awaiting context</span></header><div class="card-body"><div id="decision-empty" class="empty-state">Run Stage B to see the locked prefix, selected addition, and measured token cost.</div><div id="decision-content" hidden><div id="turn-stats" class="stats-grid"></div><div id="selection-list" class="selection-list"></div><div class="request-comparison" aria-label="Original request and appended suffix"><section class="request-block prefix-block"><header><span class="request-state"><i></i> PRESERVED PREFIX</span><span class="badge prefix-badge">locked</span></header><p>The original system policy and conversation history remain in place.</p><div class="request-display" id="prefix-display">The exact native prefix will appear after optimization.</div></section><div class="append-marker" aria-hidden="true">＋</div><section class="request-block suffix-block"><header><span class="request-state"><i></i> APPENDED SUFFIX</span><span class="badge suffix-badge">request-specific</span></header><p>Added as a new user message; the original messages are not flattened or rewritten.</p><div class="request-display" id="suffix-display">No suffix selected yet.</div><details class="suffix-technical"><summary>Suffix text</summary><pre id="rendered-suffix"></pre></details></section></div><details class="exact-messages"><summary>Inspect exact optimized message array</summary><pre id="optimized-messages"></pre></details><div class="token-row" id="token-stats"></div></div></div></section>
+          </div>
+          <section class="card history-card"><header><div><span class="section-number">B3</span><h2>Turn history</h2></div><span class="subtle">Selections and requests returned by the local service</span></header><div class="card-body"><div id="turn-history" class="turn-history"><div class="empty-state">No turns recorded in this session.</div></div></div></section>
+        </section>
+
+        <section class="page" id="evidence-page" hidden>
+          <div class="pagehead"><div><div class="eyebrow">STEP 3 · RECORDED ANSWERS</div><h1>See the exact saved outputs and checker results.</h1><p>Recorded prompt-level results from small, source-defined cohorts. No new answer is generated on this page.</p></div><span class="mode-tag recorded">FROZEN RESULTS</span></div>
+          <div class="metrics-grid" id="metrics-grid"><div class="empty-state">Loading frozen score receipts…</div></div>
+          <section class="card evidence-card"><header><div><span class="section-number">E1</span><h2>Study scope and limitations</h2></div><span class="badge muted">READ ONLY</span></header><div class="card-body"><div id="evidence-scope"></div><details><summary>Exact result and provenance receipts</summary><pre id="evidence-receipts"></pre></details></div></section>
+          <section class="card interpretation-card"><header><div><span class="section-number">E2</span><h2>Interpretation</h2></div></header><div class="card-body"><p><b>Component 4 edits context-dependent request suffixes.</b> The recorded IFBench and IHEval studies are small, selected evaluation cohorts. Official checker passes show rule compliance, not complete answer quality; one IFBench checker can accept an answer that omits substantive content.</p><p>Use the recorded examples to inspect exact before-and-after outputs and source checkers. Treat live optimization as a separate local inference path.</p></div></section>
+        </section>
+      </main>
+    </div>
+  </div>
+  <dialog id="about-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow">SCOPE & EVIDENCE</div><h2>Component 4</h2><p>Stage A records reusable policy versions. Stage B selects a request-specific suffix using the current conversation context and the frozen policy. Recorded examples are visibly separated from live local calls.</p><p>Native checker results measure the listed instructions only. They do not certify that every response fulfills the broader user request.</p></dialog>
+  <script src="app.js"></script>
+</body>
+</html>

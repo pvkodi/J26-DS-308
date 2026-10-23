@@ -1,0 +1,91 @@
+{
+  "schema": "independent_iheval_parent_child_v3_audit_v1",
+  "status": "PASS",
+  "bindings": {
+    "parent_manifest_sha256": "a9f3257d4b5850aa936351a2f11c1962597680c6c48efe0fb133ba6f7ed60d0c",
+    "parent_queue_sha256": "4e634ec887f2d008847a7729cbbb635bdb3303f13a3911d22faf4146acfc4d1a",
+    "parent_outputs_sha256": "28e994592e6ca33ec5d774ca471e6d4fd5eb9d62c783e75f0cf882e6007ad1f2",
+    "parent_preflight_sha256": "b95825ddb46300d13ce910c3ed129d6e50317a001b513edf426d2c2e521f61c8",
+    "child_manifest_sha256": "66051033b5df94a5e02d681c9ff77409830df4fbaeffa96375b2474832a2664f",
+    "child_queue_sha256": "36157f3ad9064c86dda22fb439171b27d8058bd9cdc6653eb2dd6053c561e355",
+    "child_outputs_sha256": "b36a9bb5182fecd413e69f2fd81c1380430481b4729471b7979bf4511ea27402",
+    "child_preflight_sha256": "5875970923da9364dbbc5ce7a63d0c846ff9a771cbb4762758b4ce7b346ab113",
+    "merge_plan_sha256": "e1cb3eb145dbe5ee49e02b526dae71e298235ebe83e79c59d02554a31388b6b2",
+    "official_metrics_sha256": "7857debd4e9e41604073f61bccbf6f8234380f007adf44e96f9c16998156dac0",
+    "ledger_sha256": "aa6e76b4d7952485091f316aa9179f3cbd4604bfbae58b64d58ea0ee15688a82",
+    "checker_revision": "726a62924c3050045954df94347d53fe2bd1090d",
+    "checker_sha256": "7eb279cc5de42863402ce0eece7d068051639ac90d12bfddda978df5c3e6a84b",
+    "registry_sha256": "2c19c3cfeeccd4634b39d5ae38efba407cb88b007a2d84bcac2fb678191e5f90",
+    "checker_key_sha256": "706821ba470cb766774cd316a1aea1e0143c1285519e7c108289aaf9140675ef",
+    "mapping_sha256": "5870da82cd43588a4359680b646ca70fa23fb5d900ea6e35e556f644d92113bd"
+  },
+  "counts": {
+    "parent_queue": 56,
+    "parent_raw": 40,
+    "parent_eos": 39,
+    "parent_deadline_interrupted": 1,
+    "child_queue": 17,
+    "child_raw": 17,
+    "child_protocol_complete": 17,
+    "child_exact_ids_are_16_missing_plus_interrupted_replacement": true,
+    "effective_requests": 56,
+    "effective_mappings": 96,
+    "cases": 32,
+    "checker_vectors_independently_recomputed_and_matched": 96
+  },
+  "replacement": {
+    "request_id": "07b700fd5cf43e40cbc846c3dd5234b440dd07d087d40576775498f07eb460a2",
+    "parent_finish_reason": "deadline",
+    "child_eos": true,
+    "only_parent_incomplete_row_replaced": true
+  },
+  "recomputed_official_by_arm": {
+    "identity": {
+      "strict_prompt": 0.3125,
+      "strict_instruction": 0.36363636363636365,
+      "loose_prompt": 0.40625,
+      "loose_instruction": 0.4318181818181818,
+      "instruction_count": 44
+    },
+    "frozen_residual_R_restatement": {
+      "strict_prompt": 0.5625,
+      "strict_instruction": 0.6136363636363636,
+      "loose_prompt": 0.59375,
+      "loose_instruction": 0.6363636363636364,
+      "instruction_count": 44
+    },
+    "composite_utility_critic_selected_plan": {
+      "strict_prompt": 0.3125,
+      "strict_instruction": 0.36363636363636365,
+      "loose_prompt": 0.40625,
+      "loose_instruction": 0.4318181818181818,
+      "instruction_count": 44
+    }
+  },
+  "worker_timing": {
+    "model_load_seconds_each_worker": [
+      1471.3549152550002,
+      1471.359256789
+    ],
+    "devices": [
+      0,
+      1
+    ],
+    "batch_generation_seconds": [
+      {
+        "device": 0,
+        "seconds": 53.42985909499998,
+        "batch_size": 16,
+        "n_requests": 16
+      },
+      {
+        "device": 1,
+        "seconds": 59.32155240899988,
+        "batch_size": 1,
+        "n_requests": 1
+      }
+    ],
+    "run_complete_elapsed_seconds": 1541.344194311,
+    "interpretation": "Per-worker load and batch durations overlap; do not sum them as wall time."
+  }
+}

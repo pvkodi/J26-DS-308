@@ -1,0 +1,45 @@
+{
+  "schema": "component4_evidence_bindings_v1",
+  "files": {
+    "iheval_recorded_pairs": {
+      "path": "data/iheval_recorded_pairs.json",
+      "source_path": "research/stage_b/runs/benchmark_sources_20261022/iheval_priority_ui_evidence_v1/recorded_pairs.json",
+      "sha256": "29ac03b42398d8ee5456cf75b5dd8cf0746f7f4291212a73def10670561ad24e"
+    },
+    "iheval_summary": {
+      "path": "data/iheval_summary.json",
+      "source_path": "research/stage_b/runs/benchmark_sources_20261022/iheval_priority_ui_evidence_v1/full32_completion_summary_v2.json",
+      "sha256": "9218cda46897573280cdbacfdfe0464a2b39848ce493fa4bc5c6a6d7ad28998c"
+    },
+    "iheval_official_metrics": {
+      "path": "data/iheval_official_metrics.json",
+      "source_path": "research/stage_b/target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/scored_v1/official_metrics.json",
+      "sha256": "7857debd4e9e41604073f61bccbf6f8234380f007adf44e96f9c16998156dac0"
+    },
+    "iheval_independent_audit": {
+      "path": "data/iheval_independent_audit.json",
+      "source_path": "research/stage_b/target_eval/kaggle_iheval_priority32_missing_batch16_continuation_v1/independent_audit_v2/independent_audit.json",
+      "sha256": "c0dbf29f0f9af51d764c1fe1f94fbd827d5736ccbb6925f27100207a6daa8d67"
+    },
+    "ifbench_scores": {
+      "path": "data/ifbench_scores.json",
+      "source_path": "research/stage_b/runs/ifbench_critic_verification_20261022/threearm_study_v1/scored_v2/scores.json",
+      "sha256": "d9610d24f94c047b90b9ad286eef41bc16dee8a29876fad36212938524c6599f"
+    },
+    "ifbench_independent_audit": {
+      "path": "data/ifbench_independent_audit.json",
+      "source_path": "research/stage_b/runs/ifbench_critic_verification_20261022/threearm_study_v1/scored_v2/independent_native_audit_v1.json",
+      "sha256": "35d0a026f4d29ba980255e7eaa4dab12f738b9c464ee5593dbf193e467fcce30"
+    },
+    "ifbench_latency": {
+      "path": "data/ifbench_latency.json",
+      "source_path": "research/stage_b/runs/ifbench_critic_verification_20261022/latency_compare_v2/latency_receipt.json",
+      "sha256": "94a859ab08d9b8de3e77ca329f6537646aeb90f88e0a58a594bcd4a629e71009"
+    }
+  },
+  "notes": [
+    "IHEval and IFBench are frozen 32-case cohorts, not full benchmarks.",
+    "Live Stage B runs CPU selection only; target answers are recorded and only shown for exact recorded inputs.",
+    "Stage A and B demonstrations are independently evaluated; they are not a measured joint two-stage pipeline."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "residual_set_attention_artifact_manifest_v1",
+  "created_utc": "2026-10-22T02:55:03.221363+00:00",
+  "plan_sha256": "b5b7a81c6c5018b6f213507a993abfd7126738921f8016c7d4413e7997118703",
+  "files": {
+    "selected_state.pt": {
+      "sha256": "e0fac9e1f3c75902a15e054131379497287996eefef6bc54a218af10345b0f26",
+      "bytes": 857839
+    },
+    "epoch_0_residual_state.pt": {
+      "sha256": "fde9a51da0d7c6ab6dd20a5c71f8d6ba6d7123a060a18b58c4f89b059182ffa0",
+      "bytes": 858015
+    },
+    "epoch_metrics.json": {
+      "sha256": "99c9159935efddc9a6163129eb1f481b16551b84f9c6d02911fdf217d437ed55",
+      "bytes": 47863
+    },
+    "predictions_by_epoch.jsonl": {
+      "sha256": "bd11bedbcc4ffd3f6e8cea4e5f1308c7631f7549b75407f21b8c562a0dcce87d",
+      "bytes": 4667582
+    },
+    "baseline_and_features.npz": {
+      "sha256": "5642eb5c0a6b5e63621288e48e622001cbb17ddb26b9b94cf4d22acac19efeab",
+      "bytes": 88037
+    },
+    "fit_receipt.json": {
+      "sha256": "e2321fdf80e3894eb659d3cdb6f5f1fa3f403b0cde6a0d1c0124792f3ce2347a",
+      "bytes": 64466
+    }
+  },
+  "selection": {
+    "selected_epoch": 3,
+    "threshold": 0.45,
+    "dev_gate_passed": true,
+    "dev_sample_f1": 0.8352682504903398,
+    "baseline_dev_sample_f1": 0.8022467488493905,
+    "dev_exact_set_accuracy": 0.5877551020408164,
+    "baseline_dev_exact_set_accuracy": 0.5183673469387755
+  }
+}

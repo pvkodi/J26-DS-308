@@ -12,7 +12,11 @@ from detector.llm import InferenceError,LocalModel
 MODEL_ALIAS='recorded-only'
 def detector_baseline():
     path=OLD/'data/detector_baseline.json'
-    if hashlib.sha256(path.read_bytes()).hexdigest()!=(OLD/'data/detector_baseline.sha256').read_text().strip():
+    raw=path.read_bytes()
+    expected=(OLD/'data/detector_baseline.sha256').read_text().strip()
+    h=hashlib.sha256(raw).hexdigest()
+    h_crlf=hashlib.sha256(raw.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n')).hexdigest()
+    if h!=expected and h_crlf!=expected:
         raise ValueError('Saved detector evidence checksum mismatch')
     return json.loads(path.read_text(encoding='utf-8'))
 def model_status():

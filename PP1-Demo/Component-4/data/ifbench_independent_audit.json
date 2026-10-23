@@ -1,0 +1,46 @@
+{
+  "schema": "ifbench_independent_native_recompute_v1",
+  "status": "PASS_ALL96_EXACT",
+  "recomputed_rows": 96,
+  "cases": 32,
+  "arms": [
+    "identity",
+    "frozen_residual_R_restatement",
+    "new_composite_utility_critic_selected_plan"
+  ],
+  "per_arm": {
+    "identity": {
+      "cases": 32,
+      "strict_prompt": 10,
+      "loose_prompt": 10,
+      "strict_constraints": 12,
+      "loose_constraints": 13,
+      "constraints": 35
+    },
+    "frozen_residual_R_restatement": {
+      "cases": 32,
+      "strict_prompt": 10,
+      "loose_prompt": 10,
+      "strict_constraints": 12,
+      "loose_constraints": 13,
+      "constraints": 35
+    },
+    "new_composite_utility_critic_selected_plan": {
+      "cases": 32,
+      "strict_prompt": 12,
+      "loose_prompt": 12,
+      "strict_constraints": 14,
+      "loose_constraints": 15,
+      "constraints": 35
+    }
+  },
+  "bindings": {
+    "study_manifest_sha256": "f5712b89f9553df8387afa0cd77fa73dc6195e20a06f36bf94135e812c7bfc18",
+    "study_queue_sha256": "0090596235fed38fbd4bd79d36edfa58b9cb01a43f6ed3fa11cfa0b1084bd909",
+    "checker_key_sha256": "bf4f562e607a83cf475e5447d71898ff8ff8f4ab2209dd6f53efe77b09b73ef8",
+    "official_evaluation_lib_sha256": "e681a4b03a6a9dfb540fbd9ef6b963de503a5ffac557ed611c326ee385850cf6",
+    "case_ledger_sha256": "cf49f73d6e9f01cd81368eeaa8f0107456011d983d9e8ba31253c0abbd83743f",
+    "scores_sha256": "d9610d24f94c047b90b9ad286eef41bc16dee8a29876fad36212938524c6599f"
+  },
+  "method": "Direct pinned official strict then loose checkers on the same InputExample per mapping; every prompt and constraint boolean matched frozen ledger."
+}

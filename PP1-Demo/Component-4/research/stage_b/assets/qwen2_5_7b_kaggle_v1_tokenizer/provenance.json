@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-10-22T00:23:06.589127+00:00",
+  "purpose": "Input-only native token costs for the fixed Qwen2.5-7B Kaggle target; no model weights or target outputs are included.",
+  "target_model": "qwen-lm/qwen2.5/transformers/7b-instruct/1",
+  "target_tokenizer_files_sha256": "9e3c11a4a87d85a72b6f2d1e4b29ab88532f72d03189b6fa2793da735a2d98aa",
+  "tokenizer_files": {
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+  },
+  "provenance": "Bytes copied from the existing Qwen2.5-3B-Instruct tokenizer cache after independently verifying every file SHA256 is identical to the 7B Kaggle version-1 tokenizer used by completed v5 target preflight. No assumption of tokenizer equivalence substitutes for these byte checks.",
+  "source_cache_revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+  "reference_preflight": "target_eval/kaggle_context_change_v5/downloaded_output/tokenizer_preflight.json",
+  "reference_preflight_sha256": "38550e25a903e1becb3d836b70b783309cf53b5cfb5d09fb82e77161f2a38ad5"
+}

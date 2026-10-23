@@ -1,0 +1,104 @@
+{
+  "case_count": 32,
+  "checker_keys_or_labels_read": false,
+  "cohort_manifest_sha256": "c468ab8af794916af3c99ab10f23e266fb3c9de4f166b1f102f31938eae903f9",
+  "composite_critic_manifest_sha256": "cf3132219e2cea5c1821454281e6e5781ceabe709ecd75b65bbf2bcee012dbd4",
+  "limitations": "All per-call timings are local CPU optimizer-path measurements, not target generation latency. Immediate repeat is not evidence of provider KV-cache reuse. Peak RSS is process high-water across all methods, not per-method.",
+  "method_boundaries": {
+    "full_composite": "CompositeUtilityRuntime.predict_plan including R, E, critic scoring, candidate selection, admission, exact rendering and tokenization; no answer generation",
+    "identity": "copy native messages and measure frozen native Qwen chat-template tokenization; no learned optimizer call",
+    "residual_R_only": "frozen ResidualSetAttentionCandidate.predict + canonical R-only suffix rendering + exact native Qwen tokenization/prefix check"
+  },
+  "observed_at_utc": "2026-10-22T17:53:46.883093+00:00",
+  "passes": [
+    {
+      "latency": {
+        "max_ms": 9.070875123143196,
+        "mean_ms": 0.8296107698697597,
+        "n": 32,
+        "p50_ms": 0.5517296958714724,
+        "p95_ms": 0.9451773716136813
+      },
+      "method": "identity",
+      "n_cases": 32,
+      "pass": "first_32_case_pass",
+      "wall_seconds": 0.035804583225399256
+    },
+    {
+      "latency": {
+        "max_ms": 93.10762491077185,
+        "mean_ms": 37.9966900072759,
+        "n": 32,
+        "p50_ms": 35.7508126180619,
+        "p95_ms": 55.94042711891234
+      },
+      "method": "residual_R_only",
+      "n_cases": 32,
+      "pass": "first_32_case_pass",
+      "wall_seconds": 1.2268972503952682
+    },
+    {
+      "latency": {
+        "max_ms": 140.2640831656754,
+        "mean_ms": 55.22069135622587,
+        "n": 32,
+        "p50_ms": 52.13454202748835,
+        "p95_ms": 89.17327313683927
+      },
+      "method": "full_composite",
+      "n_cases": 32,
+      "pass": "first_32_case_pass",
+      "wall_seconds": 1.7761052078567445
+    },
+    {
+      "latency": {
+        "max_ms": 0.8096662349998951,
+        "mean_ms": 0.4432214191183448,
+        "n": 32,
+        "p50_ms": 0.4283546004444361,
+        "p95_ms": 0.6772855296730995
+      },
+      "method": "identity",
+      "n_cases": 32,
+      "pass": "immediate_repeat_32_case_pass",
+      "wall_seconds": 0.02184545760974288
+    },
+    {
+      "latency": {
+        "max_ms": 55.137417279183865,
+        "mean_ms": 19.289369811303914,
+        "n": 32,
+        "p50_ms": 16.375208040699363,
+        "p95_ms": 29.06902516260743
+      },
+      "method": "residual_R_only",
+      "n_cases": 32,
+      "pass": "immediate_repeat_32_case_pass",
+      "wall_seconds": 0.6263426668010652
+    },
+    {
+      "latency": {
+        "max_ms": 99.82195822522044,
+        "mean_ms": 35.90686984534841,
+        "n": 32,
+        "p50_ms": 33.28087436966598,
+        "p95_ms": 64.25134220626205
+      },
+      "method": "full_composite",
+      "n_cases": 32,
+      "pass": "immediate_repeat_32_case_pass",
+      "wall_seconds": 1.159486667253077
+    }
+  ],
+  "peak_rss_raw": 593559552,
+  "peak_rss_unit": "bytes on Darwin",
+  "runtime_cold_load_seconds": 4.102781416848302,
+  "schema": "ifbench32_three_path_cpu_optimizer_latency_v1",
+  "source_path": "runs/ifbench_critic_verification_20261022/ifbench_test32_v1/cohort_source_inputs.jsonl",
+  "source_sha256": "0e7ffa721708284e7210ee733f053f6091643de6138e9cd0a809cebfeb46f5c1",
+  "stage_b_manifest_sha256": "b626cf4c05b25c853781bde7fbf6064d1f5f974a27470bb288f3eb858e389437",
+  "status": "complete",
+  "target_calls": 0,
+  "target_outputs_read": false,
+  "threads": 2
+}

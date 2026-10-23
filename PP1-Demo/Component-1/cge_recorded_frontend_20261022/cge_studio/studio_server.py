@@ -2,7 +2,9 @@
 import argparse,json,secrets,threading,traceback,zipfile
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
-from urllib.parse import urlsplit,parse_qs
+from urllib.parse import urlsplit,parse_qs,unquote
+from urllib.request import Request,urlopen
+from urllib.error import HTTPError,URLError
 from services import *
 
 class Studio:
@@ -201,7 +203,12 @@ class Studio:
           integration_status='Proposed versioned contract. Exported from this actual session; other team components are not connected.')
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--port',type=int,default=8051);a=p.parse_args();app=Studio()
+    p=argparse.ArgumentParser();p.add_argument('--port',type=int,default=8051);a=p.parse_args()
+    c1_unavailable_msg='C1 recorded detector evidence did not pass its stored checksum; C1 APIs are unavailable in this copied shell. C2, C3 and C4 routes remain available.'
+    try: app=Studio()
+    except ValueError as exc:
+        if str(exc) != 'Saved detector evidence checksum mismatch': raise
+        app=None
     c3_root = WORK / 'keel_c3'
     if not c3_root.exists():
         c3_root = WORK.parent / 'Component-3/keel_c3_demo'
@@ -219,8 +226,49 @@ def main():
             self.send_response(status);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(data)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff')
             if download:self.send_header('Content-Disposition','attachment; filename="'+download+'"')
             self.end_headers();self.wfile.write(data)
+        # <!-- COMPONENT4_SHARED_SHELL_INTEGRATION_V2 -->
+        def c4_static(self, path):
+            from pathlib import Path
+            default_root = Path(__file__).resolve().parents[3] / 'Component-4' / 'frontend'
+            root = Path(__import__('os').environ.get('C4_FRONTEND_ROOT', str(default_root))).resolve()
+            if not root.is_dir():
+                return self.send(503, {'error': 'Component 4 frontend is unavailable.'})
+            rel = 'index.html' if path in ('/c4', '/c4/') else unquote(path[len('/c4/'):])
+            target = (root / rel).resolve()
+            if not target.is_file() or not target.is_relative_to(root):
+                return self.send(404, {'error': 'Component 4 asset not found.'})
+            mime = {'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8',
+                    '.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8',
+                    '.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp'}.get(target.suffix, 'application/octet-stream')
+            return self.send(200, target.read_bytes(), mime)
+        def c4_proxy(self):
+            import os
+            backend = os.environ.get('C4_BACKEND_URL', 'http://127.0.0.1:8774').rstrip('/')
+            parsed = urlsplit(self.path)
+            method = self.command
+            length = int(self.headers.get('Content-Length', '0'))
+            if length < 0 or length > 1000000:
+                return self.send(413, {'error':'Component 4 request is too large.'})
+            body = self.rfile.read(length) if length else None
+            headers = {k:v for k,v in self.headers.items() if k.lower() in ('content-type','accept')}
+            req = Request(backend + parsed.path + (('?' + parsed.query) if parsed.query else ''), data=body, headers=headers, method=method)
+            try:
+                with urlopen(req, timeout=30) as response:
+                    payload=response.read(2000001)
+                    if len(payload)>2000000: return self.send(502, {'error':'Component 4 response exceeded proxy limit.'})
+                    mime=response.headers.get('Content-Type','application/octet-stream')
+                    self.send(response.status,payload,mime)
+            except HTTPError as exc:
+                payload=exc.read(2000001)
+                self.send(exc.code,payload,exc.headers.get('Content-Type','application/json; charset=utf-8'))
+            except (URLError,TimeoutError,OSError):
+                self.send(502, {'error':'Component 4 backend is unavailable.'})
         def do_GET(self):
             u=urlsplit(self.path);q=parse_qs(u.query)
+            if u.path == '/c4' or u.path.startswith('/c4/'):
+                return self.c4_static(u.path)
+            if u.path == '/api/c4' or u.path.startswith('/api/c4/'):
+                return self.c4_proxy()
             try:
                 if u.path in ('/c2', '/c2/', '/c2/index.html', '/c2-evidence-studio', '/c2-evidence-studio/', '/c2-evidence-studio/index.html'):
                     return self.send(200, (c2_root / 'index.html').read_bytes(), 'text/html; charset=utf-8')
@@ -267,6 +315,8 @@ def main():
                     if not f.is_file():
                         return self.send(404, {'error': f"bundle missing: {f.name}"})
                     return self.send(200, f.read_bytes(), 'application/json; charset=utf-8')
+                if app is None and u.path.startswith('/api/'):
+                    return self.send(503,dict(error=c1_unavailable_msg))
                 if u.path=='/api/catalog':return self.send(200,app.catalog())
                 if u.path=='/api/local-status':return self.send(200,model_status())
                 if u.path=='/api/metrics':return self.send(200,app.metrics())
@@ -307,6 +357,11 @@ def main():
             except (ValueError,KeyError) as e:self.send(400,dict(error=str(e)))
             except Exception:traceback.print_exc();self.send(500,dict(error='Unable to load this view. See the Studio console.'))
         def do_POST(self):
+            path=urlsplit(self.path).path
+            if path == '/api/c4' or path.startswith('/api/c4/'):
+                return self.c4_proxy()
+            if app is None and path.startswith('/api/'):
+                return self.send(503,dict(error=c1_unavailable_msg))
             try:
                 n=int(self.headers.get('Content-Length','0'))
                 if not 0<n<=512000:raise ValueError('Request exceeds the local workflow size limit.')
@@ -323,6 +378,16 @@ def main():
                 self.send(200,value)
             except (ValueError,KeyError,TypeError,InferenceError) as e:self.send(400,dict(error=str(e)))
             except Exception:traceback.print_exc();self.send(500,dict(error='This operation failed. No saved response was substituted. See the Studio console.'))
+        def do_PUT(self):
+            path=urlsplit(self.path).path
+            if path == '/api/c4' or path.startswith('/api/c4/'):
+                return self.c4_proxy()
+            return self.send(405,dict(error='Method not allowed'))
+        def do_OPTIONS(self):
+            path=urlsplit(self.path).path
+            if path == '/api/c4' or path.startswith('/api/c4/'):
+                return self.c4_proxy()
+            return self.send(405,dict(error='Method not allowed'))
         def log_message(self,*args):pass
     server=ThreadingHTTPServer(('127.0.0.1',a.port),Handler);print(f'CGE Studio ready: http://127.0.0.1:{a.port}/',flush=True)
     try:server.serve_forever()
