@@ -175,7 +175,7 @@ class Runtime:
             "source_tree": str(self.root),
         }
 
-    def plan(self, policy: str, context: str, native_messages=None, rules=None):
+    def plan(self, policy: str, context: str, native_messages=None, rules=None, demo_language_guard=True):
         from instruction_reminder.data import Case, Instruction
         from instruction_reminder.joint_correction_plans import render_plan, validate_case
         if not policy.strip() or not context.strip():
@@ -219,7 +219,7 @@ class Runtime:
                     span = [start, start + len(text)]
                 candidates.append({"id": rid, "text": text, "span": span})
             selection_scope = "explicit_policy_excerpts"
-        request = {"policy": policy, "context": context, "native_messages": messages, "rules": candidates}
+        request = {"policy": policy, "context": context, "native_messages": messages, "rules": candidates, "demo_language_guard": bool(demo_language_guard)}
         request_hash = sha_bytes(canonical(request))
         case_id = "c4-" + request_hash[:20]
         predict_start = time.perf_counter()
@@ -229,6 +229,23 @@ class Runtime:
             selected, scores = self.model.predict([case])
         selection_ms = (time.perf_counter() - predict_start) * 1000
         selected_indices = [int(x) for x in selected[case_id]]
+        raw_selected_indices = list(selected_indices)
+        guard = {"enabled": bool(demo_language_guard), "applied": False,
+                 "kind": "handwritten_demo_language_request_gate", "checkpoint_changed": False}
+        # Narrow, disclosed demo behavior; never reported as a learned conflict detector.
+        demo_policy = "Your answer must be in all capital letters and in English."
+        if demo_language_guard and len(candidates) == 1 and candidates[0]["text"].strip() == demo_policy:
+            language_request = re.search(
+                r"\b(?:answer|respond|reply|write|explain)(?:\s+\w+){0,4}?\s+in\s+(?:the\s+)?"
+                r"(French|Spanish|German|Italian|Portuguese|Arabic|Hindi|Tamil|Sinhala|Chinese|Mandarin|Japanese|Korean|Russian|Dutch|Swedish|Turkish|Greek|Latin|Bengali|Urdu|Thai|Vietnamese|Polish|English)\b",
+                context, re.IGNORECASE)
+            language_conflict = bool(language_request and language_request.group(1).lower() != "english")
+            case_conflict = bool(re.search(r"\b(?:lower\s*case|lowercase|small letters)\b", context, re.IGNORECASE))
+            conflict = language_conflict or case_conflict
+            selected_indices = [0] if conflict else []
+            guard.update(applied=True, conflicting_language_request=language_conflict, conflicting_case_request=case_conflict,
+                         matched_request=language_request.group(0) if language_request else None,
+                         reason="The current request conflicts with the English or capitalization policy; repeat the governing policy." if conflict else "No explicit language or capitalization conflict; preserve the original policy without an extra reminder.")
         selected_ids = [candidates[i]["id"] for i in selected_indices]
         render_case = {"case_id": case_id, "source_group_id": case_id,
                        "native_messages": messages,
@@ -255,7 +272,8 @@ class Runtime:
             raise RuntimeError("serialized native token prefix changed after adding the restatement")
         return {"request_sha256": request_hash, "selected": bool(selected_indices), "selected_rule_ids": selected_ids,
                 "selection_scope": selection_scope, "candidate_rules": candidates,
-                "model_score": scores[case_id], "suffix": rendered["suffix"],
+                "raw_model_selected_rule_ids": [candidates[i]["id"] for i in raw_selected_indices],
+                "demo_guard": guard, "model_score": scores[case_id], "suffix": rendered["suffix"],
                 "suffix_sha256": rendered["suffix_sha256"], "plan_sha256": rendered["plan_sha256"],
                 "native_messages": messages, "optimized_messages": optimized,
                 "native_prefix_preserved": True, "native_prefix_message_count": len(messages),
@@ -450,7 +468,7 @@ def handler_for(app: Component4):
                     sid = body.get("session_id")
                     if not isinstance(sid, str) or not sid: raise ValueError("session_id is required")
                     if not app.store.has_session(sid): return self.reply(404, {"error": "session not found"})
-                    result = app.runtime.plan(policy, context, body.get("native_messages"), body.get("rules"))
+                    result = app.runtime.plan(policy, context, body.get("native_messages"), body.get("rules"), True)
                     now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
                     saved = app.store.save_turn(sid, policy, result, now)
                     return self.reply(200, saved)

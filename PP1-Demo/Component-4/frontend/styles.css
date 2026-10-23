@@ -120,3 +120,26 @@
 .context-pair-card,.context-pair-card>.card-body,.pair-tabs,.pair-tab{min-width:0}
 .pair-tab{max-width:100%;overflow-wrap:anywhere}
 @media(max-width:760px){.session-toolbar .field.inline{flex:1 1 100%;max-width:100%}.session-toolbar .field.inline input,.session-toolbar .field.inline select{width:100%}}
+
+/* First-screen BPO example chooser. */
+.bpo-example-start{display:grid;grid-template-columns:minmax(220px,1.3fr) minmax(200px,1fr) auto;gap:12px 20px;align-items:center;margin:0 0 18px;padding:18px 20px;background:#eef5ff;border:1px solid #c9dbef;border-radius:10px}
+.bpo-example-start h2{font-size:18px;margin:7px 0 4px}.bpo-example-start p{margin:0;color:#4d647d;font-size:12px;line-height:1.5}.bpo-example-start .field{margin:0}.bpo-example-start select{width:100%;min-width:0}.bpo-example-start .bpo-preview-answers{grid-column:1/-1;padding-top:10px;border-top:1px solid #d1dfef;color:#234767;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:850px){.bpo-example-start{grid-template-columns:1fr}.bpo-example-start .bpo-preview-answers{grid-column:auto}}
+
+.bpo-replay-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* Keep the original and its Rewrite action together in the first view. */
+.source-rewrite-action{display:flex;align-items:center;gap:12px;padding:12px;background:#edf5ff;border-top:1px solid #cfdfef;flex-wrap:wrap}.source-rewrite-action .button{min-width:130px;font-size:14px}.source-rewrite-action small{font-size:10px;color:#526b84}
+.embedded[data-c4-page="stage-a"] .workflow-steps,.embedded[data-c4-page="stage-a"] #stage-a-page>.pagehead{display:none}
+[data-c4-page="stage-a"] .bpo-example-start{padding:12px 16px;margin-bottom:12px;gap:8px 16px}
+[data-c4-page="stage-a"] .bpo-example-start h2{display:none}
+[data-c4-page="stage-a"] .code-editor-shell{min-height:175px;max-height:320px}
+[data-c4-page="stage-a"] .code-editor-shell textarea{min-height:175px;height:175px;white-space:pre-wrap;overflow-wrap:anywhere}
+[data-c4-page="stage-a"] .editor-grid{align-items:start}
+
+/* Put the rewrite interaction before optional version management at every width. */
+[data-c4-page="stage-a"] .stage-layout{display:flex;flex-direction:column;gap:14px}
+[data-c4-page="stage-a"] .stage-layout>.editor-card{order:0;width:100%}
+[data-c4-page="stage-a"] .stage-layout>.version-card{order:1;width:100%}
+[data-c4-page="stage-a"] .code-editor-shell{min-height:135px}
+[data-c4-page="stage-a"] .code-editor-shell textarea{min-height:135px;height:135px}

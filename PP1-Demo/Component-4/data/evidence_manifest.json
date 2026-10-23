@@ -3,8 +3,8 @@
   "files": {
     "iheval_recorded_pairs": {
       "path": "data/iheval_recorded_pairs.json",
-      "source_path": "research/stage_b/runs/benchmark_sources_20261022/iheval_priority_ui_evidence_v1/recorded_pairs.json",
-      "sha256": "29ac03b42398d8ee5456cf75b5dd8cf0746f7f4291212a73def10670561ad24e"
+      "source_path": "Full frozen parent/continuation outputs and official case_arm_ledger.jsonl; see artifact source_bindings",
+      "sha256": "0eb21bd4ac13bc4a02af1dc68dab2b9ef61def6d1c37933c1f7aabebfd533411"
     },
     "iheval_summary": {
       "path": "data/iheval_summary.json",
